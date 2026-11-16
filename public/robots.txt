@@ -1,0 +1,4 @@
+# Until launch (brief 06-blueprint §7) nothing is indexed.
+# At launch: replace with "Allow: /" and the sitemap line.
+User-agent: *
+Disallow: /

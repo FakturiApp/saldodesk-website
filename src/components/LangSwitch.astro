@@ -1,0 +1,24 @@
+---
+import { LANGS, LANG_LABEL, LANG_NAME, type Lang, type Page, useT, pageHref } from '../i18n/ui'
+
+interface Props { lang: Lang; page?: Page; subpath?: string }
+const { lang, page, subpath } = Astro.props
+const t = useT(lang)
+---
+<!-- Each language is the SAME page in another language. The choice is remembered for
+     the root page's one-time pick (src/pages/index.astro). -->
+<ul class="flex items-center gap-0.5 text-[0.8125rem] font-bold tracking-wide" aria-label={t('lang.label')}>
+  {LANGS.map((l) => (
+    <li>
+      <a
+        href={subpath ? `/${l}/${subpath}` : pageHref(l, page)}
+        hreflang={l}
+        lang={l}
+        title={LANG_NAME[l]}
+        aria-current={l === lang ? 'true' : undefined}
+        data-lang-choice={l}
+        class="rounded-full px-2.5 py-1.5 text-mut transition-colors hover:text-tx aria-[current=true]:bg-tx aria-[current=true]:text-bg"
+      >{LANG_LABEL[l]}</a>
+    </li>
+  ))}
+</ul>

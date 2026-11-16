@@ -1,0 +1,87 @@
+---
+import '../styles/global.css'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import { LANGS, type Lang, type Page, useT, pageHref } from '../i18n/ui'
+
+interface Props {
+  lang: Lang
+  page?: Page
+  /** The page's own title; the home page passes none and gets the brand line. */
+  title?: string
+  description?: string
+  /** A page below a section (a wiki article): its path after the language, e.g. 'pomosh/avans/'. */
+  subpath?: string
+  /** The language whose copy search engines should index (the wiki is Macedonian text). */
+  canonicalLang?: Lang
+}
+const { lang, page, title, description, subpath, canonicalLang } = Astro.props
+const t = useT(lang)
+const site = Astro.site ?? new URL('https://saldodesk.mk')
+const fullTitle = title ? `${title} — SaldoDesk` : `SaldoDesk — ${t('site.tagline')}`
+const desc = description ?? t('site.description')
+const hrefFor = (l: Lang) => (subpath ? `/${l}/${subpath}` : pageHref(l, page))
+const canonical = new URL(hrefFor(canonicalLang ?? lang), site).href
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={desc} />
+    <link rel="canonical" href={canonical} />
+    {!canonicalLang && LANGS.map((l) => <link rel="alternate" hreflang={l} href={new URL(hrefFor(l), site).href} />)}
+    {!canonicalLang && <link rel="alternate" hreflang="x-default" href={new URL(hrefFor('mk'), site).href} />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#0d1220" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f5ebd3" media="(prefers-color-scheme: light)" />
+    <!-- The theme is decided BEFORE the first paint: the visitor's own choice, else the
+         system's. Storage may be blocked (private window); then the system decides. -->
+    <script is:inline>
+      (function () {
+        var t = null
+        try { t = localStorage.getItem('sd-theme') } catch (e) {}
+        if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        document.documentElement.dataset.theme = t
+      })()
+    </script>
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="SaldoDesk" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={{ mk: 'mk_MK', sq: 'sq_MK', en: 'en_US' }[lang]} />
+  </head>
+  <body class="flex min-h-dvh flex-col">
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-50 focus:rounded-lg focus:bg-surface focus:px-4 focus:py-2 focus:shadow">{t('skip')}</a>
+    <Header lang={lang} page={page} subpath={subpath} />
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+    <script>
+      // Remember a language the visitor picked, for the root page's one-time choice.
+      // Storage may be blocked (private window): the site works the same without it.
+      document.addEventListener('click', (e) => {
+        const a = (e.target as Element | null)?.closest?.('[data-lang-choice]')
+        if (!a) return
+        try { localStorage.setItem('sd-lang', a.getAttribute('data-lang-choice') ?? '') } catch {}
+      })
+
+      // The theme switch: flips <html data-theme> and remembers the choice.
+      const root = document.documentElement
+      const btns = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]'))
+      const label = () => btns.forEach((btn) => {
+        const l = root.dataset.theme === 'dark' ? btn.dataset.labelLight : btn.dataset.labelDark
+        btn.setAttribute('aria-label', l ?? ''); btn.title = l ?? ''
+      })
+      label()
+      btns.forEach((btn) => btn.addEventListener('click', () => {
+        root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark'
+        try { localStorage.setItem('sd-theme', root.dataset.theme) } catch {}
+        label()
+      }))
+    </script>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+---
+// The questions that lead to the topic pages — the home page's „options" (owner 2026-11-16:
+// pulling, almost clickbait; each opens its own page). `except` drops the page you are on.
+import Arrow from './Arrow.astro'
+import { TOPICS } from '../content/topics'
+import { type Lang, type Page, pageHref, useT } from '../i18n/ui'
+interface Props { lang: Lang; except?: Page; extra?: boolean }
+const { lang, except, extra = true } = Astro.props
+const t = useT(lang)
+const items = [
+  ...TOPICS.filter((x) => x.page !== except).map((x) => ({ href: pageHref(lang, x.page), tag: x.tag, q: x.teaser })),
+  ...(extra && except !== 'moduli' ? [{ href: pageHref(lang, 'moduli'), tag: t('page.moduli'), q: 'Имате увоз, сервис или веб-продавница? Има модул за тоа.' }] : []),
+]
+---
+<ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+  {items.map((it) => (
+    <li>
+      <a href={it.href} class="card group flex h-full flex-col justify-between gap-6 p-6 transition hover:-translate-y-1 hover:border-tx hover:shadow-[var(--shadow)]">
+        <span class="kicker">{it.tag}</span>
+        <span class="text-xl font-bold leading-snug text-tx md:text-[1.35rem]">{it.q}</span>
+        <span class="grid h-10 w-10 place-items-center rounded-full bg-tx text-bg transition group-hover:translate-x-1 group-hover:bg-accent group-hover:text-accent-ink"><Arrow /></span>
+      </a>
+    </li>
+  ))}
+</ul>

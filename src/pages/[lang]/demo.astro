@@ -1,0 +1,32 @@
+---
+// Демо фирма — „Кони Копи ДООЕЛ", an invented company (owner 2026-11-16). The live demo
+// needs app work (brief 06 §6 item 7); until then this page shows it drawn and offers a call.
+import Base from '../../layouts/Base.astro'
+import Rich from '../../components/Rich.astro'
+import Arrow from '../../components/Arrow.astro'
+import CtaBand from '../../components/CtaBand.astro'
+import Dashboard from '../../components/mock/Dashboard.astro'
+import { LANGS, type Lang, pageHref, useT } from '../../i18n/ui'
+
+export function getStaticPaths() {
+  return LANGS.map((lang) => ({ params: { lang } }))
+}
+const lang = Astro.params.lang as Lang
+const t = useT(lang)
+---
+<Base lang={lang} page="demo" title={t('page.demo')}>
+  <section class="relative overflow-hidden">
+    <div class="glow -right-32 -top-24 h-[28rem] w-[28rem]" style="background:var(--glow-a)" aria-hidden="true"></div>
+    <div class="wrap relative grid items-center gap-12 pt-14 pb-12 md:pt-20 lg:grid-cols-[1fr_1.1fr]">
+      <div>
+        <p class="kicker">{t('page.demo')}</p>
+        <h1 class="mt-4 text-[2.4rem] md:text-[3.25rem]"><Rich text="Запознајте ја **Кони Копи ДООЕЛ.**" /></h1>
+        <p class="mt-6 text-lg text-mut md:text-xl">Измислена фирма со партнери, производи, фактури и долгови — за да ја видите програмата полна, без да внесувате ништо свое.</p>
+        <p class="mt-4 text-mut">Демо фирмата за отворање од прелистувач се подготвува. Дотогаш, ве водиме низ неа лично, за 15 минути.</p>
+        <a href={pageHref(lang, 'kontakt')} class="pill pill-solid mt-8"><span>Закажи 15 мин. презентација</span><span class="pill-arrow"><Arrow /></span></a>
+      </div>
+      <Dashboard />
+    </div>
+  </section>
+  <CtaBand lang={lang} section="demo" />
+</Base>

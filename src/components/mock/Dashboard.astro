@@ -1,0 +1,42 @@
+---
+// The home screen of a made-up company, „Кони Копи ДООЕЛ". All figures are invented.
+import Window from './Window.astro'
+const docs = [
+  ['Фактура', '128/2026', 'Алфа Трејд ДООЕЛ', '24.780,00'],
+  ['Понуда', '41/2026', 'Офис Плус ДОО', '9.440,00'],
+  ['Приемница', '77/2026', 'Прима Тон ДОО', '61.300,00'],
+  ['Фактура', '127/2026', 'Кафе Ружа', '3.540,00'],
+]
+---
+<Window title="Кони Копи ДООЕЛ">
+  <p class="text-base font-bold text-tx">Добро утро, Кони</p>
+  <div class="mt-3 grid grid-cols-2 gap-2.5 lg:grid-cols-[1fr_1fr_1.2fr]">
+    <div class="rounded-xl bg-surface-2 p-3">
+      <p class="text-[0.6875rem] font-bold uppercase tracking-wide text-mut">Промет денес <span class="font-medium normal-case">без ДДВ</span></p>
+      <p class="num mt-1 text-xl font-extrabold text-tx">18.420,00 <span class="text-xs font-medium text-mut">ден.</span></p>
+    </div>
+    <div class="rounded-xl bg-surface-2 p-3">
+      <p class="text-[0.6875rem] font-bold uppercase tracking-wide text-mut">Овој месец <span class="font-medium normal-case">без ДДВ</span></p>
+      <p class="num mt-1 text-xl font-extrabold text-tx">412.906,50</p>
+    </div>
+    <div class="col-span-2 row-span-2 rounded-xl bg-surface-2 p-3 lg:col-span-1">
+      <p class="text-[0.6875rem] font-bold uppercase tracking-wide text-mut">Последни документи</p>
+      <ul class="mt-2 space-y-1.5">
+        {docs.map(([type, no, who, amt]) => (
+          <li class="flex items-baseline gap-2"><span class="font-bold text-tx">{no}</span><span class="truncate text-mut">{type} · {who}</span><span class="num ml-auto whitespace-nowrap text-tx">{amt}</span></li>
+        ))}
+      </ul>
+    </div>
+    <div class="rounded-xl bg-surface-2 p-3">
+      <p class="text-[0.6875rem] font-bold uppercase tracking-wide text-mut">Побарувања</p>
+      <p class="mt-0.5 text-[0.75rem] font-semibold text-warn-tx">Доцни 54.120,00</p>
+      <p class="num text-xl font-extrabold text-tx">286.340,00</p>
+      <div class="mt-2 flex h-1.5 overflow-hidden rounded-full"><span class="w-[70%] bg-fam-sell"></span><span class="w-[19%] bg-fam-credit"></span><span class="w-[11%] bg-[#e0645a]"></span></div>
+    </div>
+    <div class="rounded-xl bg-surface-2 p-3">
+      <p class="text-[0.6875rem] font-bold uppercase tracking-wide text-mut">Залиха</p>
+      <p class="num mt-1 text-xl font-extrabold text-tx">1.284.660,00</p>
+      <p class="text-[0.75rem] text-mut">214 артикли · 3 под минимум</p>
+    </div>
+  </div>
+</Window>

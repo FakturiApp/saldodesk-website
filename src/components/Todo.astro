@@ -1,0 +1,13 @@
+---
+// A value the owner still has to supply. Drawn so it cannot be missed, and marked with
+// data-todo so a pre-launch check can refuse a build that still contains one.
+import { type Lang, useT } from '../i18n/ui'
+
+interface Props { lang: Lang }
+const { lang } = Astro.props
+const t = useT(lang)
+const hasSlot = Astro.slots.has('default')
+---
+<span class="placeholder" data-todo>
+  {t('todo')}{hasSlot && ': '}<slot />
+</span>

@@ -1,0 +1,102 @@
+---
+// The home page, SHORT (owner 2026-11-16): hero → the questions, each opening its own page
+// → the plans → the closing call. Every figure in the drawn screens is invented.
+import Base from '../../layouts/Base.astro'
+import Rich from '../../components/Rich.astro'
+import Arrow from '../../components/Arrow.astro'
+import Icon from '../../components/Icon.astro'
+import CtaBand from '../../components/CtaBand.astro'
+import TopicCards from '../../components/TopicCards.astro'
+import PlanCards from '../../components/PlanCards.astro'
+import Todo from '../../components/Todo.astro'
+import Dashboard from '../../components/mock/Dashboard.astro'
+import { QUOTE } from '../../content/quote'
+import PartnerChip from '../../components/mock/PartnerChip.astro'
+import { LANGS, type Lang, pageHref, signupUrl, useT } from '../../i18n/ui'
+
+export function getStaticPaths() {
+  return LANGS.map((lang) => ({ params: { lang } }))
+}
+const lang = Astro.params.lang as Lang
+const t = useT(lang)
+const FACTS = [
+  { icon: 'doc', t: 'Сите македонски документи и ДДВ-04' },
+  { icon: 'globe', t: 'На македонски, албански и англиски' },
+  { icon: 'arrow', t: 'Пренос од друга програма без препишување' },
+]
+---
+<Base lang={lang}>
+  <!-- HERO -->
+  <section class="relative -mt-[4.75rem] overflow-hidden pt-[8.5rem] pb-20 md:pb-24">
+    <div class="glow -right-40 -top-40 h-[36rem] w-[36rem]" style="background:var(--glow-a)" aria-hidden="true"></div>
+    <div class="glow -left-40 bottom-0 h-[28rem] w-[28rem]" style="background:var(--glow-b)" aria-hidden="true"></div>
+    <div class="wrap relative grid items-center gap-14 lg:grid-cols-[1fr_1.1fr]">
+      <div>
+        <p class="kicker rounded-full border border-line bg-surface px-3.5 py-1.5">
+          <span class="h-2 w-2 rounded-full bg-accent"></span>Изградено за е-Фактура
+        </p>
+        <h1 class="mt-6 text-[2.6rem] sm:text-[3.4rem] lg:text-[3.5rem] xl:text-[4.25rem]"><Rich text="Колку заработивте овој месец? **Точно, не отприлика.**" /></h1>
+        <p class="mt-6 max-w-xl text-lg text-mut md:text-xl">SaldoDesk е програма за фактури, залиха, долгови и ДДВ за македонски фирми. Работи во прелистувач, на македонски и албански.</p>
+        <div class="mt-9 flex flex-wrap items-center gap-3">
+          <a href={signupUrl(lang)} class="pill pill-accent" data-event="cta_trial_click" data-section="hero">
+            <span>{t('cta.trial')} 30 дена</span><span class="pill-arrow"><Arrow /></span>
+          </a>
+          <a href="#prasanja" class="pill pill-ghost">Види како работи</a>
+        </div>
+        <p class="mt-5 text-sm text-mut">30 дена бесплатно · со сите модули · без картичка</p>
+      </div>
+      <div class="relative pb-24 sm:pb-20">
+        <div class="lg:rotate-[1.2deg]"><Dashboard /></div>
+        <div class="absolute bottom-0 -left-1 w-[92%] max-w-md sm:-left-8"><PartnerChip /></div>
+      </div>
+    </div>
+    <ul class="wrap relative mt-16 grid gap-3 sm:grid-cols-3">
+      {FACTS.map((f) => (
+        <li class="flex items-center gap-3 text-[0.9375rem] font-semibold">
+          <span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-surface text-accent-tx ring-1 ring-line"><Icon name={f.icon as any} class="h-5 w-5" /></span>{f.t}
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <!-- THE QUESTIONS — each opens its own page. -->
+  <section id="prasanja" class="scroll-mt-24 py-16 md:py-20">
+    <div class="wrap">
+      <h2 class="text-3xl md:text-[2.75rem]"><Rich text="Што сакате да дознаете **прво?**" /></h2>
+      <p class="mt-4 max-w-2xl text-lg text-mut">Изберете прашање — секое се отвора на своја страница, кратко и со пример.</p>
+      <div class="mt-10"><TopicCards lang={lang} /></div>
+    </div>
+  </section>
+
+  <!-- THE QUOTE — the brand line, read in full on „За SaldoDesk" (owner 2026-11-16). -->
+  <section class="py-10 md:py-16">
+    <div class="wrap">
+      <figure class="card relative overflow-hidden p-8 md:p-14">
+        <div class="glow -right-24 -top-24 h-[22rem] w-[22rem]" style="background:var(--glow-a)" aria-hidden="true"></div>
+        <span class="relative block text-7xl font-extrabold leading-none text-accent-tx" aria-hidden="true">“</span>
+        <blockquote class="relative">
+          <p class="max-w-4xl text-[2rem] font-extrabold leading-[1.1] tracking-tight md:text-[3.25rem]"><Rich text={QUOTE.text} /></p>
+        </blockquote>
+        <figcaption class="relative mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
+          <span class="max-w-2xl text-mut">{QUOTE.lead}</span>
+          <a href={pageHref(lang, 'za-nas')} class="inline-flex items-center gap-2 font-bold underline decoration-hi decoration-4 underline-offset-4">{t('page.za-nas')} <Arrow /></a>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- THE PLANS — example prices (owner 2026-11-16). -->
+  <section class="py-16 md:py-20">
+    <div class="wrap">
+      <h2 class="max-w-4xl text-3xl md:text-[2.75rem]"><Rich text="Што добивате за која цена. **Без ситни букви.**" /></h2>
+      <p class="mt-4 max-w-3xl text-lg text-mut">30 дена бесплатно со сите модули. Плаќате по фактура, со банкарски трансфер — ништо не се наплаќа автоматски.</p>
+      <div class="mt-10"><PlanCards lang={lang} /></div>
+      <p class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
+        <a href={pageHref(lang, 'ceni')} class="inline-flex items-center gap-2 font-bold underline decoration-hi decoration-4 underline-offset-4">Сите детали, модули и прашања <Arrow /></a>
+        <Todo lang={lang}>примерни цени</Todo>
+      </p>
+    </div>
+  </section>
+
+  <CtaBand lang={lang} section="home-final" />
+</Base>

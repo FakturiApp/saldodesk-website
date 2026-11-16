@@ -1,0 +1,35 @@
+---
+// The root picks a language ONCE: the visitor's earlier choice, else Albanian for an
+// Albanian browser, else Macedonian. An English-language browser still gets Macedonian:
+// many Macedonian offices run English Windows (brief 03 §1).
+import '../styles/global.css'
+import { LANGS, LANG_NAME } from '../i18n/ui'
+---
+<!doctype html>
+<html lang="mk">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SaldoDesk</title>
+    <link rel="canonical" href="https://saldodesk.mk/mk/" />
+    {LANGS.map((l) => <link rel="alternate" hreflang={l} href={`https://saldodesk.mk/${l}/`} />)}
+    <link rel="alternate" hreflang="x-default" href="https://saldodesk.mk/mk/" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script is:inline>
+      (function () {
+        var pick = null
+        try { pick = localStorage.getItem('sd-lang') } catch (e) {}
+        if (pick !== 'mk' && pick !== 'sq' && pick !== 'en') {
+          var langs = navigator.languages || [navigator.language || '']
+          pick = langs.some(function (l) { return /^sq\b/i.test(l) }) ? 'sq' : 'mk'
+        }
+        location.replace('/' + pick + '/')
+      })()
+    </script>
+  </head>
+  <body class="grid min-h-dvh place-items-center">
+    <ul class="flex gap-4">
+      {LANGS.map((l) => <li><a class="pill pill-solid pill-sm" href={`/${l}/`} hreflang={l} lang={l}>{LANG_NAME[l]}</a></li>)}
+    </ul>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+---
+// A made-up partner's header, with the е-Фактура readiness sign.
+import Pin from './Pin.astro'
+interface Props { pins?: boolean }
+const { pins = false } = Astro.props
+---
+<div class="rounded-2xl border border-line bg-surface p-4 shadow-[var(--shadow)]">
+  <div class="flex flex-wrap items-center gap-2">
+    <p class="text-lg font-bold text-tx">Алфа Трејд ДООЕЛ</p>
+    <span class="rounded-full bg-info-bg px-2.5 py-0.5 text-xs font-bold text-info-tx">Купувач</span>
+    <span class="inline-flex items-center gap-1.5 rounded-full bg-accent px-2.5 py-0.5 text-xs font-bold text-accent-ink">може е-фактура ✓</span>
+    {pins && <Pin n={1} />}
+  </div>
+  <p class="mt-1.5 flex flex-wrap gap-x-4 text-[0.8125rem] text-mut">
+    <span>Битола</span><span>Долг: <b class="num text-warn-tx">54.120,00</b></span><span>Рок на плаќање: 30 дена</span>
+  </p>
+</div>

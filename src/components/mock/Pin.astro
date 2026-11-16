@@ -1,0 +1,6 @@
+---
+// A numbered marker on a drawn screen; the same number explains it in a <PinLegend>.
+interface Props { n: number; class?: string }
+const { n, class: cls = '' } = Astro.props
+---
+<span class:list={['inline-grid h-6 w-6 shrink-0 place-items-center rounded-full bg-tx text-[0.75rem] font-bold text-bg ring-4 ring-hi/50 align-middle', cls]} aria-hidden="true">{n}</span>

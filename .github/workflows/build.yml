@@ -1,0 +1,23 @@
+# Every push and pull request: install exactly the locked versions and build the static site.
+# It also refuses a build that names another program (owner 2026-11-16: no competitor on the
+# site). The site is self-contained — it needs nothing from the app's repository to build.
+name: build
+on:
+  push:
+  pull_request:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: No other program named on the site
+        run: |
+          if grep -rIl -e 'Акцент' -e 'Akcent' dist; then
+            echo "The site names another program." && exit 1
+          fi

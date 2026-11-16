@@ -1,0 +1,25 @@
+{
+  "name": "saldodesk-website",
+  "private": true,
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "sync:help": "node scripts/sync-help.mjs",
+    "shoot": "node scripts/shoot-app.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/onest": "5.3.1",
+    "@tailwindcss/vite": "4.3.3",
+    "astro": "7.4.2",
+    "tailwindcss": "4.3.3"
+  },
+  "devDependencies": {
+    "sharp": "0.35.5"
+  },
+  "engines": {
+    "node": ">=22.23.4"
+  }
+}

@@ -1,0 +1,221 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/onest';
+
+/* The WEBSITE's own identity (owner 2026-11-16: „its own separate thing showcasing the app").
+ * Two themes (owner 2026-11-16):
+ *   dark  — night with mint patches, exactly as first built („brilliant");
+ *   light — the same style, but a GOLDEN, creamy paper instead of plain white.
+ * Components use only the semantic tokens below; the theme swaps their values.
+ * The theme is set on <html data-theme> before first paint (Base.astro). */
+
+:root,
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg: #f5ebd3;           /* golden cream page */
+  --surface: #fdf7ea;      /* cards */
+  --surface-2: #efe0bd;    /* sunk panels, chips */
+  --line: #e0cc9f;
+  --tx: #1d1a12;
+  --mut: #594f3c;          /* 7.3:1 on --bg */
+  --accent: #3fe0ad;       /* button fill (mint) */
+  --accent-ink: #08251b;   /* text on mint, 11:1 */
+  --accent-tx: #0a6a4f;    /* green as text, 5.9:1 on --bg */
+  --info-tx: #24578f;
+  --info-bg: #e2e5d8;
+  --warn-tx: #a3332b;
+  --hi: #f2b52c;           /* the golden highlighter */
+  --hi-ink: #1d1a12;
+  --glow-a: rgba(242, 181, 44, 0.28);
+  --glow-b: rgba(63, 224, 173, 0.22);
+  --shadow: 0 24px 60px -24px rgba(90, 64, 10, 0.35);
+  --invert-bg: #0d1220;    /* the one dark block a light page keeps (final call) */
+  --invert-tx: #eef1f7;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #0d1220;           /* the logo's night */
+  --surface: #151c2e;
+  --surface-2: #1c2539;
+  --line: #263049;
+  --tx: #eef1f7;
+  --mut: #a6b0c3;          /* 8.4:1 on --bg */
+  --accent: #3fe0ad;
+  --accent-ink: #08251b;
+  --accent-tx: #3fe0ad;
+  --info-tx: #8fbdea;
+  --info-bg: #17243a;
+  --warn-tx: #f0968b;
+  --hi: #3fe0ad;           /* on night the highlighter is a mint block */
+  --hi-ink: #0d1220;
+  --glow-a: rgba(63, 224, 173, 0.16);
+  --glow-b: rgba(77, 135, 205, 0.20);
+  --shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.6);
+  --invert-bg: #151c2e;
+  --invert-tx: #eef1f7;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-tx: var(--tx);
+  --color-mut: var(--mut);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-tx: var(--accent-tx);
+  --color-info-tx: var(--info-tx);
+  --color-info-bg: var(--info-bg);
+  --color-warn-tx: var(--warn-tx);
+  --color-hi: var(--hi);
+  --color-hi-ink: var(--hi-ink);
+  --color-invert-bg: var(--invert-bg);
+  --color-invert-tx: var(--invert-tx);
+
+  /* Document families, for the family map. */
+  --color-fam-sell: #1fae83;
+  --color-fam-buy: #4d87cd;
+  --color-fam-credit: #d39a2c;
+  --color-fam-internal: #8a93a6;
+
+  --font-sans: 'Onest Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+@layer base {
+  html {
+    background: var(--bg);
+    color: var(--tx);
+    font-family: var(--font-sans);
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+  body { font-size: 1.0625rem; line-height: 1.65; }
+  @media (min-width: 768px) { body { font-size: 1.125rem; } }
+  h1, h2, h3 {
+    font-weight: 800;
+    line-height: 1.06;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+  .num { font-variant-numeric: tabular-nums; }
+  :focus-visible { outline: 3px solid #4d87cd; outline-offset: 3px; border-radius: 6px; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+}
+
+@layer components {
+  .wrap { width: 100%; max-width: 76rem; margin-inline: auto; padding-inline: 1.25rem; }
+  @media (min-width: 768px) { .wrap { padding-inline: 2rem; } }
+
+  /* PILL buttons with an arrow disc — deliberately not the app's buttons. */
+  .pill {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    min-height: 3.25rem; padding: 0.55rem 0.6rem 0.55rem 1.4rem;
+    border-radius: 999px; font-weight: 700; font-size: 1rem; line-height: 1.1;
+    text-decoration: none; white-space: nowrap;
+    transition: transform 140ms ease, background-color 140ms ease;
+  }
+  @media (max-width: 639px) { .pill { white-space: normal; } }
+  .pill:hover { transform: translateY(-1px); }
+  .pill .pill-arrow {
+    display: inline-grid; place-items: center; width: 2.15rem; height: 2.15rem;
+    border-radius: 999px; flex-shrink: 0; transition: transform 140ms ease;
+  }
+  .pill:hover .pill-arrow { transform: translateX(3px); }
+  .pill-accent { background: var(--accent); color: var(--accent-ink); }
+  .pill-accent .pill-arrow { background: var(--accent-ink); color: var(--accent); }
+  .pill-solid { background: var(--tx); color: var(--bg); }
+  .pill-solid .pill-arrow { background: var(--accent); color: var(--accent-ink); }
+  .pill-ghost { padding-right: 1.4rem; border: 1.5px solid currentColor; color: inherit; }
+  .pill-sm { min-height: 2.6rem; font-size: 0.9375rem; padding-left: 1.1rem; }
+  .pill-sm .pill-arrow { width: 1.75rem; height: 1.75rem; }
+
+  /* The highlighter: a golden swipe on cream, a mint block on night. */
+  .marker {
+    color: var(--hi-ink);
+    background: linear-gradient(transparent 56%, var(--hi) 56%, var(--hi) 92%, transparent 92%);
+    -webkit-box-decoration-break: clone; box-decoration-break: clone;
+    padding-inline: 0.06em;
+  }
+  :root[data-theme='dark'] .marker {
+    background: var(--hi); border-radius: 0.18em; padding-inline: 0.15em;
+  }
+
+  .kicker {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--accent-tx);
+  }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 1.5rem; }
+  .glow { pointer-events: none; position: absolute; border-radius: 999px; filter: blur(64px); }
+
+  /* A value still to be supplied by the owner — impossible to miss. */
+  .placeholder {
+    background: #fff3c4; color: #6b4a00; border: 1.5px dashed #a87400;
+    border-radius: 6px; padding: 0 0.35em; font-size: 0.875em; font-weight: 600;
+  }
+}
+
+/* The wiki's article text (Markdown from the app's help). */
+@layer components {
+  .prose-help { font-size: 1.0625rem; line-height: 1.75; }
+  .prose-help > * + * { margin-top: 1.1em; }
+  .prose-help h2 { margin-top: 2em; font-size: 1.6rem; }
+  .prose-help h3 { margin-top: 1.6em; font-size: 1.25rem; }
+  .prose-help ul, .prose-help ol { padding-left: 1.4em; }
+  .prose-help ul { list-style: disc; }
+  .prose-help ol { list-style: decimal; }
+  .prose-help li + li { margin-top: 0.4em; }
+  .prose-help li::marker { color: var(--accent-tx); font-weight: 700; }
+  .prose-help strong { font-weight: 700; }
+  .prose-help a { font-weight: 600; text-decoration: underline; text-decoration-color: var(--hi); text-decoration-thickness: 3px; text-underline-offset: 3px; }
+  .prose-help a:hover { color: var(--accent-tx); }
+  .prose-help blockquote {
+    border-left: 4px solid var(--hi); background: var(--surface); border-radius: 0 1rem 1rem 0;
+    padding: 0.9em 1.2em; color: var(--tx);
+  }
+  .prose-help blockquote > p:first-child strong:first-child { display: block; margin-bottom: 0.25em; }
+  .prose-help table { width: 100%; border-collapse: collapse; font-size: 0.9375rem; display: block; overflow-x: auto; }
+  .prose-help th, .prose-help td { border-bottom: 1px solid var(--line); padding: 0.5em 0.75em; text-align: left; }
+  .prose-help code { background: var(--surface-2); border-radius: 6px; padding: 0.1em 0.35em; font-size: 0.9em; }
+}
+
+/* A picture from inside the app with its pointer (owner 2026-11-16: „PDF-guideline accuracy,
+   with arrows where to click"). The picture is the app's own light screen in both themes;
+   the ring and the „Кликнете тука" tag are drawn here, over it. */
+@layer components {
+  .prose-help .shot { margin: 1.6em 0; }
+  .shot-frame {
+    position: relative; display: block; overflow: visible;
+    border-radius: 14px; box-shadow: var(--shadow); border: 1px solid var(--line); background: #fff;
+  }
+  .shot-frame img { display: block; width: 100%; height: auto; border-radius: 13px; }
+  .shot-ring {
+    position: absolute; border-radius: 10px; pointer-events: none;
+    box-shadow: 0 0 0 3px #f2b52c, 0 0 0 7px rgba(242, 181, 44, 0.35);
+    margin: -4px; padding: 4px; box-sizing: content-box;
+    animation: shot-pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes shot-pulse { 50% { box-shadow: 0 0 0 3px #f2b52c, 0 0 0 12px rgba(242, 181, 44, 0.15); } }
+  .shot-tag {
+    position: absolute; z-index: 1; white-space: nowrap; pointer-events: none;
+    background: #0d1220; color: #3fe0ad; font-weight: 800; font-size: clamp(0.7rem, 1.4vw, 0.875rem);
+    padding: 0.35em 0.8em; border-radius: 999px; box-shadow: 0 8px 20px rgba(13, 18, 32, 0.35);
+  }
+  /* The arrow: a small mint triangle on the tag's corner, pointing at the target. */
+  .shot-tag::after {
+    content: ''; position: absolute; width: 0; height: 0; border: 7px solid transparent;
+  }
+  .shot-tag.is-above { margin-bottom: 14px; }
+  .shot-tag.is-below { margin-top: 14px; }
+  .shot-tag.is-above::after { top: 100%; border-top-color: #0d1220; }
+  .shot-tag.is-below::after { bottom: 100%; border-bottom-color: #0d1220; }
+  .shot-tag.is-left { margin-right: -14px; }
+  .shot-tag.is-right { margin-left: -14px; }
+  .shot-tag.is-left::after { right: 8px; }
+  .shot-tag.is-right::after { left: 8px; }
+  .prose-help .shot figcaption { margin-top: 0.6em; font-size: 0.875rem; color: var(--mut); text-align: center; }
+}

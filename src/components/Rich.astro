@@ -1,0 +1,7 @@
+---
+// Renders a line whose `**…**` parts are the highlighted words (the marker swipe).
+// Everything is text: no HTML from content ever reaches the page unescaped.
+interface Props { text: string }
+const parts = Astro.props.text.split(/\*\*(.+?)\*\*/g)
+---
+{parts.map((p, i) => (i % 2 ? <span class="marker">{p}</span> : p))}

@@ -1,0 +1,26 @@
+---
+// The „Нема доволно на залиха" window, invented figures: 40 needed, 26 here, 14 short.
+import Window from './Window.astro'
+---
+<Window title="Нема доволно на залиха">
+  <p class="text-mut">Документот не може да се издаде од Главен магацин. Еве што фали и кој го има:</p>
+  <div class="mt-3 space-y-3 rounded-xl border border-line p-3">
+    <div class="flex flex-wrap items-baseline justify-between gap-2">
+      <p class="font-bold text-tx">Тонер црн 3.000 стр. <span class="text-xs font-medium text-mut">КК-ТН-01</span></p>
+      <p class="num">Треба 40 · Има 26 · <b class="text-warn-tx">Фали 14</b></p>
+    </div>
+    <div class="flex flex-wrap items-center justify-between gap-2">
+      <p><b>Кој има?</b> <span class="text-mut">Магацин Битола (18)</span></p>
+      <span class="rounded-full border border-line bg-surface-2 px-3 py-1 text-xs font-semibold">Донеси од магацин</span>
+    </div>
+    <div class="flex flex-wrap items-center justify-between gap-2">
+      <p class="font-bold">Листа за нарачка</p>
+      <span class="rounded-full border border-line bg-surface-2 px-3 py-1 text-xs font-semibold">Додај во нарачка</span>
+    </div>
+    <div>
+      <p class="font-bold">Алтернативи:</p>
+      <p class="text-mut">Тонер црн 2.600 стр. <span class="text-xs">КК-ТН-02</span> · тука 35</p>
+      <span class="mt-2 inline-block rounded-full bg-accent px-3 py-1 text-xs font-bold text-accent-ink">Замени</span>
+    </div>
+  </div>
+</Window>

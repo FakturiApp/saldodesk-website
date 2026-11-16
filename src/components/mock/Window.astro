@@ -1,0 +1,16 @@
+---
+// A drawn app window. Owner 2026-11-16: never a real screenshot — every figure on the
+// site is invented, the company is „Кони Копи ДООЕЛ" and the partners are made up.
+// The window follows the site's theme; it shows what the app DOES, not a pixel copy.
+interface Props { title?: string; class?: string }
+const { title, class: cls = '' } = Astro.props
+---
+<div class:list={['overflow-hidden rounded-2xl border border-line bg-surface shadow-[var(--shadow)]', cls]}>
+  <div class="flex items-center gap-1.5 border-b border-line bg-surface-2 px-3.5 py-2.5" aria-hidden="true">
+    <span class="h-2.5 w-2.5 rounded-full bg-[#ff6159]"></span>
+    <span class="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]"></span>
+    <span class="h-2.5 w-2.5 rounded-full bg-[#28c840]"></span>
+    <span class="ml-3 truncate rounded-md bg-surface px-3 py-0.5 text-xs text-mut">app.saldodesk.mk{title ? ` — ${title}` : ''}</span>
+  </div>
+  <div class="p-3 text-[0.8125rem] leading-snug sm:p-4"><slot /></div>
+</div>

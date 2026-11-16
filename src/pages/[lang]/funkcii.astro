@@ -1,0 +1,50 @@
+---
+// Функции — the hub: every question opens its own page; the smaller things are listed here.
+import Base from '../../layouts/Base.astro'
+import Rich from '../../components/Rich.astro'
+import Icon from '../../components/Icon.astro'
+import CtaBand from '../../components/CtaBand.astro'
+import TopicCards from '../../components/TopicCards.astro'
+import { LANGS, type Lang, useT } from '../../i18n/ui'
+
+export function getStaticPaths() {
+  return LANGS.map((lang) => ({ params: { lang } }))
+}
+const lang = Astro.params.lang as Lang
+const t = useT(lang)
+const ALSO = [
+  { icon: 'users', t: 'Дозволи по вработен', d: 'Готови шаблони за сопственик, сметководител, продавач и вработен — или свои.' },
+  { icon: 'lock', t: 'Маржите — само за вас', d: 'Набавните цени и маржите ги гледа само тој што смее.' },
+  { icon: 'pin', t: 'Заеднички компјутер', d: 'Брза промена на корисник со ПИН, на касата или во магацинот.' },
+  { icon: 'history', t: 'Кој што направил', d: '„Изготвил“ на секој документ и целосна историја на измените.' },
+  { icon: 'doc', t: 'Ваш изглед на хартија', d: 'Лого, боја и распоред на фактурата — со преглед во вистинска големина.' },
+  { icon: 'globe', t: 'Пребарување на кирилица и латиница', d: 'Пишувате „Stip“ — наоѓа „Штип“.' },
+]
+---
+<Base lang={lang} page="funkcii" title={t('page.funkcii')}>
+  <section class="relative overflow-hidden">
+    <div class="glow -right-32 -top-24 h-[28rem] w-[28rem]" style="background:var(--glow-a)" aria-hidden="true"></div>
+    <div class="wrap relative pt-14 pb-8 md:pt-20">
+      <p class="kicker">{t('page.funkcii')}</p>
+      <h1 class="mt-4 max-w-4xl text-[2.4rem] md:text-[3.5rem]"><Rich text="Што прави SaldoDesk? **Изберете прашање.**" /></h1>
+      <p class="mt-6 max-w-3xl text-lg text-mut md:text-xl">Секое прашање е своја кратка страница: проблемот, како го решава SaldoDesk и пример од програмата.</p>
+    </div>
+  </section>
+
+  <section class="wrap pb-12"><TopicCards lang={lang} /></section>
+
+  <section class="wrap py-12">
+    <h2 class="text-3xl md:text-[2.5rem]"><Rich text="И уште, **за целиот тим**" /></h2>
+    <ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {ALSO.map((a) => (
+        <li class="card p-6">
+          <span class="grid h-12 w-12 place-items-center rounded-2xl bg-tx text-bg"><Icon name={a.icon as any} /></span>
+          <p class="mt-5 text-lg font-bold">{a.t}</p>
+          <p class="mt-1 text-[0.9375rem] text-mut">{a.d}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <CtaBand lang={lang} section="funkcii" />
+</Base>

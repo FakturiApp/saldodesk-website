@@ -1,0 +1,70 @@
+---
+// The three plans with a month/year switch (yearly preselected, brief 04 §3).
+// Example prices (owner 2026-11-16). The switch needs JS; without it the yearly price shows.
+import Arrow from './Arrow.astro'
+import Icon from './Icon.astro'
+import { PLANS, YEAR_MONTHS, fmtDen } from '../data/plans'
+import { type Lang, signupUrl, useT } from '../i18n/ui'
+
+interface Props { lang: Lang; id?: string }
+const { lang, id = 'plans' } = Astro.props
+const t = useT(lang)
+const trial = signupUrl(lang)
+---
+<div data-period="year" data-plans id={id}>
+  <div class="inline-flex flex-wrap rounded-full border border-line bg-surface p-1.5" role="group" aria-label="Месечно / Годишно">
+    <button type="button" data-set-period="month" class="period-btn rounded-full px-5 py-2.5 text-[0.9375rem] font-bold">Месечно</button>
+    <button type="button" data-set-period="year" class="period-btn rounded-full px-5 py-2.5 text-[0.9375rem] font-bold">
+      Годишно <span class="ml-1 rounded-full bg-hi px-2 py-0.5 text-xs text-hi-ink">2 месеци бесплатно</span>
+    </button>
+  </div>
+
+  <ul class="mt-12 grid gap-5 lg:grid-cols-3">
+    {PLANS.map((p) => (
+      <li class:list={['relative flex flex-col rounded-[2rem] p-7', p.recommended ? 'plan-star lg:-my-4 lg:py-11' : 'card']}>
+        {p.recommended && (
+          <p class="absolute -top-3.5 left-7 rounded-full bg-accent px-3.5 py-1 text-xs font-extrabold text-accent-ink">Препорачано за трговија</p>
+        )}
+        <p class="text-2xl font-extrabold">{p.name}</p>
+        <p class="plan-mut mt-1 min-h-[3rem] text-[0.9375rem] text-mut">{p.forWhom}</p>
+        <p class="num mt-6">
+          <span class="price-month text-[2.75rem] font-extrabold leading-none">{fmtDen(p.monthly)}</span>
+          <span class="price-month ml-1 text-sm font-semibold">ден. / месец</span>
+          <span class="price-year text-[2.75rem] font-extrabold leading-none">{fmtDen(p.monthly * YEAR_MONTHS)}</span>
+          <span class="price-year ml-1 text-sm font-semibold">ден. / година</span>
+        </p>
+        <p class="price-year plan-save mt-2 text-sm font-semibold text-accent-tx">заштедувате {fmtDen(p.monthly * (12 - YEAR_MONTHS))} ден.</p>
+        <p class="plan-mut mt-2 text-sm text-mut">{p.users} корисници</p>
+        <ul class="mt-6 flex-1 space-y-2.5 text-[0.9375rem]">
+          {p.lines.map((l) => (
+            <li class="flex gap-2.5"><Icon name="check" class="plan-tick mt-0.5 h-5 w-5 shrink-0 text-accent-tx" />{l}</li>
+          ))}
+        </ul>
+        <a href={trial} class:list={['pill mt-8 justify-between', p.recommended ? 'pill-accent' : 'pill-solid']} data-event="cta_trial_click" data-section={`plan-${p.key}`}>
+          <span>{t('cta.trial')}</span><span class="pill-arrow"><Arrow /></span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<style>
+  [data-plans][data-period='year'] .price-month,
+  [data-plans][data-period='month'] .price-year { display: none; }
+  .period-btn { color: var(--mut); }
+  [data-plans][data-period='month'] [data-set-period='month'],
+  [data-plans][data-period='year'] [data-set-period='year'] { background: var(--tx); color: var(--bg); }
+  /* The recommended plan is the night card in BOTH themes — the brand's dark patch. */
+  .plan-star { background: #0d1220; color: #eef1f7; box-shadow: var(--shadow); }
+  .plan-star .plan-mut { color: #a6b0c3; }
+  .plan-star .plan-save, .plan-star .plan-tick { color: #3fe0ad; }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-plans]').forEach((box) => {
+    const buttons = Array.from(box.querySelectorAll<HTMLButtonElement>('[data-set-period]'))
+    const sync = () => buttons.forEach((x) => x.setAttribute('aria-pressed', String(box.dataset.period === x.dataset.setPeriod)))
+    buttons.forEach((b) => b.addEventListener('click', () => { box.dataset.period = b.dataset.setPeriod; sync() }))
+    sync()
+  })
+</script>

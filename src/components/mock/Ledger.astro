@@ -1,0 +1,41 @@
+---
+// A made-up partner's Финансиска картица. 31.860 + 47.200 + 24.780 = 103.840 owed;
+// 31.860 + 17.860 = 49.720 paid or credited; balance 54.120,00.
+import Window from './Window.astro'
+import Pin from './Pin.astro'
+const rows = [
+  ['03.09.2026', 'Фактура 96/2026', '31.860,00', '', '31.860,00'],
+  ['18.09.2026', 'Извод 61', '', '31.860,00', '0,00'],
+  ['02.10.2026', 'Фактура 112/2026', '47.200,00', '', '47.200,00'],
+  ['27.10.2026', 'Фактура 128/2026', '24.780,00', '', '71.980,00'],
+  ['30.10.2026', 'КО 9/2026', '', '17.860,00', '54.120,00'],
+]
+---
+<Window title="Алфа Трејд ДООЕЛ — Финансиска картица">
+  <div class="overflow-x-auto">
+    <table class="num w-full min-w-[34rem] text-left text-[0.8125rem]">
+      <thead class="text-[0.6875rem] uppercase text-mut">
+        <tr class="border-b border-line">
+          <th class="py-2 pr-3 font-bold">Датум</th>
+          <th class="py-2 pr-3 font-bold"><span class="inline-flex items-center gap-1.5">Документ <Pin n={1} class="h-5 w-5 text-[0.6875rem] ring-2" /></span></th>
+          <th class="py-2 pr-3 text-right font-bold"><span class="inline-flex items-center gap-1.5"><Pin n={2} class="h-5 w-5 text-[0.6875rem] ring-2" /> Должи</span></th>
+          <th class="py-2 pr-3 text-right font-bold"><span class="inline-flex items-center gap-1.5"><Pin n={3} class="h-5 w-5 text-[0.6875rem] ring-2" /> Побарува</span></th>
+          <th class="py-2 text-right font-bold"><span class="inline-flex items-center gap-1.5"><Pin n={4} class="h-5 w-5 text-[0.6875rem] ring-2" /> Салдо</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-b border-line bg-surface-2"><td class="py-1.5 pr-3"></td><td class="py-1.5 pr-3 font-bold">Почетно салдо</td><td></td><td></td><td class="py-1.5 text-right font-bold">0,00</td></tr>
+        {rows.map(([d, doc, dr, cr, bal]) => (
+          <tr class="border-b border-line">
+            <td class="py-1.5 pr-3 text-mut">{d}</td>
+            <td class="py-1.5 pr-3 font-semibold text-accent-tx">{doc}</td>
+            <td class="py-1.5 pr-3 text-right">{dr}</td>
+            <td class="py-1.5 pr-3 text-right">{cr}</td>
+            <td class="py-1.5 text-right font-bold">{bal}</td>
+          </tr>
+        ))}
+        <tr class="font-bold"><td class="py-2 pr-3"></td><td class="py-2 pr-3">Вкупно</td><td class="py-2 pr-3 text-right">103.840,00</td><td class="py-2 pr-3 text-right">49.720,00</td><td class="py-2 text-right text-warn-tx">54.120,00</td></tr>
+      </tbody>
+    </table>
+  </div>
+</Window>

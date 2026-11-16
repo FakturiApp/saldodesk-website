@@ -1,0 +1,11 @@
+---
+import Base from '../layouts/Base.astro'
+import { useT, pageHref } from '../i18n/ui'
+const t = useT('mk')
+---
+<Base lang="mk" title={t('404.title')}>
+  <section class="wrap py-24">
+    <h1 class="text-[2.125rem] md:text-[3rem]">{t('404.title')}</h1>
+    <p class="mt-6"><a class="pill pill-solid pill-sm" href={pageHref('mk')}>{t('404.back')}</a></p>
+  </section>
+</Base>
