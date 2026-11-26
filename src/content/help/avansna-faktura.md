@@ -24,6 +24,8 @@ related: [avans-od-kupuvach, iskoristi-avans, ponuda-vo-faktura, storno-ili-ko]
 ## Уплата по профактура
 1. Отворете ја профактурата.
 2. Долу, во делот **Аванс**, кликнете **Внеси уплата**.
+
+<figure class="shot"><span class="shot-frame" style="aspect-ratio:1280/900"><img src="/help-img/sell-avans-vnesi-uplata.webp" alt="Делот Аванс на профактурата" width="1280" height="900" loading="lazy" decoding="async"><span class="shot-ring" style="left:3.83%;top:72.98%;width:9.45%;height:4.22%"></span><span class="shot-tag is-above is-right" style="bottom:27.02%;left:8.55%">Кликнете тука</span></span><figcaption>Делот Аванс на профактурата</figcaption></figure>
 3. Во **Износ** внесете колку платил купувачот (однапред стои целиот износ на профактурата). Проверете го **Датум** и кликнете **Зачувај**. Уплатата се води како аванс за профактурата.
 4. Под уплатата пишува „Остануваат … ден. аванс без авансна фактура“. Кликнете **Издади авансна фактура**.
 5. Се отвора прозорецот **Авансна фактура**. Датумот е датумот на уплатата. **Износ со ДДВ** е пополнет, а **ДДВ** е по стапките на профактурата.

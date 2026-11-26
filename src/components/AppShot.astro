@@ -1,0 +1,20 @@
+---
+// A picture taken inside the app on the made-up company „Кони Копи ДООЕЛ" — a wiki picture
+// (/help-img/…) or a crop of one (/shots/…, scripts/crop-shots.mjs). Never real data.
+// `src` is the full public path.
+interface Props { src: string; w: number; h: number; alt: string; eager?: boolean; class?: string }
+const { src, w, h, alt, eager = false, class: cls = '' } = Astro.props
+---
+<div class:list={['overflow-hidden rounded-2xl border border-line bg-surface shadow-[var(--shadow)]', cls]}>
+  <div class="flex items-center gap-1.5 border-b border-line bg-surface-2 px-3.5 py-2.5" aria-hidden="true">
+    <span class="h-2.5 w-2.5 rounded-full bg-[#ff6159]"></span>
+    <span class="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]"></span>
+    <span class="h-2.5 w-2.5 rounded-full bg-[#28c840]"></span>
+    <span class="ml-3 truncate rounded-md bg-surface px-3 py-0.5 text-xs text-mut">app.saldodesk.mk</span>
+  </div>
+  <div class="relative">
+    <img src={src} width={w} height={h} alt={alt} class="block h-auto w-full"
+         loading={eager ? 'eager' : 'lazy'} decoding="async" fetchpriority={eager ? 'high' : undefined} />
+    <slot />
+  </div>
+</div>

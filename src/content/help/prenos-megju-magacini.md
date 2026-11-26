@@ -27,6 +27,8 @@ related: [magacini, barania-od-magacin, popis, trebovanje-nivelacija-otpis]
 ## Прими
 7. Кога стоката ќе стигне, отворете го преносот: во **Документи** → **Внатрешни** кликнете **Пренос**, па кликнете на него.
 8. Кликнете **Прими**.
+
+<figure class="shot"><span class="shot-frame" style="aspect-ratio:1280/800"><img src="/help-img/buy-prenos-primi.webp" alt="Копчето Прими на пренос во транзит" width="1280" height="800" loading="lazy" decoding="async"><span class="shot-ring" style="left:89.30%;top:71.10%;width:6.09%;height:4.50%"></span><span class="shot-tag is-above is-left" style="bottom:28.90%;right:7.65%">Кликнете тука</span></span><figcaption>Копчето Прими на пренос во транзит</figcaption></figure>
 9. Се отвора прозорецот **Прием на пренос**. За секој производ пишува колку е испратено, а во полето е истиот број. Ако стигнало помалку, внесете колку навистина стигнало.
 10. Кликнете **Прими**.
 

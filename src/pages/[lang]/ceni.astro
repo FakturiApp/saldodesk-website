@@ -1,128 +1,106 @@
 ---
-// Цени (brief 04 §3): the plans, what each includes row by row, the add-ons, how paying
-// works, and the money questions. EXAMPLE prices (owner 2026-11-16), said once in a <Todo>.
+// Цени — the three plans, the add-ons, how paying works. EXAMPLE prices (owner 2026-11-16).
 import Base from '../../layouts/Base.astro'
-import Rich from '../../components/Rich.astro'
+import Arrow from '../../components/Arrow.astro'
 import Icon from '../../components/Icon.astro'
-import CtaBand from '../../components/CtaBand.astro'
-import PlanCards from '../../components/PlanCards.astro'
 import Todo from '../../components/Todo.astro'
-import { COMPARE, EXTRA_USER_MONTHLY, PLANS, fmtDen } from '../../data/plans'
-import { MODULES } from '../../content/modules'
-import { LANGS, type Lang, pageHref, useT } from '../../i18n/ui'
+import PageHead from '../../components/PageHead.astro'
+import CtaBand from '../../components/CtaBand.astro'
+import { SITE, YEAR_MONTHS } from '../../content/site'
+import { CURRENCY, LANGS, type Lang, fmtNum, signupUrl, useT } from '../../i18n/ui'
 
 export function getStaticPaths() {
   return LANGS.map((lang) => ({ params: { lang } }))
 }
 const lang = Astro.params.lang as Lang
 const t = useT(lang)
-const ADDONS = MODULES.filter((m) => 'addon' in m.where)
-const STEPS = [
-  { t: 'Пробајте 30 дена', d: 'Со сите модули, без картичка.' },
-  { t: 'Изберете план', d: 'Пред крајот на пробата — месечно или годишно.' },
-  { t: 'Добивате фактура', d: 'Ја плаќате со банкарски трансфер; пробата трае додека парите стигнат.' },
-  { t: 'Работите понатаму', d: 'Сè што сте внеле останува. Ништо не се наплаќа автоматски.' },
-]
-const FAQ = [
-  ['Дали ми треба картичка за пробата?', 'Не. Пробата трае 30 дена, со сите модули, без картичка и без обврска.'],
-  ['Што се случува по 30 дена ако не платам?', 'Вашите документи остануваат достапни за читање, печатење и извоз — само не можете да издавате нови, додека не изберете план.'],
-  ['Можам ли да го сменам планот?', 'Да, нагоре или надолу. Ништо од она што сте внеле не се губи.'],
-  ['Колку чини уште еден корисник?', `${fmtDen(EXTRA_USER_MONTHLY)} ден. месечно, на кој било план.`],
-  ['Може ли да се откажам?', 'Месечниот план го откажувате кога сакате; годишниот трае до крајот на платената година. Податоците можете да ги извезете во секое време.'],
-]
-const cell = (v: boolean | string) => (v === true ? '✓' : v === false ? '—' : v)
+const P = SITE[lang].prices
+const cur = CURRENCY[lang]
+const n = (v: number) => fmtNum(lang, v)
 ---
-<Base lang={lang} page="ceni" title={t('page.ceni')}>
-  <section class="relative overflow-hidden">
-    <div class="glow -right-32 -top-24 h-[28rem] w-[28rem]" style="background:var(--glow-a)" aria-hidden="true"></div>
-    <div class="wrap relative pt-14 pb-10 md:pt-20">
-      <p class="kicker">{t('page.ceni')}</p>
-      <h1 class="mt-4 max-w-4xl text-[2.4rem] md:text-[3.5rem]"><Rich text="Што добивате за која цена. **Без ситни букви.**" /></h1>
-      <p class="mt-6 max-w-3xl text-lg text-mut md:text-xl">Една цена за целата фирма. 30 дена бесплатно со сите модули. Плаќате по фактура, со банкарски трансфер.</p>
-      <p class="mt-4"><Todo lang={lang}>примерни цени — конечните и дали се без или со ДДВ</Todo></p>
+<Base lang={lang} page="ceni" title={P.title}>
+  <PageHead title={P.title} text={P.text}>
+    <p class="mt-3"><Todo lang={lang}>{P.todo}</Todo></p>
+  </PageHead>
+
+  <section class="wrap pb-12" data-period="year" data-plans>
+    <div class="inline-flex flex-wrap rounded-full border border-line bg-surface p-1.5" role="group" aria-label={`${P.month} / ${P.year}`}>
+      <button type="button" data-set-period="month" class="period-btn rounded-full px-5 py-2.5 text-[0.9375rem] font-bold">{P.month}</button>
+      <button type="button" data-set-period="year" class="period-btn rounded-full px-5 py-2.5 text-[0.9375rem] font-bold">
+        {P.year} <span class="ml-1 rounded-full bg-hi px-2 py-0.5 text-xs text-hi-ink">{P.yearBadge}</span>
+      </button>
     </div>
-  </section>
 
-  <section class="wrap pb-12"><PlanCards lang={lang} /></section>
-
-  <!-- Add to any plan -->
-  <section class="wrap py-12">
-    <h2 class="text-3xl md:text-[2.5rem]"><Rich text="Додајте на **кој било** план" /></h2>
-    <ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      {ADDONS.map((m) => (
-        <li class="card flex flex-col p-6">
-          <span class="grid h-12 w-12 place-items-center rounded-2xl bg-surface-2 text-accent-tx"><Icon name={m.icon as any} /></span>
-          <p class="mt-5 text-lg font-bold">{m.name}</p>
-          <p class="mt-1 flex-1 text-[0.9375rem] text-mut">{m.points[0]}</p>
-          <p class="num mt-4 text-2xl font-extrabold">{'addon' in m.where ? fmtDen(m.where.addon) : ''} <span class="text-sm font-semibold text-mut">ден. / месец</span></p>
-          <a href={`${pageHref(lang, 'moduli')}#${m.id}`} class="mt-3 text-sm font-bold text-accent-tx">Што прави →</a>
+    <ul class="mt-12 grid gap-5 lg:grid-cols-3">
+      {P.plans.map((p) => (
+        <li class:list={['relative flex flex-col rounded-[2rem] p-7', p.star ? 'plan-star' : 'card']}>
+          {p.star && <p class="absolute -top-3.5 left-7 rounded-full bg-accent px-3.5 py-1 text-xs font-extrabold text-accent-ink">{P.star}</p>}
+          <p class="text-2xl font-extrabold">{p.name}</p>
+          <p class="plan-mut mt-1 text-[0.9375rem] text-mut">{p.who}</p>
+          <p class="num mt-6">
+            <span class="price-month text-[2.75rem] font-extrabold leading-none">{n(p.monthly)}</span>
+            <span class="price-year text-[2.75rem] font-extrabold leading-none">{n(p.monthly * YEAR_MONTHS)}</span>
+            <span class="ml-1 text-sm font-semibold">{cur}</span>
+            <span class="price-month plan-mut ml-1 text-sm text-mut">{P.perMonth}</span>
+            <span class="price-year plan-mut ml-1 text-sm text-mut">{P.perYear}</span>
+          </p>
+          <p class="plan-mut mt-2 text-sm text-mut">{P.users(p.users)}</p>
+          <ul class="mt-6 flex-1 space-y-2.5 text-[0.9375rem]">
+            {p.lines.map((l) => (
+              <li class="flex gap-2.5"><Icon name="check" class="plan-tick mt-0.5 h-5 w-5 shrink-0 text-accent-tx" />{l}</li>
+            ))}
+          </ul>
+          <a href={signupUrl(lang)} class:list={['pill mt-8 justify-between', p.star ? 'pill-accent' : 'pill-solid']} data-event="cta_trial_click" data-section={`plan-${p.key}`}>
+            <span>{t('cta.trial')}</span><span class="pill-arrow"><Arrow /></span>
+          </a>
         </li>
       ))}
-      <li class="card flex flex-col p-6">
-        <span class="grid h-12 w-12 place-items-center rounded-2xl bg-surface-2 text-accent-tx"><Icon name="users" /></span>
-        <p class="mt-5 text-lg font-bold">Уште еден корисник</p>
-        <p class="mt-1 flex-1 text-[0.9375rem] text-mut">Над бројот вклучен во планот.</p>
-        <p class="num mt-4 text-2xl font-extrabold">{fmtDen(EXTRA_USER_MONTHLY)} <span class="text-sm font-semibold text-mut">ден. / месец</span></p>
-      </li>
     </ul>
   </section>
 
-  <!-- Everything, row by row -->
-  <section class="wrap py-12">
-    <details class="card group overflow-hidden">
-      <summary class="flex cursor-pointer list-none items-center justify-between gap-4 p-6 text-xl font-bold md:p-8 [&::-webkit-details-marker]:hidden">
-        Спореди ги плановите ред по ред
-        <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-surface-2 text-xl transition group-open:rotate-45" aria-hidden="true">+</span>
-      </summary>
-      <div class="overflow-x-auto px-6 pb-6 md:px-8 md:pb-8">
-        <table class="w-full min-w-[34rem] text-left text-[0.9375rem]">
-          <thead>
-            <tr class="border-b border-line">
-              <th class="py-3 pr-4 font-semibold text-mut"></th>
-              {PLANS.map((p) => <th class="py-3 px-3 text-center text-lg font-extrabold">{p.name}</th>)}
-            </tr>
-          </thead>
-          <tbody>
-            {COMPARE.map((r) => (
-              <tr class="border-b border-line">
-                <td class="py-3 pr-4">{r.row}</td>
-                {r.in.map((v) => <td class:list={['py-3 px-3 text-center font-bold', v === true ? 'text-accent-tx' : v === false ? 'text-mut' : '']}>{cell(v)}</td>)}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </details>
-  </section>
-
-  <!-- How paying works -->
-  <section class="wrap py-12">
-    <h2 class="text-3xl md:text-[2.5rem]"><Rich text="Како се плаќа. **Без изненадувања.**" /></h2>
-    <ol class="mt-8 grid gap-4 md:grid-cols-4">
-      {STEPS.map((s, i) => (
-        <li class="card p-6">
-          <span class="grid h-11 w-11 place-items-center rounded-full bg-accent text-lg font-extrabold text-accent-ink">{i + 1}</span>
-          <p class="mt-4 text-lg font-bold">{s.t}</p>
-          <p class="mt-1 text-mut">{s.d}</p>
-        </li>
-      ))}
-    </ol>
-  </section>
-
-  <!-- Money questions -->
-  <section class="wrap grid gap-10 py-12 lg:grid-cols-[1fr_2fr]">
-    <h2 class="text-3xl md:text-[2.5rem]">Прашања за плаќањето</h2>
-    <div class="card divide-y divide-line px-6 md:px-8">
-      {FAQ.map(([q, a]) => (
-        <details class="group py-5">
-          <summary class="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-bold [&::-webkit-details-marker]:hidden">
-            {q}<span class="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-surface-2 text-xl transition group-open:rotate-45" aria-hidden="true">+</span>
-          </summary>
-          <p class="mt-3 text-mut">{a}</p>
-        </details>
-      ))}
+  <section class="wrap grid gap-5 pb-16 lg:grid-cols-[1.4fr_1fr]">
+    <div class="card p-7">
+      <h2 class="text-xl font-extrabold">{P.addonsTitle}</h2>
+      <ul class="mt-4 divide-y divide-line">
+        {P.addons.map((a) => (
+          <li class="flex items-baseline justify-between gap-4 py-2.5">
+            <span>{a.name}</span>
+            <span class="num whitespace-nowrap font-bold">{n(a.price)} {cur} <span class="text-sm font-normal text-mut">{P.perMonth}</span></span>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div class="card p-7">
+      <h2 class="text-xl font-extrabold">{P.factsTitle}</h2>
+      <ul class="mt-4 space-y-3">
+        {P.facts.map((f) => (
+          <li class="flex gap-3"><Icon name="check" class="mt-0.5 h-5 w-5 shrink-0 text-accent-tx" />{f}</li>
+        ))}
+      </ul>
     </div>
   </section>
 
   <CtaBand lang={lang} section="ceni" />
 </Base>
+
+<style>
+  [data-plans][data-period='year'] .price-month,
+  [data-plans][data-period='month'] .price-year { display: none; }
+  .period-btn { color: var(--mut); }
+  [data-plans][data-period='month'] [data-set-period='month'],
+  [data-plans][data-period='year'] [data-set-period='year'] { background: var(--tx); color: var(--bg); }
+  /* The recommended plan is the night card in both themes. */
+  .plan-star { background: #0d1220; color: #eef1f7; box-shadow: var(--shadow); }
+  .plan-star .plan-mut { color: #a6b0c3; }
+  .plan-star .plan-tick { color: #3fe0ad; }
+</style>
+
+<script>
+  // Monthly / yearly switch. Without JavaScript the yearly price shows.
+  document.querySelectorAll<HTMLElement>('[data-plans]').forEach((box) => {
+    const buttons = Array.from(box.querySelectorAll<HTMLButtonElement>('[data-set-period]'))
+    const sync = () => buttons.forEach((x) => x.setAttribute('aria-pressed', String(box.dataset.period === x.dataset.setPeriod)))
+    buttons.forEach((b) => b.addEventListener('click', () => { box.dataset.period = b.dataset.setPeriod; sync() }))
+    sync()
+  })
+</script>

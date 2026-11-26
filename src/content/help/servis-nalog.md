@@ -12,6 +12,8 @@ related: [servis-priem, servis-naplata, servis-otkazano]
 
 ## Копчињата за статус
 Горе на налогот (и долу) се копчињата за следниот чекор. Зеленото копче е вообичаениот следен чекор. Кликнете го кога работата ќе стигне таму.
+
+<figure class="shot"><span class="shot-frame" style="aspect-ratio:1280/720"><img src="/help-img/service-nalog.webp" alt="Налог во Дијагностика и копчињата за следниот чекор" width="1280" height="720" loading="lazy" decoding="async"><span class="shot-ring" style="left:1.88%;top:39.90%;width:9.03%;height:5.28%"></span><span class="shot-tag is-above is-right" style="bottom:60.10%;left:6.39%">Кликнете тука</span></span><figcaption>Налог во Дијагностика и копчињата за следниот чекор</figcaption></figure>
 - **Примено**: уредот е примен, уште никој не го погледнал.
 - **Дијагностика**: се бара дефектот.
 - **Чека одобрување**: клиентот ја има понудата и уште не одговорил.

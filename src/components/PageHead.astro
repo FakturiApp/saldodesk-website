@@ -1,0 +1,13 @@
+---
+// The top of every inner page: title and one line.
+interface Props { title: string; text?: string }
+const { title, text } = Astro.props
+---
+<section class="relative overflow-hidden">
+  <div class="glow -right-32 -top-24 h-[28rem] w-[28rem]" style="background:var(--glow-a)" aria-hidden="true"></div>
+  <div class="wrap relative pt-14 pb-10 md:pt-20">
+    <h1 class="text-[2.4rem] md:text-[3.5rem]">{title}</h1>
+    {text && <p class="mt-4 max-w-3xl text-lg text-mut md:text-xl">{text}</p>}
+    <slot />
+  </div>
+</section>

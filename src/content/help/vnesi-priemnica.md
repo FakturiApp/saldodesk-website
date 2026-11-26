@@ -22,6 +22,8 @@ related: [faktura-od-dobavuvach, nabavna-nepoznata, vrati-stoka-dobavuvach, nov-
    Ако производот се следи по серии, под ставката внесете ја **Серија** и, за нова серија, нејзиниот **Рок** — види [Како да следам серии и рок на траење?](../serii-i-rokovi/).
 10. За уште еден производ, пишувајте во празниот ред под него.
 11. Кликнете **Издади**.
+
+<figure class="shot"><span class="shot-frame" style="aspect-ratio:1280/900"><img src="/help-img/buy-priemnica-izdadi.webp" alt="Пополнета приемница и копчето Издади" width="1280" height="900" loading="lazy" decoding="async"><span class="shot-ring" style="left:89.05%;top:91.50%;width:6.34%;height:4.00%"></span><span class="shot-tag is-above is-left" style="bottom:8.50%;right:7.78%">Кликнете тука</span></span><figcaption>Пополнета приемница и копчето Издади</figcaption></figure>
 Приемницата добива број, а стоката е на залиха. За етикети со цени за стоката што стигнала, на приемницата кликнете **Печати**, па **Ценовни етикети** — види [Како да испечатам етикети со цени?](../etiketi-so-ceni/).
 
 ## Ако производот го нема

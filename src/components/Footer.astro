@@ -1,49 +1,30 @@
 ---
 import Logo from './Logo.astro'
 import Todo from './Todo.astro'
-import { type Lang, type Page, useT, pageHref } from '../i18n/ui'
+import { type Lang, NAV, useT, pageHref } from '../i18n/ui'
 
 interface Props { lang: Lang }
 const { lang } = Astro.props
 const t = useT(lang)
-
-const PRODUCT: Page[] = ['funkcii', 'e-faktura', 'moduli', 'ceni', 'pomosh', 'preminuvanje', 'demo', 'status']
-const COMPANY: Page[] = ['za-nas', 'kontakt', 'uslovi', 'privatnost']
+const LINKS = [...NAV, 'uslovi', 'privatnost'].map((p) => ({ href: pageHref(lang, p as any), label: t(`page.${p}` as any) }))
 const year = new Date().getFullYear()
 ---
 <footer class="mt-auto border-t border-line bg-surface">
-  <div class="wrap grid gap-10 py-14 md:grid-cols-[1.5fr_1fr_1fr_1.5fr]">
+  <div class="wrap grid gap-8 py-12 md:grid-cols-[1fr_2fr]">
     <div>
       <Logo />
       <p class="mt-4 max-w-xs text-[0.9375rem] text-mut">{t('site.description')}</p>
     </div>
-
-    <nav aria-label={t('footer.product')}>
-      <h2 class="text-sm font-bold tracking-wide text-tx">{t('footer.product')}</h2>
-      <ul class="mt-4 space-y-2.5 text-[0.9375rem]">
-        {PRODUCT.map((p) => <li><a href={pageHref(lang, p)} class="text-mut hover:text-accent-tx">{t(`page.${p}`)}</a></li>)}
+    <nav aria-label="SaldoDesk">
+      <ul class="grid grid-cols-2 gap-x-6 gap-y-2.5 text-[0.9375rem] sm:grid-cols-3">
+        {LINKS.map((l) => <li><a href={l.href} class="text-mut hover:text-accent-tx">{l.label}</a></li>)}
       </ul>
     </nav>
-
-    <nav aria-label={t('footer.company')}>
-      <h2 class="text-sm font-bold tracking-wide text-tx">{t('footer.company')}</h2>
-      <ul class="mt-4 space-y-2.5 text-[0.9375rem]">
-        {COMPANY.map((p) => <li><a href={pageHref(lang, p)} class="text-mut hover:text-accent-tx">{t(`page.${p}`)}</a></li>)}
-      </ul>
-    </nav>
-
-    <div>
-      <h2 class="text-sm font-bold tracking-wide text-tx">{t('footer.contact')}</h2>
-      <!-- The owner supplies these (brief 06 §3). Nothing is invented. -->
-      <ul class="mt-4 space-y-2.5 text-[0.9375rem] text-mut">
-        <li><Todo lang={lang}>{t('footer.legalName')}</Todo></li>
-        <li>{t('footer.phone')}: <Todo lang={lang} /></li>
-        <li>{t('footer.email')}: <Todo lang={lang} /></li>
-        <li>{t('footer.hours')}: <Todo lang={lang} /></li>
-      </ul>
-    </div>
   </div>
   <div class="border-t border-line">
-    <p class="wrap py-6 text-xs text-mut">© {year} SaldoDesk. {t('footer.rights')}</p>
+    <div class="wrap flex flex-wrap items-center justify-between gap-3 py-6 text-xs text-mut">
+      <p>© {year} SaldoDesk. {t('footer.rights')}</p>
+      <Todo lang={lang}>{t('footer.company')}</Todo>
+    </div>
   </div>
 </footer>

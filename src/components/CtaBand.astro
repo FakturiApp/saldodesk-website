@@ -1,26 +1,23 @@
 ---
-// The closing call: the night patch in both themes (owner: „brilliant").
+// The closing call at the bottom of a page: the night patch in both themes.
 import Arrow from './Arrow.astro'
-import Rich from './Rich.astro'
+import { SITE } from '../content/site'
 import { type Lang, signupUrl, useT } from '../i18n/ui'
-interface Props { lang: Lang; title?: string; section: string }
-const { lang, title = 'Пробајте го на **вашата** фирма.', section } = Astro.props
+interface Props { lang: Lang; section: string }
+const { lang, section } = Astro.props
 const t = useT(lang)
+const C = SITE[lang].cta
 ---
-<section class="wrap py-16 md:py-24">
-  <div class="cta-night relative overflow-hidden rounded-[2.5rem] px-6 py-16 text-center md:py-24">
-    <div class="glow left-1/2 top-1/2 h-[26rem] w-[26rem] -translate-x-1/2 -translate-y-1/2" style="background:rgba(63,224,173,0.18)" aria-hidden="true"></div>
-    <div class="relative">
-      <h2 class="mx-auto max-w-3xl text-4xl md:text-[3.5rem]"><Rich text={title} /></h2>
-      <a href={signupUrl(lang)} class="pill pill-accent mt-10" data-event="cta_trial_click" data-section={section}>
-        <span>{t('cta.trial')} 30 дена</span><span class="pill-arrow"><Arrow /></span>
-      </a>
-      <p class="mt-5 text-sm text-[#a6b0c3]">30 дена бесплатно · со сите модули · без картичка</p>
-    </div>
+<section class="wrap pb-20">
+  <div class="cta-night relative overflow-hidden rounded-[2.5rem] px-6 py-16 text-center md:py-20">
+    <h2 class="mx-auto max-w-3xl text-3xl md:text-5xl">{C.title}</h2>
+    <a href={signupUrl(lang)} class="pill pill-accent mt-9" data-event="cta_trial_click" data-section={section}>
+      <span>{t('cta.trial')}</span><span class="pill-arrow"><Arrow /></span>
+    </a>
+    <p class="mt-5 text-sm text-[#a6b0c3]">{C.note}</p>
   </div>
 </section>
 
 <style>
   .cta-night { background: #0d1220; color: #eef1f7; }
-  .cta-night :global(.marker) { background: #3fe0ad; color: #0d1220; border-radius: 0.18em; padding-inline: 0.15em; }
 </style>

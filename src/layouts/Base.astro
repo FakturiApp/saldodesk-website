@@ -18,7 +18,7 @@ interface Props {
 const { lang, page, title, description, subpath, canonicalLang } = Astro.props
 const t = useT(lang)
 const site = Astro.site ?? new URL('https://saldodesk.mk')
-const fullTitle = title ? `${title} — SaldoDesk` : `SaldoDesk — ${t('site.tagline')}`
+const fullTitle = title ? `${title} — SaldoDesk` : t('site.title')
 const desc = description ?? t('site.description')
 const hrefFor = (l: Lang) => (subpath ? `/${l}/${subpath}` : pageHref(l, page))
 const canonical = new URL(hrefFor(canonicalLang ?? lang), site).href
@@ -51,7 +51,8 @@ const canonical = new URL(hrefFor(canonicalLang ?? lang), site).href
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={desc} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:locale" content={{ mk: 'mk_MK', sq: 'sq_MK', en: 'en_US' }[lang]} />
+    <meta property="og:locale" content={{ mk: 'mk_MK', en: 'en_US' }[lang]} />
+    <meta property="og:image" content={new URL('/shots/pochetna.webp', site).href} />
   </head>
   <body class="flex min-h-dvh flex-col">
     <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-50 focus:rounded-lg focus:bg-surface focus:px-4 focus:py-2 focus:shadow">{t('skip')}</a>

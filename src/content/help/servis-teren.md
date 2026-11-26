@@ -34,4 +34,6 @@ related: [servis-priem, servis-tabla, servis-naplata]
 
 ## Уредот мора да дојде во сервис
 Ако на терен не може да се поправи, кликнете **Земено во сервис**.
+
+<figure class="shot"><span class="shot-frame" style="aspect-ratio:1280/560"><img src="/help-img/service-zemeno.webp" alt="Копчето Земено во сервис" width="1280" height="560" loading="lazy" decoding="async"><span class="shot-ring" style="left:10.22%;top:51.30%;width:11.92%;height:6.79%"></span><span class="shot-tag is-above is-right" style="bottom:48.70%;left:16.18%">Кликнете тука</span></span><figcaption>Копчето Земено во сервис</figcaption></figure>
 Налогот го задржува истиот број и ставките, станува налог **Во сервис** со статус **Примено**, и оди на таблата **Работилница**. Законскиот рок почнува да тече од денот кога уредот стигнал кај вас.

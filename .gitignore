@@ -3,3 +3,6 @@ dist/
 .astro/
 .env
 .DS_Store
+.app-copy/
+record-*-failed.png
+scripts/.clean-demo-data.tmp.py

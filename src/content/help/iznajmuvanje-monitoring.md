@@ -21,7 +21,7 @@ related: [iznajmuvanje-email-unos, iznajmuvanje-otchituvanja]
 ## Нов агент
 1. Во **SNMP агенти** кликнете **+ Нов агент**.
 
-<figure class="shot"><span class="shot-frame" style="aspect-ratio:1280/1000"><img src="/help-img/rentals-monitoring-agent.webp" alt="Делот SNMP агенти и копчето Нов агент" width="1280" height="1000" loading="lazy" decoding="async"><span class="shot-ring" style="left:87.25%;top:85.43%;width:8.76%;height:3.80%"></span><span class="shot-tag is-above is-left" style="bottom:14.57%;right:8.37%">Кликнете тука</span></span><figcaption>Делот SNMP агенти и копчето Нов агент</figcaption></figure>
+<figure class="shot"><span class="shot-frame" style="aspect-ratio:1280/1000"><img src="/help-img/rentals-monitoring-agent.webp" alt="Делот SNMP агенти и копчето Нов агент" width="1280" height="1000" loading="lazy" decoding="async"><span class="shot-ring" style="left:87.25%;top:80.13%;width:8.76%;height:3.80%"></span><span class="shot-tag is-above is-left" style="bottom:19.87%;right:8.37%">Кликнете тука</span></span><figcaption>Делот SNMP агенти и копчето Нов агент</figcaption></figure>
 2. Внесете **Назив на агентот**, а ако сакате и **Партнер** и **Подмрежа (опционално)**.
 3. Кликнете **+ Нов агент** под полињата.
 4. Апликацијата го покажува токенот на агентот само еднаш. Кликнете **Копирај токен** и внесете го во програмата на мрежата кај клиентот.

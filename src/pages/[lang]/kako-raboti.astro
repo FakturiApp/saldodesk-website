@@ -1,0 +1,184 @@
+---
+// Како работи (owner 2026-11-26): Функции and Преглед made one. The program, area by area in
+// the order of its own menu; in each area a real screen to explore, then the tasks done there
+// with their steps, pictures and the full guides.
+import Base from '../../layouts/Base.astro'
+import Icon from '../../components/Icon.astro'
+import Arrow from '../../components/Arrow.astro'
+import AppShot from '../../components/AppShot.astro'
+import PageHead from '../../components/PageHead.astro'
+import CtaBand from '../../components/CtaBand.astro'
+import AppIcon from '../../components/AppIcon.astro'
+import ScreenExplorer from '../../components/ScreenExplorer.astro'
+import { SITE } from '../../content/site'
+import { AREAS, tasksOf } from '../../content/areas'
+import { shotSrc } from '../../content/shots'
+import TaskCard from '../../components/TaskCard.astro'
+import { helpArticles } from '../../content/helpCopy'
+import { LANGS, type Lang, pageHref } from '../../i18n/ui'
+
+export function getStaticPaths() {
+  return LANGS.map((lang) => ({ params: { lang } }))
+}
+const lang = Astro.params.lang as Lang
+const K = SITE[lang].kako
+const help = new Map((await helpArticles(lang)).map((a) => [a.id, a.data.title]))
+const labels = { steps: K.steps, more: K.more, next: K.next, replay: K.replay }
+---
+<Base lang={lang} page="kako-raboti" title={K.title}>
+  <PageHead title={K.title} text={K.text} />
+
+  <!-- Every part of the app, with its own symbol: the page's index. -->
+  <nav aria-label={K.title} class="wrap pb-6" data-index>
+    <ul class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+      {AREAS.map((a, i) => (
+        <li>
+          <a href={`#${a.id}`} class="card group flex h-full items-center gap-3 p-3.5 transition hover:-translate-y-0.5 hover:border-accent">
+            <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-surface-2 text-accent-tx transition group-hover:bg-accent group-hover:text-accent-ink"><AppIcon name={a.icon} class="h-5 w-5" /></span>
+            <span class="min-w-0">
+              <span class="num block text-[0.6875rem] font-bold text-mut">{String(i + 1).padStart(2, '0')}</span>
+              <span class="block truncate text-[0.9375rem] font-bold leading-tight">{a.title[lang]}</span>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+
+  <!-- The rail: the same parts as symbols, out of the way on the left. It opens on hover (on a
+       phone, on a tap of its button). The part being read is lit; the arrow goes to the top. -->
+  <aside class="rail fixed left-2 top-1/2 z-30 -translate-y-1/2 md:left-4" data-rail aria-label={K.title}>
+    <button type="button" class="rail-toggle grid h-11 w-11 place-items-center rounded-full border border-line bg-surface/90 text-tx shadow-[var(--shadow)] backdrop-blur lg:hidden" data-rail-toggle aria-expanded="false" aria-label={K.title}>
+      <AppIcon name="home" class="h-5 w-5" />
+    </button>
+    <div class="rail-panel rounded-[1.6rem] border border-line bg-surface/90 p-1.5 shadow-[var(--shadow)] backdrop-blur">
+      <button type="button" data-rail-top class="rail-item" aria-label={K.top}>
+        <span class="rail-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" /></svg></span>
+        <span class="rail-label">{K.top}</span>
+      </button>
+      <span class="mx-2 my-1 block h-px bg-line" aria-hidden="true"></span>
+      {AREAS.map((a) => (
+        <a href={`#${a.id}`} data-area-link={a.id} class="rail-item">
+          <span class="rail-ic"><AppIcon name={a.icon} class="h-[1.15rem] w-[1.15rem]" /></span>
+          <span class="rail-label">{a.title[lang]}</span>
+        </a>
+      ))}
+    </div>
+  </aside>
+
+  {AREAS.map((a, i) => (
+    <section id={a.id} data-area data-flash class="flash wrap relative scroll-mt-28 py-14 md:py-20">
+      <header class="flex flex-wrap items-center gap-4">
+        <span class="num text-4xl font-extrabold text-accent-tx md:text-5xl">{String(i + 1).padStart(2, '0')}</span>
+        <span class="grid h-12 w-12 place-items-center rounded-2xl bg-accent text-accent-ink"><AppIcon name={a.icon} /></span>
+        <div>
+          <h2 class="flex flex-wrap items-center gap-3 text-3xl md:text-[2.5rem]">{a.title[lang]}
+            {a.plan && <a href={pageHref(lang, 'ceni')} class="rounded-full bg-hi px-3 py-1 text-sm font-bold text-hi-ink">{a.plan[lang]}</a>}
+          </h2>
+          <p class="mt-1 max-w-3xl text-lg text-mut">{a.intro[lang]}</p>
+        </div>
+      </header>
+
+      <div class="mt-8">
+        {a.screen.hotspots.length > 0 && <p class="mb-3 text-sm font-bold uppercase tracking-wide text-mut">{K.explore}</p>}
+        <ScreenExplorer lang={lang} src={shotSrc(a.screen, lang)} w={a.screen.w} h={a.screen.h} alt={a.screen.caption[lang]}
+                        spots={a.screen.hotspots} hint={K.exploreHint} eager={i === 0} />
+      </div>
+
+      {tasksOf(a).length > 0 && (
+        <div class="mt-14">
+          <h3 class="text-sm font-bold uppercase tracking-wide text-mut">{K.tasks}</h3>
+          <div class="mt-5 space-y-6">
+            {tasksOf(a).map((f) => <TaskCard task={f} lang={lang} help={help} areaPlan={a.plan} labels={labels} />)}
+          </div>
+        </div>
+      )}
+    </section>
+  ))}
+
+  <CtaBand lang={lang} section="kako-raboti" />
+</Base>
+
+<style>
+  /* After a jump, the area or task lights up in the app's mint for 2 seconds. */
+  .flash::before {
+    content: ''; position: absolute; inset: 0; border-radius: 2rem; pointer-events: none; opacity: 0; z-index: 0;
+    background: color-mix(in srgb, var(--accent) 9%, transparent);
+    box-shadow: inset 0 0 0 2px var(--accent), 0 0 2.5rem color-mix(in srgb, var(--accent) 25%, transparent);
+  }
+  section.flash::before { inset: 0.5rem 0.25rem; }
+  .flash.is-flash::before { animation: flash 2s ease-out; }
+  @keyframes flash { 0% { opacity: 0; } 12%, 65% { opacity: 1; } 100% { opacity: 0; } }
+  /* The rail: symbols only; on hover (a tap on a phone) it opens to show the names. */
+  .rail { opacity: 0; pointer-events: none; transition: opacity 0.25s; }
+  .rail.is-shown { opacity: 1; pointer-events: auto; }
+  .rail-panel { display: flex; flex-direction: column; gap: 0.125rem; width: 3.35rem; overflow: hidden; transition: width 0.25s ease; }
+  .rail-item { display: flex; align-items: center; gap: 0.5rem; border-radius: 9999px; padding: 0.25rem; color: var(--mut); white-space: nowrap; transition: background 0.15s, color 0.15s; }
+  .rail-item:hover { background: var(--surface-2); color: var(--tx); }
+  .rail-ic { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; flex-shrink: 0; border-radius: 9999px; transition: background 0.15s, color 0.15s; }
+  .rail-item[aria-current='true'] .rail-ic { background: var(--accent); color: var(--accent-ink); }
+  .rail-item[aria-current='true'] { color: var(--tx); font-weight: 700; }
+  .rail-label { font-size: 0.875rem; font-weight: 600; opacity: 0; transition: opacity 0.15s; }
+  @media (hover: hover) and (min-width: 1024px) {
+    .rail:hover .rail-panel, .rail:focus-within .rail-panel { width: 14.5rem; }
+    .rail:hover .rail-label, .rail:focus-within .rail-label { opacity: 1; }
+  }
+  @media (max-width: 1023px) {
+    .rail { top: auto; bottom: 1rem; transform: none; }
+    .rail-panel { display: none; position: absolute; bottom: 3.5rem; left: 0; width: 14.5rem; max-height: 70vh; overflow-y: auto; }
+    .rail.is-open .rail-panel { display: flex; }
+    .rail.is-open .rail-label { opacity: 1; }
+  }
+
+</style>
+
+<script>
+  // Light up what a link jumped to, once the scroll has arrived.
+  const flash = (id: string) => {
+    const el = document.getElementById(id)
+    if (!el?.matches('[data-flash]')) return
+    el.classList.remove('is-flash')
+    void el.offsetWidth
+    el.classList.add('is-flash')
+    el.addEventListener('animationend', () => el.classList.remove('is-flash'), { once: true })
+  }
+  const afterScroll = (fn: () => void) => {
+    let done = false
+    const go = () => { if (!done) { done = true; fn() } }
+    window.addEventListener('scrollend', go, { once: true })
+    setTimeout(go, 900)
+  }
+  document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((a) =>
+    a.addEventListener('click', () => { const id = a.hash.slice(1); afterScroll(() => flash(id)) }))
+  if (location.hash) setTimeout(() => flash(location.hash.slice(1)), 400)
+
+  // The rail follows the reader: it shows once the index is scrolled past, and the area in the
+  // middle of the screen is lit.
+  const rail = document.querySelector<HTMLElement>('[data-rail]')
+  const index = document.querySelector<HTMLElement>('[data-index]')
+  if (rail && index) {
+    new IntersectionObserver(([e]) => {
+      const past = !e.isIntersecting && e.boundingClientRect.top < 0
+      rail.classList.toggle('is-shown', past)
+      if (!past) rail.classList.remove('is-open')
+    }).observe(index)
+    const toggle = rail.querySelector<HTMLButtonElement>('[data-rail-toggle]')
+    toggle?.addEventListener('click', () => {
+      const open = rail.classList.toggle('is-open')
+      toggle.setAttribute('aria-expanded', String(open))
+    })
+    rail.querySelectorAll('a, [data-rail-top]').forEach((x) => x.addEventListener('click', () => rail.classList.remove('is-open')))
+    rail.querySelector('[data-rail-top]')?.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
+      if (location.hash) history.replaceState(null, '', location.pathname)
+    })
+  }
+  const links = new Map(Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-area-link]')).map((a) => [a.dataset.areaLink, a]))
+  const seen = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (!e.isIntersecting) continue
+      links.forEach((a, id) => a.setAttribute('aria-current', String(id === e.target.id)))
+    }
+  }, { rootMargin: '-45% 0px -50% 0px' })
+  document.querySelectorAll('[data-area]').forEach((s) => seen.observe(s))
+</script>

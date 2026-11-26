@@ -23,6 +23,8 @@ related: [nov-proizvod, zaliha-na-proizvod, rezervacija, serii-i-rokovi]
 
 ## При прием (приемница)
 Кога ќе изберете таков производ, под ставката пишува **Сериски броеви** и колку се внесени, на пример 0/2. Во полето до тоа напишете или скенирајте го бројот и притиснете Enter. Повторете за секој уред.
+
+<figure class="shot"><span class="shot-frame" style="aspect-ratio:1280/720"><img src="/help-img/products-seriski-priem.webp" alt="Сериските броеви на ставка од приемница" width="1280" height="720" loading="lazy" decoding="async"><span class="shot-ring" style="left:26.83%;top:83.65%;width:11.25%;height:3.06%"></span><span class="shot-tag is-above is-right" style="bottom:16.35%;left:32.46%">Кликнете тука</span></span><figcaption>Сериските броеви на ставка од приемница</figcaption></figure>
 Ако на ставката пишува „(останатите — при продажба)“, вашата фирма прима уреди и без број. Тогаш бројот на уредот се впишува кога ќе се продава. Тоа се поставува во **Подесувања** → **Фирма**, кај **Сериски броеви при прием**.
 
 ## При продажба (фактура)

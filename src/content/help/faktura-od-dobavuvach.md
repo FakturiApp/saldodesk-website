@@ -16,6 +16,8 @@ related: [vnesi-priemnica, nabavna-nepoznata, vrati-stoka-dobavuvach, vlezna-fak
 ## Стоката веќе е внесена со приемница
 1. Во **Документи** → **Набавка** кликнете **Приемница** и отворете ја приемницата.
 2. Кликнете **Внеси фактура**.
+
+<figure class="shot"><span class="shot-frame" style="aspect-ratio:1280/1000"><img src="/help-img/buy-vnesi-faktura.webp" alt="Копчето Внеси фактура на приемницата" width="1280" height="1000" loading="lazy" decoding="async"><span class="shot-ring" style="left:85.33%;top:88.68%;width:10.06%;height:3.60%"></span><span class="shot-tag is-above is-left" style="bottom:11.32%;right:9.64%">Кликнете тука</span></span><figcaption>Копчето Внеси фактура на приемницата</figcaption></figure>
 3. Се отвора **Нова фактура — приемница**, со добавувачот и ставките од приемницата.
 4. Проверете го **Број на фактура (добавувач)**.
 5. Во **Датум на фактурата** внесете го датумот што е напишан на фактурата.

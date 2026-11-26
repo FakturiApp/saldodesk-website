@@ -30,8 +30,10 @@ related: [napravi-faktura, ponishti-faktura, pechati-faktura]
 ## Кое копче што прави
 1. На **Нов документ**, копчето **Зачувај нацрт** ја чува фактурата како нацрт.
 
-<figure class="shot"><span class="shot-frame" style="aspect-ratio:1280/900"><img src="/help-img/nacrt-zachuvaj.webp" alt="Копчето Зачувај нацрт" width="1280" height="900" loading="lazy" decoding="async"><span class="shot-ring" style="left:78.33%;top:86.77%;width:9.78%;height:4.22%"></span><span class="shot-tag is-above is-left" style="bottom:13.23%;right:16.78%">Кликнете тука</span></span><figcaption>Копчето Зачувај нацрт</figcaption></figure>
+<figure class="shot"><span class="shot-frame" style="aspect-ratio:1280/900"><img src="/help-img/nacrt-zachuvaj.webp" alt="Копчето Зачувај нацрт" width="1280" height="900" loading="lazy" decoding="async"><span class="shot-ring" style="left:78.33%;top:80.10%;width:9.78%;height:4.22%"></span><span class="shot-tag is-above is-left" style="bottom:19.90%;right:16.78%">Кликнете тука</span></span><figcaption>Копчето Зачувај нацрт</figcaption></figure>
 2. Копчето **Издади** ја издава веднаш.
 3. Нацртот подоцна го наоѓате во **Документи**: наместо број има цртичка „—“, а редот е посив. Отворете го и кликнете **Издади**.
+
+<figure class="shot"><span class="shot-frame" style="aspect-ratio:1280/900"><img src="/help-img/nacrt-izdadi.webp" alt="Отворен нацрт и копчето Издади" width="1280" height="900" loading="lazy" decoding="async"><span class="shot-ring" style="left:89.05%;top:77.42%;width:6.34%;height:4.00%"></span><span class="shot-tag is-above is-left" style="bottom:22.58%;right:7.78%">Кликнете тука</span></span><figcaption>Отворен нацрт и копчето Издади</figcaption></figure>
 > **Важно**
 > Нацртот не е фактура. Додека не кликнете **Издади**, купувачот нема фактура, а стоката е уште на залиха.

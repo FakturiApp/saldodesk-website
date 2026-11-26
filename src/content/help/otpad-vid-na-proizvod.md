@@ -31,7 +31,7 @@ related: [otpad-vidovi-pakuvanje, otpad-amballaza-na-devizna, otpad-mesechen-izv
 2. Во колоната **Вид**, во редот на производот, изберете вид. Се зачувува веднаш, а до него пишува „свој“.
 3. Ако во **Предлог** има предлог (вид на производи со слично име или од истата категорија), кликнете **Прифати**.
 
-<figure class="shot"><span class="shot-frame" style="aspect-ratio:1280/1100"><img src="/help-img/waste-proizvodi-prifati.webp" alt="Листата Производи и копчето Прифати" width="1280" height="1100" loading="lazy" decoding="async"><span class="shot-ring" style="left:70.23%;top:72.55%;width:7.27%;height:3.45%"></span><span class="shot-tag is-above is-left" style="bottom:27.45%;right:26.13%">Кликнете тука</span></span><figcaption>Листата Производи и копчето Прифати</figcaption></figure>
+<figure class="shot"><span class="shot-frame" style="aspect-ratio:1280/1100"><img src="/help-img/waste-proizvodi-prifati.webp" alt="Листата Производи и копчето Прифати" width="1280" height="1100" loading="lazy" decoding="async"><span class="shot-ring" style="left:70.00%;top:72.55%;width:7.27%;height:3.45%"></span><span class="shot-tag is-above is-left" style="bottom:27.45%;right:26.37%">Кликнете тука</span></span><figcaption>Листата Производи и копчето Прифати</figcaption></figure>
 Изборот „без свој вид (следи категорија)“ го тргнува својот вид — производот пак го зема видот на категоријата.
 
 Истото може и од картичката на производот: табот **Амбалажа**, полето **Свој вид**, па **Зачувај**.

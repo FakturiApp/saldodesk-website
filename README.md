@@ -1,6 +1,6 @@
 # saldodesk.mk — the SaldoDesk marketing website
 
-A static site (Astro 7 + Tailwind 4) in Macedonian, Albanian and English. It shares nothing
+A static site (Astro 7 + Tailwind 4) in Macedonian and English (Albanian comes later). It shares nothing
 at runtime with the app (`app.saldodesk.mk`); it only links into it.
 
 The plan it is built to is in [`docs/brief/`](docs/brief/), copied from the app repo's
@@ -21,7 +21,15 @@ The site builds from this repository alone: `npm ci && npm run build` (Node 24, 
 scripts read the app's repository, checked out beside this one (`../Business_M-main`):
 
 - `npm run sync:help` copies the app's help articles into `src/content/help/`;
-- `npm run shoot` takes the wiki's pictures from a running app on the fictional company.
+- `npm run shoot` takes the wiki's pictures from a running app on the fictional company
+  (`-- --lang en` for the English ones, into `public/help-img/en/`);
+- `npm run record` records the tasks in `scripts/flows/` (`-- --lang en` for English,
+  `-- --dry` to test them, `-- --only id1,id2` for some).
+
+The app runs from this repo's `.claude/launch.json`: `app-shots-backend` (the throwaway picture
+database `data/website-shots.db`) and, on Windows, `app-copy-frontend` (port 5160, made by
+`node scripts/app-copy.mjs`); the scripts use port 5160 unless `SHOTS_URL` says otherwise. Run `node scripts/clean-demo-data.mjs`
+once on a fresh picture database before shooting.
 
 Their output is committed, so nobody who only builds the site needs the app.
 
@@ -29,50 +37,37 @@ Their output is committed, so nobody who only builds the site needs the app.
 
 | Path | What |
 |---|---|
-| `src/i18n/ui.ts` | Every word, in mk / sq / en; the page list; the app's URLs |
-| `src/styles/global.css` | The site's own tokens (only the logo colours come from the app), Onest, pills, highlighter |
-| `src/content/topics.ts` · `modules.ts` | The topic pages' and modules' words (mk) |
-| `src/components/mock/` | Drawn app screens with invented data (Кони Копи ДООЕЛ) — never real screenshots |
-| `src/content/help/` + `scripts/sync-help.mjs` | The wiki — COPIED from the app repo, never edited here |
-| `scripts/shoot-app.mjs` → `public/help-img/` + `src/data/shot-targets.json` | The wiki's pictures, taken inside the app on the fictional company, with the click targets |
-| `src/data/plans.ts` | The three plans, the comparison, example prices |
+| `src/i18n/ui.ts` | Shared words (mk / en), the page list, the top-bar tabs, the app's URLs |
+| `src/content/site.ts` | The words of Почетна, Цени, Контакт and the page intros; the (example) prices |
+| `src/content/areas.ts` | „Како работи": the app's 12 areas, each a real screen with numbered spots, and the ids of its tasks |
+| `src/content/tasks/*.ts` | The tasks (about 45), one file per area: title, intro, steps (each one visible action), guides |
+| `scripts/flows/*.mjs` | The recording of each task, step by step — `npm run record` turns it into one short video per step |
+| `src/content/help/` + `scripts/sync-help.mjs` | The wiki in Macedonian — COPIED from the app repo, never edited here |
+| `src/content/help-en/` | The wiki in English — translated here; translate an article again when its mk copy changes |
+| `scripts/shoot-app.mjs` → `public/help-img/` | The app pictures, taken inside the app on the made-up company |
+| `scripts/crop-shots.mjs` → `public/shots/` | The home page's hero picture, cropped from a wiki picture |
+| `scripts/clean-demo-data.mjs` | Makes the made-up company fit for pictures: Brother → Kyocera/Epson/Dymo, Brother + fiscal modules off (data only) |
+| `scripts/record-app.mjs` → `public/rec/<lang>/<task>/<n>.webm` | One video per step (cursor + click ripple), `src/data/rec.json`; `--dry` tests the steps without recording |
+| `scripts/app-copy.mjs` → `.app-copy/` | A throwaway copy of the app's screens that works on Windows (see docs/HANDOFF.md, the file-name bug) |
 | `src/layouts/Base.astro` | `<head>` (title, hreflang, canonical), header, footer |
-| `src/components/` | Logo, header, language switch, footer, `Todo` placeholder |
-| `src/pages/index.astro` | The root: picks a language once |
-| `src/pages/[lang]/` | Home and every launch page, per language |
+| `src/pages/[lang]/` | Почетна, Функции, Преглед, Цени, Помош, Контакт, legal shells — per language |
 
 ## Rules
 
 - **Nothing invented.** A value the owner has not supplied (prices, company details, contacts)
   is a `<Todo>`: drawn in yellow with a dashed border, and marked `data-todo` so a pre-launch
   check can refuse it.
-- **Albanian is a draft** until a native speaker has checked it.
+- **Short, plain words** (owner 2026-11-26): no slogans, no translated idioms.
 - **No third-party requests.** Fonts are self-hosted, and there are no external scripts.
 - **`robots.txt` blocks indexing** until launch.
 
 ## Status
 
-- **W0 done (2026-11-16):** shell, tokens, fonts, header/footer, mk/sq/en routing, every launch
-  route as a placeholder.
-- **Identity changed (owner, 16.11):** the site has its own look and does not copy the app.
-  See `docs/brief/05-visual-direction.md`.
-- **W1 done (2026-11-16):** the home page in Macedonian (sq/en show the mk text until W4). Its
-  sections run hook → explanation → annotated real screen. Prices and company details are
-  `<Todo>`s.
-- **16.11 (owner):** dark + golden light theme; drawn mock-ups instead of screenshots; a
-  short home page whose questions open their own pages; the modules on one switcher page;
-  example prices.
-- **W2 done (2026-11-16):** Функции, the five topic pages, Модули, Цени, Што е готово, Контакт,
-  Демо; legal shells.
-- **W2b done (2026-11-16):** Помош, the wiki. `npm run sync:help` copies the app's help
-  articles from `../Business_M-main/docs/help/mk` (124 published; 8 skipped with reasons —
-  Brother, fiscal, and four that conflict with the site, see `docs/brief/07-wiki-review.md`), and
-  pictures are dropped. The index is grouped by topic with a Cyrillic/Latin search. Article
-  pages show related questions and the plan badge. The sq/en copies point search engines at
-  the mk original.
-- **16.11 (owner), `docs/brief/08-implementation-plan.md`:** no competitor named
-  (`/preminuvanje/`); the brand quote on the home page and `/za-nas/`; the wiki's pictures
-  taken inside the app on the fictional „Кони Копи ДООЕЛ" with a ring and a „Кликнете тука"
-  pointer (`npm run shoot` then `npm run sync:help`).
-- **Next:** W3 (more mock-ups where needed) and W4 (sq/en texts). Before launch, the owner
-  reviews the wiki once for anything not ready on the hosted version.
+- **W0–W2b (2026-11-16):** shell, themes, the first pages, the wiki.
+- **2026-11-26 (owner):** a simple site in plain Macedonian and English. Tabs: Почетна (a short
+  overview), **Како работи** (the app's 12 areas: a real screen with numbered spots, then 45 tasks
+  whose every step has its own short video), Цени, Помош (124 guides, also in English), Контакт.
+  Real pictures from the app on the made-up company. Albanian is off until a native speaker
+  writes it. Details and the Windows app bug: `docs/HANDOFF.md`.
+- **Open:** prices, contact and company details, legal texts (`<Todo>`s); SEO/analytics/
+  accessibility pass and a staging deploy; the app work in brief 06 §6.

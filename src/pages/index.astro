@@ -1,7 +1,7 @@
 ---
-// The root picks a language ONCE: the visitor's earlier choice, else Albanian for an
-// Albanian browser, else Macedonian. An English-language browser still gets Macedonian:
-// many Macedonian offices run English Windows (brief 03 §1).
+// The root picks a language ONCE: the visitor's earlier choice, else Macedonian. An
+// English-language browser still gets Macedonian: many Macedonian offices run English
+// Windows (brief 03 §1). The language switch is one click away.
 import '../styles/global.css'
 import { LANGS, LANG_NAME } from '../i18n/ui'
 ---
@@ -19,10 +19,7 @@ import { LANGS, LANG_NAME } from '../i18n/ui'
       (function () {
         var pick = null
         try { pick = localStorage.getItem('sd-lang') } catch (e) {}
-        if (pick !== 'mk' && pick !== 'sq' && pick !== 'en') {
-          var langs = navigator.languages || [navigator.language || '']
-          pick = langs.some(function (l) { return /^sq\b/i.test(l) }) ? 'sq' : 'mk'
-        }
+        if (pick !== 'mk' && pick !== 'en') pick = 'mk'
         location.replace('/' + pick + '/')
       })()
     </script>

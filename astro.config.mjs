@@ -7,7 +7,7 @@ export default defineConfig({
   site: 'https://saldodesk.mk',
   trailingSlash: 'always',
   i18n: {
-    locales: ['mk', 'sq', 'en'],
+    locales: ['mk', 'en'],
     defaultLocale: 'mk',
     // Every language lives under its own prefix (/mk/, /sq/, /en/); the root page
     // picks one once (src/pages/index.astro), so Astro must not redirect it itself.

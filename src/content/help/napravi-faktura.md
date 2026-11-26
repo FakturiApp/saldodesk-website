@@ -13,7 +13,7 @@ related: [nacrt-ili-izdadena, nema-zaliha, pechati-faktura, faktura-od-ispratnic
 1. Горе кликнете **Документи**.
 2. Кликнете го синото копче „+“ на крајот од редот со видовите документи.
 
-<figure class="shot"><span class="shot-frame" style="aspect-ratio:1280/720"><img src="/help-img/napravi-faktura-plus.webp" alt="Синото копче „+“ во Документи" width="1280" height="720" loading="lazy" decoding="async"><span class="shot-ring" style="left:75.31%;top:27.78%;width:2.50%;height:4.44%"></span><span class="shot-tag is-above is-left" style="bottom:72.22%;right:23.44%">Кликнете тука</span></span><figcaption>Синото копче „+“ во Документи</figcaption></figure>
+<figure class="shot"><span class="shot-frame" style="aspect-ratio:1280/720"><img src="/help-img/napravi-faktura-plus.webp" alt="Синото копче „+“ во Документи" width="1280" height="720" loading="lazy" decoding="async"><span class="shot-ring" style="left:64.01%;top:27.78%;width:2.50%;height:4.44%"></span><span class="shot-tag is-above is-left" style="bottom:72.22%;right:34.74%">Кликнете тука</span></span><figcaption>Синото копче „+“ во Документи</figcaption></figure>
 3. Се отвора **Нов документ**. Горе проверете дека е избрано **Фактура — Испратница**.
 4. Во **Партнер** напишете дел од името на купувачот и изберете го од листата.
 5. **Датум** е денешен. Ако купувачот има договорен рок, **Рок на плаќање** се пополнува сам.

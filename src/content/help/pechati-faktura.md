@@ -10,6 +10,8 @@ related: [napravi-faktura, nacrt-ili-izdadena, izgled-pechateni, najdi-dokument]
 
 1. Отворете ја фактурата: во **Документи** кликнете на неа.
 2. Кликнете **Печати**.
+
+<figure class="shot"><span class="shot-frame" style="aspect-ratio:1280/900"><img src="/help-img/pechati-kopche.webp" alt="Копчето Печати на фактурата" width="1280" height="900" loading="lazy" decoding="async"><span class="shot-ring" style="left:50.99%;top:82.76%;width:6.38%;height:4.22%"></span><span class="shot-tag is-above is-left" style="bottom:17.24%;right:45.82%">Кликнете тука</span></span><figcaption>Копчето Печати на фактурата</figcaption></figure>
 3. Се отвора фактурата онаква каква што ќе излезе на хартија. Ако ви треба повеќе од еден примерок, сменете го бројот кај **Примероци**. За купувач што чита англиски, штиклирајте **На англиски**.
 4. Кликнете **Печати** горе десно.
 

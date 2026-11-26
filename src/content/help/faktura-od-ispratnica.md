@@ -13,6 +13,8 @@ related: [ispratnica, napravi-faktura, nema-zaliha, najdi-dokument]
 ## Од една испратница
 1. Во **Документи** кликнете **Испратница**, па отворете ја испратницата.
 2. Кликнете **Направи фактура**. Фактурата се издава веднаш, со истите ставки и цени.
+
+<figure class="shot"><span class="shot-frame" style="aspect-ratio:1280/900"><img src="/help-img/ispratnica-napravi-faktura.webp" alt="Копчето Направи фактура на испратницата" width="1280" height="900" loading="lazy" decoding="async"><span class="shot-ring" style="left:83.89%;top:69.92%;width:11.50%;height:4.00%"></span><span class="shot-tag is-above is-left" style="bottom:30.08%;right:10.36%">Кликнете тука</span></span><figcaption>Копчето Направи фактура на испратницата</figcaption></figure>
 Ако сакате прво нешто да смените (цена, попуст, рок), наместо тоа кликнете **Фактура со измени**. Фактурата се отвора како нацрт. Сменете што треба, кликнете **Зачувај**, па **Издади**.
 
 ## Од повеќе испратници за ист купувач

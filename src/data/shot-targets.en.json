@@ -1,0 +1,1267 @@
+{
+ "buy-vrati-stoka.png": {
+  "img": "buy-vrati-stoka.webp",
+  "width": 1280,
+  "height": 1000,
+  "box": {
+   "x": 0.89598388671875,
+   "y": 0.612171875,
+   "w": 0.05479736328125,
+   "h": 0.038
+  }
+ },
+ "buy-kompenzacija-plus.png": {
+  "img": "buy-kompenzacija-plus.webp",
+  "width": 1280,
+  "height": 600,
+  "box": {
+   "x": 0.61080322265625,
+   "y": 0.33341145833333335,
+   "w": 0.025,
+   "h": 0.05333333333333334
+  }
+ },
+ "sell-ponuda-plus.png": {
+  "img": "sell-ponuda-plus.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.59219970703125,
+   "y": 0.27784288194444445,
+   "w": 0.025,
+   "h": 0.044444444444444446
+  }
+ },
+ "buy-trosok-vid.png": {
+  "img": "buy-trosok-vid.webp",
+  "width": 1280,
+  "height": 800,
+  "box": {
+   "x": 0.04140625,
+   "y": 0.7730859375,
+   "w": 0.175,
+   "h": 0.0475
+  }
+ },
+ "sell-ispratnica-izdadi.png": {
+  "img": "sell-ispratnica-izdadi.webp",
+  "width": 1280,
+  "height": 900,
+  "box": {
+   "x": 0.90408935546875,
+   "y": 0.92765625,
+   "w": 0.04981689453125,
+   "h": 0.04
+  }
+ },
+ "sell-kz-tip.png": {
+  "img": "sell-kz-tip.webp",
+  "width": 1280,
+  "height": 800,
+  "box": {
+   "x": 0.0971435546875,
+   "y": 0.32654296875,
+   "w": 0.05206298828125,
+   "h": 0.04
+  }
+ },
+ "sell-povtoruvachka-forma.png": {
+  "img": "sell-povtoruvachka-forma.webp",
+  "width": 1280,
+  "height": 960,
+  "box": {
+   "x": 0.03828125,
+   "y": 0.6253092447916667,
+   "w": 0.07032470703125,
+   "h": 0.020833333333333332
+  }
+ },
+ "napravi-faktura-plus.png": {
+  "img": "napravi-faktura-plus.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.59271240234375,
+   "y": 0.27784288194444445,
+   "w": 0.025,
+   "h": 0.044444444444444446
+  }
+ },
+ "nacrt-zachuvaj.png": {
+  "img": "nacrt-zachuvaj.webp",
+  "width": 1280,
+  "height": 900,
+  "box": {
+   "x": 0.81793212890625,
+   "y": 0.8009895833333334,
+   "w": 0.0767822265625,
+   "h": 0.042222222222222223
+  }
+ },
+ "sell-povtoruvachka-nova.png": {
+  "img": "sell-povtoruvachka-nova.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.45030517578125,
+   "y": 0.2712456597222222,
+   "w": 0.095703125,
+   "h": 0.05
+  }
+ },
+ "faktura-izdaj.png": {
+  "img": "faktura-izdaj.webp",
+  "width": 1280,
+  "height": 960,
+  "box": {
+   "x": 0.90408935546875,
+   "y": 0.8925944010416667,
+   "w": 0.04981689453125,
+   "h": 0.0375
+  }
+ },
+ "pechati-strana.png": {
+  "img": "pechati-strana.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.7574951171875,
+   "y": 0.20735677083333334,
+   "w": 0.0486328125,
+   "h": 0.05
+  }
+ },
+ "ispratnici-izbrani.png": {
+  "img": "ispratnici-izbrani.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.285205078125,
+   "y": 0.4173394097222222,
+   "w": 0.13203125,
+   "h": 0.07777777777777778
+  }
+ },
+ "najdi-prebaraj.png": {
+  "img": "najdi-prebaraj.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.01875,
+   "y": 0.34381510416666666,
+   "w": 0.25,
+   "h": 0.04722222222222222
+  }
+ },
+ "najdi-ponisteni.png": {
+  "img": "najdi-ponisteni.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.90792236328125,
+   "y": 0.34520399305555555,
+   "w": 0.06551513671875,
+   "h": 0.044444444444444446
+  }
+ },
+ "general-pochetna.png": {
+  "img": "general-pochetna.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.8405029296875,
+   "y": 0.21846788194444444,
+   "w": 0.0438720703125,
+   "h": 0.044444444444444446
+  }
+ },
+ "documents-pochetna-vchitaj.png": {
+  "img": "documents-pochetna-vchitaj.webp",
+  "width": 1280,
+  "height": 600,
+  "box": {
+   "x": 0.03828125,
+   "y": 0.690234375,
+   "w": 0.07890625,
+   "h": 0.065
+  }
+ },
+ "general-prebaruvanje.png": {
+  "img": "general-prebaruvanje.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.1668212890625,
+   "y": 0.021723090277777777,
+   "w": 0.1875,
+   "h": 0.04722222222222222
+  }
+ },
+ "nema-zaliha-lenta.png": {
+  "img": "nema-zaliha-lenta.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.04765625,
+   "y": 0.8761067708333333,
+   "w": 0.1147705078125,
+   "h": 0.022222222222222223
+  }
+ },
+ "general-profil-izgled.png": {
+  "img": "general-profil-izgled.webp",
+  "width": 1280,
+  "height": 600,
+  "box": {
+   "x": 0.14066162109375,
+   "y": 0.473828125,
+   "w": 0.1064697265625,
+   "h": 0.05333333333333334
+  }
+ },
+ "general-sporedi-izbor.png": {
+  "img": "general-sporedi-izbor.webp",
+  "width": 1280,
+  "height": 800,
+  "box": {
+   "x": 0.82373046875,
+   "y": 0.25912109375,
+   "w": 0.054150390625,
+   "h": 0.035
+  }
+ },
+ "general-profil-pomosh.png": {
+  "img": "general-profil-pomosh.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.03828125,
+   "y": 0.48658854166666665,
+   "w": 0.05819091796875,
+   "h": 0.027777777777777776
+  }
+ },
+ "partners-nov-ujp.png": {
+  "img": "partners-nov-ujp.webp",
+  "width": 1280,
+  "height": 620,
+  "box": {
+   "x": 0.73359375,
+   "y": 0.545640120967742,
+   "w": 0.08941650390625,
+   "h": 0.06129032258064516
+  }
+ },
+ "partners-kartichka.png": {
+  "img": "partners-kartichka.webp",
+  "width": 1280,
+  "height": 640,
+  "box": {
+   "x": 0.404248046875,
+   "y": 0.4301513671875,
+   "w": 0.06580810546875,
+   "h": 0.053125
+  }
+ },
+ "general-sporedi.png": {
+  "img": "general-sporedi.webp",
+  "width": 1280,
+  "height": 800,
+  "box": {
+   "x": 0.8022216796875,
+   "y": 0.24037109375,
+   "w": 0.03685302734375,
+   "h": 0.0375
+  }
+ },
+ "partners-otvoreni-stavki.png": {
+  "img": "partners-otvoreni-stavki.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.146337890625,
+   "y": 0.38235677083333336,
+   "w": 0.07889404296875,
+   "h": 0.04722222222222222
+  }
+ },
+ "partners-finansiska-kartica.png": {
+  "img": "partners-finansiska-kartica.webp",
+  "width": 1280,
+  "height": 800,
+  "box": {
+   "x": 0.23018798828125,
+   "y": 0.34412109375,
+   "w": 0.087158203125,
+   "h": 0.0425
+  }
+ },
+ "partners-kategorii.png": {
+  "img": "partners-kategorii.webp",
+  "width": 1280,
+  "height": 560,
+  "box": {
+   "x": 0.321875,
+   "y": 0.4622767857142857,
+   "w": 0.083154296875,
+   "h": 0.03571428571428571
+  }
+ },
+ "partners-popusti.png": {
+  "img": "partners-popusti.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.53157958984375,
+   "y": 0.8684678819444445,
+   "w": 0.06763916015625,
+   "h": 0.05
+  }
+ },
+ "payments-izvod-kopche.png": {
+  "img": "payments-izvod-kopche.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.4052734375,
+   "y": 0.4107421875,
+   "w": 0.1124267578125,
+   "h": 0.05
+  }
+ },
+ "payments-izvod-red.png": {
+  "img": "payments-izvod-red.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.1625,
+   "y": 0.3501736111111111,
+   "w": 0.6671875,
+   "h": 0.16875
+  }
+ },
+ "payments-avans-del.png": {
+  "img": "payments-avans-del.webp",
+  "width": 1280,
+  "height": 900,
+  "box": {
+   "x": 0.03828125,
+   "y": 0.5306597222222222,
+   "w": 0.915625,
+   "h": 0.20444444444444446
+  }
+ },
+ "products-nov-kopche.png": {
+  "img": "products-nov-kopche.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.5646484375,
+   "y": 0.20596788194444443,
+   "w": 0.10023193359375,
+   "h": 0.05
+  }
+ },
+ "payments-pari-starost.png": {
+  "img": "payments-pari-starost.webp",
+  "width": 1280,
+  "height": 900,
+  "box": {
+   "x": 0.01875,
+   "y": 0.43060763888888887,
+   "w": 0.9546875,
+   "h": 0.13833333333333334
+  }
+ },
+ "products-nov-zachuvaj.png": {
+  "img": "products-nov-zachuvaj.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.92548828125,
+   "y": 0.3323567708333333,
+   "w": 0.04794921875,
+   "h": 0.05
+  }
+ },
+ "products-promeni-ceni.png": {
+  "img": "products-promeni-ceni.webp",
+  "width": 1280,
+  "height": 800,
+  "box": {
+   "x": 0.67957763671875,
+   "y": 0.5325,
+   "w": 0.06260986328125,
+   "h": 0.045
+  }
+ },
+ "products-dilerska-cena.png": {
+  "img": "products-dilerska-cena.webp",
+  "width": 1280,
+  "height": 800,
+  "box": {
+   "x": 0.45465087890625,
+   "y": 0.78412109375,
+   "w": 0.13880615234375,
+   "h": 0.02875
+  }
+ },
+ "products-zalihi.png": {
+  "img": "products-zalihi.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.08580322265625,
+   "y": 0.28096788194444444,
+   "w": 0.048828125,
+   "h": 0.044444444444444446
+  }
+ },
+ "products-zaliha-tab.png": {
+  "img": "products-zaliha-tab.webp",
+  "width": 1280,
+  "height": 900,
+  "box": {
+   "x": 0.07105712890625,
+   "y": 0.26144097222222223,
+   "w": 0.048828125,
+   "h": 0.03777777777777778
+  }
+ },
+ "products-ceni-forma.png": {
+  "img": "products-ceni-forma.webp",
+  "width": 1280,
+  "height": 800,
+  "box": {
+   "x": 0.34765625,
+   "y": 0.6907421875,
+   "w": 0.1,
+   "h": 0.0475
+  }
+ },
+ "products-rezerviraj.png": {
+  "img": "products-rezerviraj.webp",
+  "width": 1280,
+  "height": 800,
+  "box": {
+   "x": 0.616064453125,
+   "y": 0.52859375,
+   "w": 0.063623046875,
+   "h": 0.045
+  }
+ },
+ "products-seriski-baraj.png": {
+  "img": "products-seriski-baraj.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.26015625,
+   "y": 0.2847222222222222,
+   "w": 0.06134033203125,
+   "h": 0.027777777777777776
+  }
+ },
+ "products-edinici.png": {
+  "img": "products-edinici.webp",
+  "width": 1280,
+  "height": 900,
+  "box": {
+   "x": 0.70770263671875,
+   "y": 0.8988888888888888,
+   "w": 0.03448486328125,
+   "h": 0.022222222222222223
+  }
+ },
+ "products-magacini.png": {
+  "img": "products-magacini.webp",
+  "width": 1280,
+  "height": 800,
+  "box": {
+   "x": 0.64520263671875,
+   "y": 0.609765625,
+   "w": 0.03448486328125,
+   "h": 0.025
+  }
+ },
+ "products-preseci.png": {
+  "img": "products-preseci.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.8697021484375,
+   "y": 0.2962456597222222,
+   "w": 0.1037353515625,
+   "h": 0.05
+  }
+ },
+ "products-promeni.png": {
+  "img": "products-promeni.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.3729736328125,
+   "y": 0.3268012152777778,
+   "w": 0.06424560546875,
+   "h": 0.04722222222222222
+  }
+ },
+ "products-kompatibilnost.png": {
+  "img": "products-kompatibilnost.webp",
+  "width": 1280,
+  "height": 800,
+  "box": {
+   "x": 0.03828125,
+   "y": 0.73537109375,
+   "w": 0.35,
+   "h": 0.0475
+  }
+ },
+ "products-serii-vkluchi.png": {
+  "img": "products-serii-vkluchi.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.3125,
+   "y": 0.2638888888888889,
+   "w": 0.3671875,
+   "h": 0.18611111111111112
+  }
+ },
+ "products-etiketi.png": {
+  "img": "products-etiketi.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.7474609375,
+   "y": 0.44207899305555554,
+   "w": 0.0486328125,
+   "h": 0.05
+  }
+ },
+ "rentals-novo-na-dogovor.png": {
+  "img": "rentals-novo-na-dogovor.webp",
+  "width": 1280,
+  "height": 900,
+  "box": {
+   "x": 0.50234375,
+   "y": 0.6572569444444445,
+   "w": 0.225,
+   "h": 0.043333333333333335
+  }
+ },
+ "rentals-dogovor-dodadi.png": {
+  "img": "rentals-dogovor-dodadi.webp",
+  "width": 1280,
+  "height": 640,
+  "box": {
+   "x": 0.8723388671875,
+   "y": 0.2550537109375,
+   "w": 0.1010986328125,
+   "h": 0.05625
+  }
+ },
+ "rentals-otchituvanja-zachuvaj.png": {
+  "img": "rentals-otchituvanja-zachuvaj.webp",
+  "width": 1280,
+  "height": 760,
+  "box": {
+   "x": 0.8798828125,
+   "y": 0.28591694078947366,
+   "w": 0.0935546875,
+   "h": 0.04736842105263158
+  }
+ },
+ "rentals-novo-zachuvaj.png": {
+  "img": "rentals-novo-zachuvaj.webp",
+  "width": 1280,
+  "height": 1450,
+  "box": {
+   "x": 0.90595703125,
+   "y": 0.9650538793103448,
+   "w": 0.04794921875,
+   "h": 0.02482758620689655
+  }
+ },
+ "rentals-fakturiranje-presmetaj.png": {
+  "img": "rentals-fakturiranje-presmetaj.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.44390869140625,
+   "y": 0.30319010416666664,
+   "w": 0.07015380859375,
+   "h": 0.05
+  }
+ },
+ "rentals-ne-se-presmetani.png": {
+  "img": "rentals-ne-se-presmetani.webp",
+  "width": 1280,
+  "height": 760,
+  "box": {
+   "x": 0.01875,
+   "y": 0.4135485197368421,
+   "w": 0.9546875,
+   "h": 0.31842105263157894
+  }
+ },
+ "rentals-izbrishi-period.png": {
+  "img": "rentals-izbrishi-period.webp",
+  "width": 1280,
+  "height": 800,
+  "box": {
+   "x": 0.8288330078125,
+   "y": 0.66787109375,
+   "w": 0.015185546875,
+   "h": 0.025
+  }
+ },
+ "rentals-model-naplata.png": {
+  "img": "rentals-model-naplata.webp",
+  "width": 1280,
+  "height": 1000,
+  "box": {
+   "x": 0.0390625,
+   "y": 0.872734375,
+   "w": 0.9140625,
+   "h": 0.04
+  }
+ },
+ "rentals-popravi-chitanje.png": {
+  "img": "rentals-popravi-chitanje.webp",
+  "width": 1280,
+  "height": 1300,
+  "box": {
+   "x": 0.91968994140625,
+   "y": 0.5974879807692308,
+   "w": 0.0234375,
+   "h": 0.021538461538461538
+  }
+ },
+ "rentals-email-preuzemi.png": {
+  "img": "rentals-email-preuzemi.webp",
+  "width": 1280,
+  "height": 600,
+  "box": {
+   "x": 0.39365234375,
+   "y": 0.513828125,
+   "w": 0.08631591796875,
+   "h": 0.06
+  }
+ },
+ "rentals-servis-log.png": {
+  "img": "rentals-servis-log.webp",
+  "width": 1280,
+  "height": 800,
+  "box": {
+   "x": 0.9146240234375,
+   "y": 0.64091796875,
+   "w": 0.0455322265625,
+   "h": 0.045
+  }
+ },
+ "rentals-monitoring-agent.png": {
+  "img": "rentals-monitoring-agent.webp",
+  "width": 1280,
+  "height": 1000,
+  "box": {
+   "x": 0.8690673828125,
+   "y": 0.907296875,
+   "w": 0.0910888671875,
+   "h": 0.038
+  }
+ },
+ "rentals-vrednost.png": {
+  "img": "rentals-vrednost.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.01875,
+   "y": 0.2990234375,
+   "w": 0.15,
+   "h": 0.05277777777777778
+  }
+ },
+ "reports-po-period.png": {
+  "img": "reports-po-period.webp",
+  "width": 1280,
+  "height": 900,
+  "box": {
+   "x": 0.3243896484375,
+   "y": 0.33671875,
+   "w": 0.0953125,
+   "h": 0.03777777777777778
+  }
+ },
+ "reports-po-period-lani.png": {
+  "img": "reports-po-period-lani.webp",
+  "width": 1280,
+  "height": 900,
+  "box": {
+   "x": 0.185986328125,
+   "y": 0.6237326388888889,
+   "w": 0.129248046875,
+   "h": 0.022222222222222223
+  }
+ },
+ "rentals-obnovi.png": {
+  "img": "rentals-obnovi.webp",
+  "width": 1280,
+  "height": 1000,
+  "box": {
+   "x": 0.89454345703125,
+   "y": 0.59996875,
+   "w": 0.05936279296875,
+   "h": 0.038
+  }
+ },
+ "reports-proizvodi.png": {
+  "img": "reports-proizvodi.webp",
+  "width": 1280,
+  "height": 900,
+  "box": {
+   "x": 0.208349609375,
+   "y": 0.5759548611111112,
+   "w": 0.06715087890625,
+   "h": 0.03777777777777778
+  }
+ },
+ "reports-primeno.png": {
+  "img": "reports-primeno.webp",
+  "width": 1280,
+  "height": 900,
+  "box": {
+   "x": 0.0681884765625,
+   "y": 0.5582465277777777,
+   "w": 0.06588134765625,
+   "h": 0.03777777777777778
+  }
+ },
+ "reports-kupuvachi-izgubeni.png": {
+  "img": "reports-kupuvachi-izgubeni.webp",
+  "width": 1280,
+  "height": 900,
+  "box": {
+   "x": 0.10916748046875,
+   "y": 0.6071354166666667,
+   "w": 0.042431640625,
+   "h": 0.03777777777777778
+  }
+ },
+ "reports-sporedba.png": {
+  "img": "reports-sporedba.webp",
+  "width": 1280,
+  "height": 1000,
+  "box": {
+   "x": 0.698388671875,
+   "y": 0.247046875,
+   "w": 0.05987548828125,
+   "h": 0.034
+  }
+ },
+ "reports-magacini-vraboteni.png": {
+  "img": "reports-magacini-vraboteni.webp",
+  "width": 1280,
+  "height": 900,
+  "box": {
+   "x": 0.1009033203125,
+   "y": 0.5759548611111112,
+   "w": 0.0703125,
+   "h": 0.03777777777777778
+  }
+ },
+ "service-teren.png": {
+  "img": "service-teren.webp",
+  "width": 1280,
+  "height": 620,
+  "box": {
+   "x": 0.01875,
+   "y": 0.5342489919354839,
+   "w": 0.07066650390625,
+   "h": 0.03225806451612903
+  }
+ },
+ "reports-bavni.png": {
+  "img": "reports-bavni.webp",
+  "width": 1280,
+  "height": 900,
+  "box": {
+   "x": 0.01875,
+   "y": 0.3311631944444444,
+   "w": 0.05960693359375,
+   "h": 0.03777777777777778
+  }
+ },
+ "service-priem.png": {
+  "img": "service-priem.webp",
+  "width": 1280,
+  "height": 760,
+  "box": {
+   "x": 0.03828125,
+   "y": 0.6793379934210526,
+   "w": 0.4546875,
+   "h": 0.07631578947368421
+  }
+ },
+ "service-tabla.png": {
+  "img": "service-tabla.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.259765625,
+   "y": 0.2740234375,
+   "w": 0.231640625,
+   "h": 0.09435763888888889
+  }
+ },
+ "service-mashina.png": {
+  "img": "service-mashina.webp",
+  "width": 1280,
+  "height": 760,
+  "box": {
+   "x": 0.01875,
+   "y": 0.3109169407894737,
+   "w": 0.7,
+   "h": 0.6157894736842106
+  }
+ },
+ "service-priemnica.png": {
+  "img": "service-priemnica.webp",
+  "width": 1280,
+  "height": 900,
+  "box": {
+   "x": 0.7574951171875,
+   "y": 0.16588541666666667,
+   "w": 0.0486328125,
+   "h": 0.04
+  }
+ },
+ "service-postavki.png": {
+  "img": "service-postavki.webp",
+  "width": 1280,
+  "height": 760,
+  "box": {
+   "x": 0.03828125,
+   "y": 0.5082853618421053,
+   "w": 0.15,
+   "h": 0.05
+  }
+ },
+ "settings-nova-smetka-prava.png": {
+  "img": "settings-nova-smetka-prava.webp",
+  "width": 1280,
+  "height": 600,
+  "box": {
+   "x": 0.66822509765625,
+   "y": 0.482578125,
+   "w": 0.09837646484375,
+   "h": 0.03333333333333333
+  }
+ },
+ "service-prigovori.png": {
+  "img": "service-prigovori.webp",
+  "width": 1280,
+  "height": 900,
+  "box": {
+   "x": 0.6432861328125,
+   "y": 0.24366319444444445,
+   "w": 0.0754638671875,
+   "h": 0.06222222222222222
+  }
+ },
+ "settings-sesija.png": {
+  "img": "settings-sesija.webp",
+  "width": 1280,
+  "height": 560,
+  "box": {
+   "x": 0.2703125,
+   "y": 0.4665736607142857,
+   "w": 0.1,
+   "h": 0.06785714285714285
+  }
+ },
+ "settings-numeracija.png": {
+  "img": "settings-numeracija.webp",
+  "width": 1280,
+  "height": 640,
+  "box": {
+   "x": 0.31953125,
+   "y": 0.4756591796875,
+   "w": 0.08990478515625,
+   "h": 0.059375
+  }
+ },
+ "settings-polinja.png": {
+  "img": "settings-polinja.webp",
+  "width": 1600,
+  "height": 760,
+  "box": {
+   "x": 0.030625,
+   "y": 0.573828125,
+   "w": 0.445625,
+   "h": 0.019078947368421053
+  }
+ },
+ "settings-pechatenje.png": {
+  "img": "settings-pechatenje.webp",
+  "width": 1280,
+  "height": 800,
+  "box": {
+   "x": 0.03828125,
+   "y": 0.76646484375,
+   "w": 0.225,
+   "h": 0.04875
+  }
+ },
+ "settings-e-faktura.png": {
+  "img": "settings-e-faktura.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.03828125,
+   "y": 0.5392144097222222,
+   "w": 0.15,
+   "h": 0.05277777777777778
+  }
+ },
+ "settings-firma.png": {
+  "img": "settings-firma.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.734375,
+   "y": 0.5781901041666667,
+   "w": 0.21953125,
+   "h": 0.05277777777777778
+  }
+ },
+ "settings-vchitaj.png": {
+  "img": "settings-vchitaj.webp",
+  "width": 1280,
+  "height": 600,
+  "box": {
+   "x": 0.03828125,
+   "y": 0.690234375,
+   "w": 0.07890625,
+   "h": 0.065
+  }
+ },
+ "vat-izlezna-kniga.png": {
+  "img": "vat-izlezna-kniga.webp",
+  "width": 1280,
+  "height": 900,
+  "box": {
+   "x": 0.126318359375,
+   "y": 0.2823611111111111,
+   "w": 0.02027587890625,
+   "h": 0.03333333333333333
+  }
+ },
+ "vat-ddv04.png": {
+  "img": "vat-ddv04.webp",
+  "width": 1280,
+  "height": 1000,
+  "box": {
+   "x": 0.8264892578125,
+   "y": 0.35721875,
+   "w": 0.0501953125,
+   "h": 0.038
+  }
+ },
+ "vat-oznachi-podnesena.png": {
+  "img": "vat-oznachi-podnesena.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.8829345703125,
+   "y": 0.49613715277777776,
+   "w": 0.0905029296875,
+   "h": 0.05277777777777778
+  }
+ },
+ "vat-za-smetkovoditelot.png": {
+  "img": "vat-za-smetkovoditelot.webp",
+  "width": 1280,
+  "height": 900,
+  "box": {
+   "x": 0.302783203125,
+   "y": 0.3413541666666667,
+   "w": 0.115380859375,
+   "h": 0.03777777777777778
+  }
+ },
+ "vat-oznachi-prashanje.png": {
+  "img": "vat-oznachi-prashanje.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.5641845703125,
+   "y": 0.30277777777777776,
+   "w": 0.0905029296875,
+   "h": 0.05277777777777778
+  }
+ },
+ "waste-mesec.png": {
+  "img": "waste-mesec.webp",
+  "width": 1280,
+  "height": 680,
+  "box": {
+   "x": 0.02890625,
+   "y": 0.563671875,
+   "w": 0.03902587890625,
+   "h": 0.04411764705882353
+  }
+ },
+ "vat-vlezna-kniga.png": {
+  "img": "vat-vlezna-kniga.webp",
+  "width": 1280,
+  "height": 900,
+  "box": {
+   "x": 0.1200927734375,
+   "y": 0.3413541666666667,
+   "w": 0.11678466796875,
+   "h": 0.03777777777777778
+  }
+ },
+ "waste-proizvodi-prifati.png": {
+  "img": "waste-proizvodi-prifati.webp",
+  "width": 1280,
+  "height": 1100,
+  "box": {
+   "x": 0.7078125,
+   "y": 0.7254971590909091,
+   "w": 0.060546875,
+   "h": 0.034545454545454546
+  }
+ },
+ "waste-vid-paleta.png": {
+  "img": "waste-vid-paleta.webp",
+  "width": 1280,
+  "height": 600,
+  "box": {
+   "x": 0.3125,
+   "y": 0.485,
+   "w": 0.17890625,
+   "h": 0.06333333333333334
+  }
+ },
+ "waste-dobavuvach.png": {
+  "img": "waste-dobavuvach.webp",
+  "width": 1280,
+  "height": 560,
+  "box": {
+   "x": 0.3375,
+   "y": 0.26071428571428573,
+   "w": 0.21478271484375,
+   "h": 0.075
+  }
+ },
+ "buy-vnesi-faktura.png": {
+  "img": "buy-vnesi-faktura.webp",
+  "width": 1280,
+  "height": 1000,
+  "box": {
+   "x": 0.8459228515625,
+   "y": 0.886796875,
+   "w": 0.1079833984375,
+   "h": 0.036
+  }
+ },
+ "buy-prenos-primi.png": {
+  "img": "buy-prenos-primi.webp",
+  "width": 1280,
+  "height": 800,
+  "box": {
+   "x": 0.8914794921875,
+   "y": 0.71099609375,
+   "w": 0.0624267578125,
+   "h": 0.045
+  }
+ },
+ "buy-priemnica-izdadi.png": {
+  "img": "buy-priemnica-izdadi.webp",
+  "width": 1280,
+  "height": 900,
+  "box": {
+   "x": 0.90408935546875,
+   "y": 0.9150347222222223,
+   "w": 0.04981689453125,
+   "h": 0.04
+  }
+ },
+ "sell-ponuda-napravi-faktura.png": {
+  "img": "sell-ponuda-napravi-faktura.webp",
+  "width": 1280,
+  "height": 900,
+  "box": {
+   "x": 0.863671875,
+   "y": 0.6958854166666667,
+   "w": 0.090234375,
+   "h": 0.04
+  }
+ },
+ "sell-avans-vnesi-uplata.png": {
+  "img": "sell-avans-vnesi-uplata.webp",
+  "width": 1280,
+  "height": 900,
+  "box": {
+   "x": 0.03828125,
+   "y": 0.7297743055555556,
+   "w": 0.11640625,
+   "h": 0.042222222222222223
+  }
+ },
+ "sell-povratnica-meni.png": {
+  "img": "sell-povratnica-meni.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.06640625,
+   "y": 0.8105685763888889,
+   "w": 0.2765625,
+   "h": 0.05
+  }
+ },
+ "sell-ujp-isprati.png": {
+  "img": "sell-ujp-isprati.webp",
+  "width": 1280,
+  "height": 900,
+  "box": {
+   "x": 0.840673828125,
+   "y": 0.8069965277777778,
+   "w": 0.113232421875,
+   "h": 0.04
+  }
+ },
+ "nacrt-izdadi.png": {
+  "img": "nacrt-izdadi.webp",
+  "width": 1280,
+  "height": 900,
+  "box": {
+   "x": 0.90408935546875,
+   "y": 0.77421875,
+   "w": 0.04981689453125,
+   "h": 0.04
+  }
+ },
+ "storno-kopche.png": {
+  "img": "storno-kopche.webp",
+  "width": 1280,
+  "height": 1000,
+  "box": {
+   "x": 0.03828125,
+   "y": 0.787296875,
+   "w": 0.0595947265625,
+   "h": 0.038
+  }
+ },
+ "storno-ko-meni.png": {
+  "img": "storno-ko-meni.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.06640625,
+   "y": 0.8605685763888888,
+   "w": 0.2765625,
+   "h": 0.05
+  }
+ },
+ "pechati-kopche.png": {
+  "img": "pechati-kopche.webp",
+  "width": 1280,
+  "height": 900,
+  "box": {
+   "x": 0.59879150390625,
+   "y": 0.8275520833333333,
+   "w": 0.0501953125,
+   "h": 0.042222222222222223
+  }
+ },
+ "ispratnica-napravi-faktura.png": {
+  "img": "ispratnica-napravi-faktura.webp",
+  "width": 1280,
+  "height": 900,
+  "box": {
+   "x": 0.863671875,
+   "y": 0.69921875,
+   "w": 0.090234375,
+   "h": 0.04
+  }
+ },
+ "nema-zaliha-prozorec.png": {
+  "img": "nema-zaliha-prozorec.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.6638916015625,
+   "y": 0.4990234375,
+   "w": 0.0650146484375,
+   "h": 0.05277777777777778
+  }
+ },
+ "products-lista-narachka.png": {
+  "img": "products-lista-narachka.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.85198974609375,
+   "y": 0.6309678819444444,
+   "w": 0.04918212890625,
+   "h": 0.03333333333333333
+  }
+ },
+ "products-seriski-priem.png": {
+  "img": "products-seriski-priem.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.2120849609375,
+   "y": 0.8365234375,
+   "w": 0.1125,
+   "h": 0.030555555555555555
+  }
+ },
+ "service-zemeno.png": {
+  "img": "service-zemeno.webp",
+  "width": 1280,
+  "height": 560,
+  "box": {
+   "x": 0.07657470703125,
+   "y": 0.5130301339285714,
+   "w": 0.1294189453125,
+   "h": 0.06785714285714285
+  }
+ },
+ "service-nalog.png": {
+  "img": "service-nalog.webp",
+  "width": 1280,
+  "height": 720,
+  "box": {
+   "x": 0.01875,
+   "y": 0.3990234375,
+   "w": 0.06641845703125,
+   "h": 0.05277777777777778
+  }
+ },
+ "service-dokumenti.png": {
+  "img": "service-dokumenti.webp",
+  "width": 1280,
+  "height": 800,
+  "box": {
+   "x": 0.03828125,
+   "y": 0.47673828125,
+   "w": 0.096484375,
+   "h": 0.0475
+  }
+ },
+ "service-predadeno.png": {
+  "img": "service-predadeno.webp",
+  "width": 1280,
+  "height": 560,
+  "box": {
+   "x": 0.52333984375,
+   "y": 0.6237444196428571,
+   "w": 0.17197265625,
+   "h": 0.06428571428571428
+  }
+ }
+}

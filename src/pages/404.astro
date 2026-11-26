@@ -1,11 +1,16 @@
 ---
 import Base from '../layouts/Base.astro'
 import { useT, pageHref } from '../i18n/ui'
-const t = useT('mk')
+const mk = useT('mk')
+const en = useT('en')
 ---
-<Base lang="mk" title={t('404.title')}>
+<Base lang="mk" title={mk('404.title')}>
   <section class="wrap py-24">
-    <h1 class="text-[2.125rem] md:text-[3rem]">{t('404.title')}</h1>
-    <p class="mt-6"><a class="pill pill-solid pill-sm" href={pageHref('mk')}>{t('404.back')}</a></p>
+    <h1 class="text-[2.125rem] md:text-[3rem]">{mk('404.title')}</h1>
+    <p class="mt-2 text-xl text-mut" lang="en">{en('404.title')}</p>
+    <p class="mt-8 flex flex-wrap gap-3">
+      <a class="pill pill-solid pill-sm" href={pageHref('mk')}>{mk('404.back')}</a>
+      <a class="pill pill-ghost pill-sm" href={pageHref('en')} lang="en">{en('404.back')}</a>
+    </p>
   </section>
 </Base>

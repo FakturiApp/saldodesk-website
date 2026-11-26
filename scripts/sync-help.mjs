@@ -29,7 +29,7 @@ const TARGETS = existsSync(targetsFile) ? JSON.parse(readFileSync(targetsFile, '
 
 /** A line put on top of an article that stays but is not yet fully true on the hosted version. */
 const NOTES = {
-  'e-faktura-ujp': 'Испраќањето во УЈП е **во изработка** за верзијата во прелистувач. Што е готово, а што доаѓа — види [Што е готово](../../status/).',
+  'e-faktura-ujp': 'Испраќањето во УЈП е **во изработка** за верзијата во прелистувач.',
 }
 
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;')

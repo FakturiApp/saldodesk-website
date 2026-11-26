@@ -28,6 +28,8 @@ related: [ponishti-faktura, nacrt-ili-izdadena, najdi-dokument, povratnica, kniz
 
 ## Сторно — целата фактура
 1. Отворете ја фактурата и кликнете **Сторно**.
+
+<figure class="shot"><span class="shot-frame" style="aspect-ratio:1280/1000"><img src="/help-img/storno-kopche.webp" alt="Копчето Сторно на прифатена фактура" width="1280" height="1000" loading="lazy" decoding="async"><span class="shot-ring" style="left:3.83%;top:78.73%;width:6.39%;height:3.80%"></span><span class="shot-tag is-above is-right" style="bottom:21.27%;left:7.02%">Кликнете тука</span></span><figcaption>Копчето Сторно на прифатена фактура</figcaption></figure>
 2. Во **Причина** изберете зошто се сторнира.
 3. Ако сакате, пополнете **Коментар (се испраќа во УЈП)** — тоа го гледа и купувачот. **Забелешка** останува само кај вас.
 4. Кликнете **Сторно** во прозорецот.
@@ -45,6 +47,8 @@ related: [ponishti-faktura, nacrt-ili-izdadena, najdi-dokument, povratnica, kniz
 ## Книжно одобрение — дел од фактурата
 1. Отворете ја фактурата и кликнете **Нов документ од овој**.
 2. Под **Исправка на** изберете **Книжен (издаден)**.
+
+<figure class="shot"><span class="shot-frame" style="aspect-ratio:1280/720"><img src="/help-img/storno-ko-meni.webp" alt="Менито Нов документ од овој" width="1280" height="720" loading="lazy" decoding="async"><span class="shot-ring" style="left:6.64%;top:86.06%;width:27.66%;height:5.00%"></span><span class="shot-tag is-above is-right" style="bottom:13.94%;left:20.47%">Кликнете тука</span></span><figcaption>Менито Нов документ од овој</figcaption></figure>
 3. **Тип** нека остане **Одобрение**. (**Задолжување** е кога купувачот треба да плати повеќе.)
 4. Кај ставката што ја поправате, внесете или **Корекција (кол.)** — за колку парчиња помалку, или **Износ (пари)** — за колку пари помалку, без ДДВ. Не двете.
 5. Напишете **Причина**.

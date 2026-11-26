@@ -1,0 +1,76 @@
+---
+// A real app screen with numbered spots (owner 2026-11-26: „immerse yourself in the app").
+// Each spot and its line in the list light up together; a click on either one picks it.
+// Without JavaScript: the picture with its numbers, and the numbered list beside it.
+import AppShot from './AppShot.astro'
+import type { Lang } from '../i18n/ui'
+import type { Hotspot } from '../content/areas'
+interface Props { lang: Lang; src: string; w: number; h: number; alt: string; spots: Hotspot[]; hint: string; eager?: boolean }
+const { lang, src, w, h, alt, spots, hint, eager } = Astro.props
+---
+<div class:list={['grid gap-6', spots.length ? 'xl:grid-cols-[1fr_20rem]' : '']} data-explorer>
+  <AppShot src={src} w={w} h={h} alt={alt} eager={eager}>
+    {spots.map((s, i) => (
+      <button type="button" data-spot={i} aria-label={`${i + 1}. ${s.label[lang]}`}
+              class="spot absolute grid h-5 w-5 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full text-[0.625rem] font-extrabold leading-none sm:h-[1.375rem] sm:w-[1.375rem] sm:text-[0.6875rem]"
+              style={`left:${(s.x * 100).toFixed(2)}%;top:${(s.y * 100).toFixed(2)}%`}>
+        {i + 1}
+      </button>
+    ))}
+  </AppShot>
+  {spots.length > 0 && (
+    <div>
+      <p class="text-sm text-mut">{hint}</p>
+      <ol class="mt-3 space-y-2">
+        {spots.map((s, i) => (
+          <li>
+            <button type="button" data-line={i} class="line flex w-full gap-3 rounded-2xl border border-transparent p-3 text-left text-[0.9375rem] transition">
+              <span class="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-tx text-[0.6875rem] font-bold text-bg">{i + 1}</span>
+              <span>{s.label[lang]}</span>
+            </button>
+          </li>
+        ))}
+      </ol>
+    </div>
+  )}
+</div>
+
+<style>
+  /* Quiet by default — a small see-through mint dot with a thin white edge, so the screen shows
+     through; it turns solid and grows a little only when it (or its line) is pointed at. */
+  .spot {
+    background: color-mix(in srgb, #3fe0ad 62%, transparent);
+    color: #08251b;
+    box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.9), 0 1px 4px rgba(13, 18, 32, 0.25);
+    backdrop-filter: blur(2px);
+    transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease;
+  }
+  .spot::after { content: ''; position: absolute; inset: -4px; border-radius: 9999px; border: 1.5px solid #3fe0ad; opacity: 0; animation: spot-ring 3s ease-out infinite; }
+  .spot.is-on, .spot:hover, .spot:focus-visible { transform: translate(-50%, -50%) scale(1.35); background: #0d1220; color: #fff; }
+  .spot.is-on::after, .spot:hover::after { animation: none; }
+  .line:hover, .line.is-on { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, transparent); }
+  @keyframes spot-ring { 0% { opacity: 0.7; transform: scale(0.9); } 70%, 100% { opacity: 0; transform: scale(1.6); } }
+  @media (prefers-reduced-motion: reduce) { .spot::after { animation: none; } }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-explorer]').forEach((box) => {
+    const spots = Array.from(box.querySelectorAll<HTMLElement>('[data-spot]'))
+    const lines = Array.from(box.querySelectorAll<HTMLElement>('[data-line]'))
+    const pick = (i: number | null) => {
+      spots.forEach((s, j) => s.classList.toggle('is-on', j === i))
+      lines.forEach((l, j) => l.classList.toggle('is-on', j === i))
+    }
+    spots.forEach((s, i) => {
+      s.addEventListener('mouseenter', () => pick(i))
+      s.addEventListener('focus', () => pick(i))
+      s.addEventListener('click', () => { pick(i); lines[i]?.scrollIntoView({ block: 'nearest', behavior: 'smooth' }) })
+    })
+    lines.forEach((l, i) => {
+      l.addEventListener('mouseenter', () => pick(i))
+      l.addEventListener('focus', () => pick(i))
+      l.addEventListener('click', () => pick(i))
+    })
+    box.addEventListener('mouseleave', () => pick(null))
+  })
+</script>

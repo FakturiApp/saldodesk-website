@@ -33,6 +33,8 @@ related: [servis-nalog, servis-naplata, servis-tabla]
 По **Непоправливо** или **Откажано** уредот останува кај вас. На налогот пишува „Машината е сè уште кај нас — чека да ја подигне клиентот.“
 1. Кога клиентот ќе дојде по уредот, кликнете **Предадено на клиентот**.
 2. Напишете кој ја презема машината и кликнете **Потврди**.
+
+<figure class="shot"><span class="shot-frame" style="aspect-ratio:1280/560"><img src="/help-img/service-predadeno.webp" alt="Копчето Предадено на клиентот" width="1280" height="560" loading="lazy" decoding="async"><span class="shot-ring" style="left:54.79%;top:62.37%;width:14.74%;height:6.43%"></span><span class="shot-tag is-above is-left" style="bottom:37.63%;right:37.84%">Кликнете тука</span></span><figcaption>Копчето Предадено на клиентот</figcaption></figure>
 Додека не е предадена, машината се брои во плочката **Во сервис** и стои во колоната **Чека подигање (непоправена)** на таблата **Работилница** — види [Каде ги гледам сите сервисни налози?](../servis-tabla/).
 
 ## Ако налогот има издадена фактура

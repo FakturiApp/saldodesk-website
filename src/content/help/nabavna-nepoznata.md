@@ -9,6 +9,8 @@ related: [vnesi-priemnica, faktura-od-dobavuvach]
 <!-- Copied by scripts/sync-help.mjs from the app repo. Do not edit here. -->
 
 Ако на приемницата полето **Набавна** го оставите празно, приемницата сепак се издава и стоката влегува на залиха. Наместо цена, на ставката со црвено пишува „непозната“.
+
+<figure class="shot"><span class="shot-frame" style="aspect-ratio:1280/720"><img src="/help-img/buy-nabavna-nepoznata.webp" alt="Ставка со непозната набавна цена" width="1280" height="720" loading="lazy" decoding="async"><span class="shot-ring" style="left:61.64%;top:70.04%;width:7.19%;height:3.61%"></span><span class="shot-tag is-above is-left" style="bottom:29.96%;right:34.77%">Кликнете тука</span></span><figcaption>Ставка со непозната набавна цена</figcaption></figure>
 Тоа значи:
 
 - Стоката може веднаш да се продава.

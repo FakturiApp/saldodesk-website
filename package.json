@@ -8,7 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "sync:help": "node scripts/sync-help.mjs",
-    "shoot": "node scripts/shoot-app.mjs"
+    "shoot": "node scripts/shoot-app.mjs",
+    "record": "node scripts/record-app.mjs"
   },
   "dependencies": {
     "@fontsource-variable/onest": "5.3.1",

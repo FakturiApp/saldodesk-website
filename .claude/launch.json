@@ -6,6 +6,33 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev", "--", "--port", "4321"],
       "port": 4321
+    },
+    {
+      "name": "app-shots-backend",
+      "runtimeExecutable": "powershell",
+      "runtimeArgs": [
+        "-NoProfile", "-Command",
+        "Set-Location ..\\Business_M-main; $env:DB_PATH='data/website-shots.db'; $env:FISCAL_ALLOW_STUB='true'; $env:UJP_ENABLED='false'; $env:DRAFT_PURGE_ENABLED='false'; $env:RECURRING_SCHEDULER_ENABLED='false'; $env:REMINDERS_SCHEDULER_ENABLED='false'; $env:RENTALS_SCHEDULER_ENABLED='false'; $env:RESERVATIONS_SCHEDULER_ENABLED='false'; $env:SNAPSHOTS_SCHEDULER_ENABLED='false'; $env:UJP_STATUS_SCHEDULER_ENABLED='false'; $env:WEBSYNC_SCHEDULER_ENABLED='false'; $env:BACKUP_EVERY_HOURS='0'; & .venv/Scripts/python.exe -m uvicorn backend.main:app --port 8150"
+      ],
+      "port": 8150
+    },
+    {
+      "name": "app-shots-frontend",
+      "runtimeExecutable": "powershell",
+      "runtimeArgs": [
+        "-NoProfile", "-Command",
+        "Set-Location ..\\Business_M-main; $env:DEV_PORT='5150'; $env:DEV_API_PORT='8150'; npm run dev --prefix frontend"
+      ],
+      "port": 5150
+    },
+    {
+      "name": "app-copy-frontend",
+      "runtimeExecutable": "powershell",
+      "runtimeArgs": [
+        "-NoProfile", "-Command",
+        "Set-Location .app-copy\\frontend; $env:DEV_PORT='5160'; $env:DEV_API_PORT='8150'; npx vite"
+      ],
+      "port": 5160
     }
   ]
 }

@@ -1,48 +1,50 @@
 ---
-// One help article on its own page: the app's text, the plan that has it, its related
-// questions, and a way to ask a person.
+// One help article: the app's text (or its English translation), the plan that has it,
+// related articles, and a way to ask a person.
 import { getCollection, render } from 'astro:content'
 import Base from '../../../layouts/Base.astro'
 import Arrow from '../../../components/Arrow.astro'
-import CtaBand from '../../../components/CtaBand.astro'
 import { HELP_TOPICS, planBadge } from '../../../content/helpMeta'
-import { LANGS, type Lang, pageHref, useT } from '../../../i18n/ui'
+import { HELP_COPY, helpArticles } from '../../../content/helpCopy'
+import { LANGS, type Lang, pageHref } from '../../../i18n/ui'
 
 export async function getStaticPaths() {
   const all = await getCollection('help')
-  return LANGS.flatMap((lang) => all.map((entry) => ({ params: { lang, slug: entry.id }, props: { entry } })))
+  return LANGS.flatMap((lang) => all.map((entry) => ({ params: { lang, slug: entry.id } })))
 }
-const { entry } = Astro.props
 const lang = Astro.params.lang as Lang
-const t = useT(lang)
-const { Content } = await render(entry)
-const all = await getCollection('help')
-const related = entry.data.related.map((id) => all.find((a) => a.id === id)).filter((a) => a !== undefined)
-const topic = HELP_TOPICS.find((x) => x.key === entry.data.topic)
-const badge = planBadge(entry.id, entry.data.module)
+const slug = Astro.params.slug as string
+const C = HELP_COPY[lang]
+const all = await helpArticles(lang)
+const a = all.find((x) => x.id === slug)!
+const { Content } = await render(a.entry)
+const related = a.data.related.map((id) => all.find((x) => x.id === id)).filter((x) => x !== undefined)
+const topic = HELP_TOPICS.find((x) => x.key === a.data.topic)
+const badge = planBadge(lang, a.id, a.data.module)
 const home = pageHref(lang, 'pomosh')
+const textLang = a.translated ? lang : 'mk'
 ---
-<Base lang={lang} page="pomosh" subpath={`pomosh/${entry.id}/`} canonicalLang="mk" title={entry.data.title} description={`${entry.data.title} — упатство за SaldoDesk.`}>
-  <article class="wrap grid gap-10 pt-12 pb-8 md:pt-16 lg:grid-cols-[1fr_20rem]">
+<Base lang={lang} page="pomosh" subpath={`pomosh/${a.id}/`} canonicalLang={a.translated ? undefined : 'mk'} title={a.data.title} description={C.describe(a.data.title)}>
+  <article class="wrap grid gap-10 pt-12 pb-16 md:pt-16 lg:grid-cols-[1fr_20rem]">
     <div class="min-w-0">
-      <nav aria-label="Патека" class="flex flex-wrap items-center gap-2 text-sm text-mut">
-        <a href={home} class="font-semibold hover:text-tx">{t('page.pomosh')}</a><span>/</span>
-        <a href={`${home}#${entry.data.topic}`} class="hover:text-tx">{topic?.name}</a>
+      <nav aria-label={C.crumbs} class="flex flex-wrap items-center gap-2 text-sm text-mut">
+        <a href={home} class="font-semibold hover:text-tx">{C.title}</a><span>/</span>
+        <a href={`${home}#${a.data.topic}`} class="hover:text-tx">{topic?.name[lang]}</a>
       </nav>
-      <h1 class="mt-4 text-[2.1rem] md:text-[3rem]">{entry.data.title}</h1>
+      <h1 class="mt-4 text-[2.1rem] md:text-[3rem]" lang={textLang}>{a.data.title}</h1>
       {badge && (
         <p class="mt-5">
-          <a href={`${pageHref(lang, 'moduli')}${badge.href ?? ''}`} class="inline-flex items-center gap-2 rounded-full bg-hi px-3.5 py-1.5 text-sm font-bold text-hi-ink">{badge.text} <Arrow /></a>
+          <a href={pageHref(lang, 'ceni')} class="inline-flex items-center gap-2 rounded-full bg-hi px-3.5 py-1.5 text-sm font-bold text-hi-ink">{badge} <Arrow /></a>
         </p>
       )}
-      {lang !== 'mk' && <p class="mt-4 text-sm text-mut">Упатствата засега се само на македонски.</p>}
-      <div class="prose-help mt-8 max-w-3xl" lang="mk"><Content /></div>
+      {!a.translated && <p class="mt-4 text-sm text-mut">{C.untranslated}</p>}
+      <div class="prose-help mt-8 max-w-3xl" lang={textLang}><Content /></div>
     </div>
 
     <aside class="space-y-5 lg:sticky lg:top-28 lg:self-start">
       {related.length > 0 && (
         <div class="card p-6">
-          <p class="text-sm font-bold uppercase tracking-wide text-mut">Поврзани прашања</p>
+          <p class="text-sm font-bold uppercase tracking-wide text-mut">{C.related}</p>
           <ul class="mt-3 space-y-1">
             {related.map((r) => (
               <li><a href={`${home}${r.id}/`} class="block rounded-xl px-2 py-1.5 text-[0.9375rem] leading-snug hover:bg-surface-2">{r.data.title}</a></li>
@@ -51,12 +53,10 @@ const home = pageHref(lang, 'pomosh')
         </div>
       )}
       <div class="card p-6">
-        <p class="font-bold">Не најдовте одговор?</p>
-        <p class="mt-1 text-[0.9375rem] text-mut">Прашајте нè — одговараме лично.</p>
-        <a href={pageHref(lang, 'kontakt')} class="pill pill-solid pill-sm mt-4"><span>Контакт</span><span class="pill-arrow"><Arrow /></span></a>
+        <p class="font-bold">{C.notFound}</p>
+        <p class="mt-1 text-[0.9375rem] text-mut">{C.notFoundText}</p>
+        <a href={pageHref(lang, 'kontakt')} class="pill pill-solid pill-sm mt-4"><span>{C.contact}</span><span class="pill-arrow"><Arrow /></span></a>
       </div>
     </aside>
   </article>
-
-  <CtaBand lang={lang} section={`help-${entry.id}`} title="Пробајте го ова на **вашата** фирма." />
 </Base>

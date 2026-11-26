@@ -32,6 +32,8 @@ related: [popis, prenos-megju-magacini]
 5. Кликнете **Издади**.
 
 На издадената нивелација, под количината пишува на пример „разлика +22“ или „разлика −3“: за толку се сменила залихата. Ако количината расте, додадените парчиња се вреднуваат по просечната набавна цена.
+
+<figure class="shot"><span class="shot-frame" style="aspect-ratio:1280/800"><img src="/help-img/buy-nivelacija-razlika.webp" alt="Издадена нивелација со разликата под количината" width="1280" height="800" loading="lazy" decoding="async"><span class="shot-ring" style="left:89.25%;top:60.04%;width:5.83%;height:3.00%"></span><span class="shot-tag is-above is-left" style="bottom:39.96%;right:7.84%">Кликнете тука</span></span><figcaption>Издадена нивелација со разликата под количината</figcaption></figure>
 ## Отпис
 1. Во **Внатрешни** кликнете **Отпис**, па синото копче „+“.
 2. Ако фирмата има повеќе магацини, изберете **Магацин**.

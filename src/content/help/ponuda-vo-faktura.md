@@ -14,7 +14,7 @@ related: [napravi-faktura, avansna-faktura, nacrt-ili-izdadena]
 1. Горе кликнете **Документи**, па **Продажба**.
 2. Кликнете **Понуда**, па синото копче „+“ на крајот од редот со видовите документи.
 
-<figure class="shot"><span class="shot-frame" style="aspect-ratio:1280/720"><img src="/help-img/sell-ponuda-plus.webp" alt="Синото копче „+“ за нова понуда" width="1280" height="720" loading="lazy" decoding="async"><span class="shot-ring" style="left:75.23%;top:27.78%;width:2.50%;height:4.44%"></span><span class="shot-tag is-above is-left" style="bottom:72.22%;right:23.52%">Кликнете тука</span></span><figcaption>Синото копче „+“ за нова понуда</figcaption></figure>
+<figure class="shot"><span class="shot-frame" style="aspect-ratio:1280/720"><img src="/help-img/sell-ponuda-plus.webp" alt="Синото копче „+“ за нова понуда" width="1280" height="720" loading="lazy" decoding="async"><span class="shot-ring" style="left:63.93%;top:27.78%;width:2.50%;height:4.44%"></span><span class="shot-tag is-above is-left" style="bottom:72.22%;right:34.82%">Кликнете тука</span></span><figcaption>Синото копче „+“ за нова понуда</figcaption></figure>
 3. Се отвора **Нов документ** со избрано **Понуда**. Во **Партнер** изберете го купувачот.
 4. Ако сакате, во **Важи до** внесете до кога важи понудата.
 5. Додадете ги производите исто како на фактура и кликнете **Издади**.
@@ -24,6 +24,8 @@ related: [napravi-faktura, avansna-faktura, nacrt-ili-izdadena]
 ## Фактура од понуда или профактура
 1. Отворете ја издадената понуда (или профактура).
 2. Кликнете **Направи фактура**. Фактурата се издава веднаш, со истите ставки, цени и попусти. Датумот е денешен, а рокот на плаќање се пополнува сам.
+
+<figure class="shot"><span class="shot-frame" style="aspect-ratio:1280/900"><img src="/help-img/sell-ponuda-napravi-faktura.webp" alt="Копчето Направи фактура на понудата" width="1280" height="900" loading="lazy" decoding="async"><span class="shot-ring" style="left:83.89%;top:69.59%;width:11.50%;height:4.00%"></span><span class="shot-tag is-above is-left" style="bottom:30.41%;right:10.36%">Кликнете тука</span></span><figcaption>Копчето Направи фактура на понудата</figcaption></figure>
 3. Ако сакате прво нешто да смените (количина, цена, рок), наместо тоа кликнете **Фактура со измени**. Фактурата се отвора како нацрт. Сменете што треба, кликнете **Зачувај**, па **Издади**.
 
 Ако купувачот платил аванс по профактурата: за да го одбиете авансот, кликнете **Фактура со измени** и штиклирајте го во делот **Аванс**. Види [Купувачот плати однапред — како да издадам авансна фактура?](../avansna-faktura/).

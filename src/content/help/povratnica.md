@@ -13,6 +13,8 @@ related: [storno-ili-ko, knizno-zadolzhuvanje, najdi-dokument]
 
 1. Отворете ја фактурата со која стоката е продадена.
 2. Кликнете **Нов документ од овој**, па под **Исправка на** кликнете **Повратница**.
+
+<figure class="shot"><span class="shot-frame" style="aspect-ratio:1280/720"><img src="/help-img/sell-povratnica-meni.webp" alt="Повратница во менито Нов документ од овој" width="1280" height="720" loading="lazy" decoding="async"><span class="shot-ring" style="left:6.64%;top:81.06%;width:27.66%;height:5.00%"></span><span class="shot-tag is-above is-right" style="bottom:18.94%;left:20.47%">Кликнете тука</span></span><figcaption>Повратница во менито Нов документ од овој</figcaption></figure>
 3. Се отвора **Нова повратница** со фактурата и купувачот. Кај секој производ што се враќа, во **Врати кол.** внесете колку парчиња. Не повеќе од **Продадено**.
 4. Во **Постапка** изберете што правите со стоката:
 

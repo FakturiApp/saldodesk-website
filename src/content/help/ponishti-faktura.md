@@ -13,7 +13,11 @@ related: [storno-ili-ko, nacrt-ili-izdadena, podnesen-ddv-period, najdi-dokument
 
 1. Отворете ја фактурата: во **Документи** кликнете на неа.
 2. Кликнете **Поништи** (долу лево).
+
+<figure class="shot"><span class="shot-frame" style="aspect-ratio:1280/900"><img src="/help-img/ponishti-kopche.webp" alt="Копчето Поништи" width="1280" height="900" loading="lazy" decoding="async"><span class="shot-ring" style="left:3.83%;top:82.76%;width:7.46%;height:4.22%"></span><span class="shot-tag is-above is-right" style="bottom:17.24%;left:7.56%">Кликнете тука</span></span><figcaption>Копчето Поништи</figcaption></figure>
 3. Прочитајте ја пораката и кликнете **Потврди**.
+
+<figure class="shot"><span class="shot-frame" style="aspect-ratio:1280/720"><img src="/help-img/ponishti-potvrdi.webp" alt="Потврда на поништувањето" width="1280" height="720" loading="lazy" decoding="async"><span class="shot-ring" style="left:58.36%;top:27.50%;width:7.11%;height:5.28%"></span><span class="shot-tag is-above is-left" style="bottom:72.50%;right:38.09%">Кликнете тука</span></span><figcaption>Потврда на поништувањето</figcaption></figure>
 ## Што се случува
 - Фактурата добива статус **Поништен**. Не се брише: останува запишана, за секогаш да се гледа што се случило.
 - Стоката се враќа на залиха.
