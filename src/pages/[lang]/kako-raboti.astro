@@ -29,7 +29,22 @@ const labels = { steps: K.steps, more: K.more, next: K.next, replay: K.replay }
   <PageHead title={K.title} text={K.text} />
 
   <!-- Every part of the app, with its own symbol: the page's index. -->
-  <nav aria-label={K.title} class="wrap pb-6" data-index>
+  <!-- On a phone: every part in one sticky row of chips with their full names, scrolled
+       sideways; the part being read is lit and kept in view. -->
+  <nav aria-label={K.title} class="chipbar sticky top-16 z-20 -mt-4 mb-2 border-y border-line bg-bg/90 backdrop-blur md:hidden" data-chipbar>
+    <ul class="relative flex gap-2 overflow-x-auto px-4 py-2.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      {AREAS.map((a, i) => (
+        <li class="shrink-0">
+          <a href={`#${a.id}`} data-chip={a.id} class="chip flex h-10 items-center gap-2 rounded-full border border-line bg-surface pr-4 pl-1.5 text-[0.9375rem] font-semibold whitespace-nowrap">
+            <span class="grid h-7 w-7 place-items-center rounded-full bg-surface-2 text-accent-tx"><AppIcon name={a.icon} class="h-4 w-4" /></span>
+            {a.title[lang]}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+
+  <nav aria-label={K.title} class="wrap pb-6 max-md:hidden" data-index>
     <ul class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
       {AREAS.map((a, i) => (
         <li>
@@ -37,7 +52,7 @@ const labels = { steps: K.steps, more: K.more, next: K.next, replay: K.replay }
             <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-surface-2 text-accent-tx transition group-hover:bg-accent group-hover:text-accent-ink"><AppIcon name={a.icon} class="h-5 w-5" /></span>
             <span class="min-w-0">
               <span class="num block text-[0.6875rem] font-bold text-mut">{String(i + 1).padStart(2, '0')}</span>
-              <span class="block truncate text-[0.9375rem] font-bold leading-tight">{a.title[lang]}</span>
+              <span class="block text-[0.9375rem] font-bold leading-tight">{a.title[lang]}</span>
             </span>
           </a>
         </li>
@@ -47,7 +62,7 @@ const labels = { steps: K.steps, more: K.more, next: K.next, replay: K.replay }
 
   <!-- The rail: the same parts as symbols, out of the way on the left. It opens on hover (on a
        phone, on a tap of its button). The part being read is lit; the arrow goes to the top. -->
-  <aside class="rail fixed left-2 top-1/2 z-30 -translate-y-1/2 md:left-4" data-rail aria-label={K.title}>
+  <aside class="rail fixed left-2 top-1/2 z-30 -translate-y-1/2 max-md:hidden md:left-4" data-rail aria-label={K.title}>
     <button type="button" class="rail-toggle grid h-11 w-11 place-items-center rounded-full border border-line bg-surface/90 text-tx shadow-[var(--shadow)] backdrop-blur lg:hidden" data-rail-toggle aria-expanded="false" aria-label={K.title}>
       <AppIcon name="home" class="h-5 w-5" />
     </button>
@@ -67,28 +82,28 @@ const labels = { steps: K.steps, more: K.more, next: K.next, replay: K.replay }
   </aside>
 
   {AREAS.map((a, i) => (
-    <section id={a.id} data-area data-flash class="flash wrap relative scroll-mt-28 py-14 md:py-20">
-      <header class="flex flex-wrap items-center gap-4">
-        <span class="num text-4xl font-extrabold text-accent-tx md:text-5xl">{String(i + 1).padStart(2, '0')}</span>
+    <section id={a.id} data-area data-flash class="flash wrap relative scroll-mt-28 py-10 md:py-20">
+      <header class="flex flex-wrap items-center gap-3 md:gap-4">
+        <span class="num text-3xl font-extrabold text-accent-tx md:text-5xl">{String(i + 1).padStart(2, '0')}</span>
         <span class="grid h-12 w-12 place-items-center rounded-2xl bg-accent text-accent-ink"><AppIcon name={a.icon} /></span>
         <div>
           <h2 class="flex flex-wrap items-center gap-3 text-3xl md:text-[2.5rem]">{a.title[lang]}
             {a.plan && <a href={pageHref(lang, 'ceni')} class="rounded-full bg-hi px-3 py-1 text-sm font-bold text-hi-ink">{a.plan[lang]}</a>}
           </h2>
-          <p class="mt-1 max-w-3xl text-lg text-mut">{a.intro[lang]}</p>
+          <p class="mt-1 max-w-3xl text-base text-mut md:text-lg">{a.intro[lang]}</p>
         </div>
       </header>
 
-      <div class="mt-8">
+      <div class="mt-6 md:mt-8">
         {a.screen.hotspots.length > 0 && <p class="mb-3 text-sm font-bold uppercase tracking-wide text-mut">{K.explore}</p>}
         <ScreenExplorer lang={lang} src={shotSrc(a.screen, lang)} w={a.screen.w} h={a.screen.h} alt={a.screen.caption[lang]}
                         spots={a.screen.hotspots} hint={K.exploreHint} eager={i === 0} />
       </div>
 
       {tasksOf(a).length > 0 && (
-        <div class="mt-14">
+        <div class="mt-10 md:mt-14">
           <h3 class="text-sm font-bold uppercase tracking-wide text-mut">{K.tasks}</h3>
-          <div class="mt-5 space-y-6">
+          <div class="mt-4 space-y-4 md:mt-5 md:space-y-6">
             {tasksOf(a).map((f) => <TaskCard task={f} lang={lang} help={help} areaPlan={a.plan} labels={labels} />)}
           </div>
         </div>
@@ -110,6 +125,10 @@ const labels = { steps: K.steps, more: K.more, next: K.next, replay: K.replay }
   .flash.is-flash::before { animation: flash 2s ease-out; }
   @keyframes flash { 0% { opacity: 0; } 12%, 65% { opacity: 1; } 100% { opacity: 0; } }
   /* The rail: symbols only; on hover (a tap on a phone) it opens to show the names. */
+  .chip[aria-current='true'] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .chip[aria-current='true'] span { background: var(--accent-ink); color: var(--accent); }
+  /* On a phone the header and the row of chips sit on top: jumps land below both. */
+  @media (max-width: 767px) { [data-area], [data-task] { scroll-margin-top: 8.25rem; } }
   .rail { opacity: 0; pointer-events: none; transition: opacity 0.25s; }
   .rail.is-shown { opacity: 1; pointer-events: auto; }
   .rail-panel { display: flex; flex-direction: column; gap: 0.125rem; width: 3.35rem; overflow: hidden; transition: width 0.25s ease; }
@@ -174,10 +193,21 @@ const labels = { steps: K.steps, more: K.more, next: K.next, replay: K.replay }
     })
   }
   const links = new Map(Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-area-link]')).map((a) => [a.dataset.areaLink, a]))
+  const chips = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-chip]'))
+  const chipRow = document.querySelector<HTMLElement>('[data-chipbar] ul')
   const seen = new IntersectionObserver((entries) => {
     for (const e of entries) {
       if (!e.isIntersecting) continue
       links.forEach((a, id) => a.setAttribute('aria-current', String(id === e.target.id)))
+      chips.forEach((c) => {
+        const on = c.dataset.chip === e.target.id
+        c.setAttribute('aria-current', String(on))
+        // Keep the lit chip in view by scrolling the row only, never the page.
+        if (on && chipRow) {
+          const li = c.parentElement!
+          chipRow.scrollTo({ left: li.offsetLeft - (chipRow.clientWidth - li.offsetWidth) / 2, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
+        }
+      })
     }
   }, { rootMargin: '-45% 0px -50% 0px' })
   document.querySelectorAll('[data-area]').forEach((s) => seen.observe(s))

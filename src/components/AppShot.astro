@@ -2,19 +2,55 @@
 // A picture taken inside the app on the made-up company „Кони Копи ДООЕЛ" — a wiki picture
 // (/help-img/…) or a crop of one (/shots/…, scripts/crop-shots.mjs). Never real data.
 // `src` is the full public path.
-interface Props { src: string; w: number; h: number; alt: string; eager?: boolean; class?: string }
-const { src, w, h, alt, eager = false, class: cls = '' } = Astro.props
+//
+// On a phone a whole desktop screen shrunk to 340px cannot be read, so below 768px:
+//  · `crop` shows a close-up instead: the picture drawn `w` px wide, `h` px of it shown,
+//    centred on the point x / y (fractions of the picture);
+//  · `pan` draws the picture `pan` px wide in a box the visitor drags around with a finger
+//    (ScreenExplorer uses it for its spots).
+// From 768px up the whole picture shows, as before.
+interface Props {
+  src: string; w: number; h: number; alt: string; eager?: boolean; class?: string
+  crop?: { x: number; y: number; w: number; h: number }
+  pan?: number
+}
+const { src, w, h, alt, eager = false, class: cls = '', crop, pan } = Astro.props
+const style = crop
+  ? `--cw:${crop.w}px;--ch:${Math.round((crop.w * h) / w)}px;--vh:${crop.h}px;--fx:${crop.x};--fy:${crop.y}`
+  : pan ? `--pw:${pan}px` : undefined
 ---
-<div class:list={['overflow-hidden rounded-2xl border border-line bg-surface shadow-[var(--shadow)]', cls]}>
+<div class:list={['overflow-hidden rounded-2xl border border-line bg-surface shadow-[var(--shadow)]', cls, crop && 'shot-crop', pan && 'shot-pan']} style={style}>
   <div class="flex items-center gap-1.5 border-b border-line bg-surface-2 px-3.5 py-2.5" aria-hidden="true">
     <span class="h-2.5 w-2.5 rounded-full bg-[#ff6159]"></span>
     <span class="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]"></span>
     <span class="h-2.5 w-2.5 rounded-full bg-[#28c840]"></span>
     <span class="ml-3 truncate rounded-md bg-surface px-3 py-0.5 text-xs text-mut">app.saldodesk.mk</span>
   </div>
-  <div class="relative">
-    <img src={src} width={w} height={h} alt={alt} class="block h-auto w-full"
-         loading={eager ? 'eager' : 'lazy'} decoding="async" fetchpriority={eager ? 'high' : undefined} />
-    <slot />
+  <div class="shot-view" data-shot-view>
+    <div class="shot-canvas relative">
+      <img src={src} width={w} height={h} alt={alt} class="block h-auto w-full" draggable="false"
+           loading={eager ? 'eager' : 'lazy'} decoding="async" fetchpriority={eager ? 'high' : undefined} />
+      <slot />
+    </div>
   </div>
 </div>
+
+<style>
+  @media (max-width: 767px) {
+    .shot-crop .shot-view { position: relative; height: var(--vh); overflow: hidden; background: #fff; }
+    .shot-crop .shot-canvas {
+      position: absolute; width: var(--cw);
+      left: clamp(calc(100% - var(--cw)), calc(50% - var(--fx) * var(--cw)), 0px);
+      top: clamp(calc(var(--vh) - var(--ch)), calc(var(--vh) / 2 - var(--fy) * var(--ch)), 0px);
+    }
+    .shot-pan .shot-view {
+      height: min(20rem, 52vh); overflow: auto; background: #fff;
+      scrollbar-width: none; overscroll-behavior-x: contain; touch-action: pan-x pan-y;
+    }
+    .shot-pan .shot-view::-webkit-scrollbar { display: none; }
+    /* A white frame round the picture, so a spot at its very edge can still be glided to the
+       middle instead of being cut by the box. */
+    .shot-pan .shot-view { padding: 1.5rem; }
+    .shot-pan .shot-canvas { width: var(--pw); }
+  }
+</style>

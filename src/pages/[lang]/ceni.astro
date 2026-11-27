@@ -24,22 +24,22 @@ const n = (v: number) => fmtNum(lang, v)
   </PageHead>
 
   <section class="wrap pb-12" data-period="year" data-plans>
-    <div class="inline-flex flex-wrap rounded-full border border-line bg-surface p-1.5" role="group" aria-label={`${P.month} / ${P.year}`}>
-      <button type="button" data-set-period="month" class="period-btn rounded-full px-5 py-2.5 text-[0.9375rem] font-bold">{P.month}</button>
-      <button type="button" data-set-period="year" class="period-btn rounded-full px-5 py-2.5 text-[0.9375rem] font-bold">
-        {P.year} <span class="ml-1 rounded-full bg-hi px-2 py-0.5 text-xs text-hi-ink">{P.yearBadge}</span>
+    <div class="grid w-full grid-cols-2 gap-1 rounded-[1.4rem] border border-line bg-surface p-1.5 sm:inline-flex sm:w-auto sm:rounded-full" role="group" aria-label={`${P.month} / ${P.year}`}>
+      <button type="button" data-set-period="month" class="period-btn min-h-12 rounded-2xl px-5 py-2.5 text-[0.9375rem] font-bold sm:rounded-full">{P.month}</button>
+      <button type="button" data-set-period="year" class="period-btn flex min-h-12 flex-col items-center justify-center gap-1 rounded-2xl px-3 py-2 text-[0.9375rem] font-bold sm:block sm:rounded-full sm:px-5">
+        <span>{P.year}</span> <span class="rounded-full bg-hi px-2 py-0.5 text-xs whitespace-nowrap text-hi-ink sm:ml-1">{P.yearBadge}</span>
       </button>
     </div>
 
-    <ul class="mt-12 grid gap-5 lg:grid-cols-3">
+    <ul class="mt-10 grid gap-6 sm:mt-12 sm:gap-5 lg:grid-cols-3">
       {P.plans.map((p) => (
-        <li class:list={['relative flex flex-col rounded-[2rem] p-7', p.star ? 'plan-star' : 'card']}>
+        <li class:list={['relative flex flex-col rounded-[2rem] p-6 sm:p-7', p.star ? 'plan-star' : 'card']}>
           {p.star && <p class="absolute -top-3.5 left-7 rounded-full bg-accent px-3.5 py-1 text-xs font-extrabold text-accent-ink">{P.star}</p>}
           <p class="text-2xl font-extrabold">{p.name}</p>
           <p class="plan-mut mt-1 text-[0.9375rem] text-mut">{p.who}</p>
           <p class="num mt-6">
-            <span class="price-month text-[2.75rem] font-extrabold leading-none">{n(p.monthly)}</span>
-            <span class="price-year text-[2.75rem] font-extrabold leading-none">{n(p.monthly * YEAR_MONTHS)}</span>
+            <span class="price-month text-[2.5rem] font-extrabold leading-none sm:text-[2.75rem]">{n(p.monthly)}</span>
+            <span class="price-year text-[2.5rem] font-extrabold leading-none sm:text-[2.75rem]">{n(p.monthly * YEAR_MONTHS)}</span>
             <span class="ml-1 text-sm font-semibold">{cur}</span>
             <span class="price-month plan-mut ml-1 text-sm text-mut">{P.perMonth}</span>
             <span class="price-year plan-mut ml-1 text-sm text-mut">{P.perYear}</span>
@@ -58,19 +58,19 @@ const n = (v: number) => fmtNum(lang, v)
     </ul>
   </section>
 
-  <section class="wrap grid gap-5 pb-16 lg:grid-cols-[1.4fr_1fr]">
-    <div class="card p-7">
+  <section class="wrap grid gap-5 pb-16 max-md:grid-cols-[minmax(0,1fr)] lg:grid-cols-[1.4fr_1fr]">
+    <div class="card p-6 sm:p-7">
       <h2 class="text-xl font-extrabold">{P.addonsTitle}</h2>
       <ul class="mt-4 divide-y divide-line">
         {P.addons.map((a) => (
           <li class="flex items-baseline justify-between gap-4 py-2.5">
             <span>{a.name}</span>
-            <span class="num whitespace-nowrap font-bold">{n(a.price)} {cur} <span class="text-sm font-normal text-mut">{P.perMonth}</span></span>
+            <span class="num whitespace-nowrap font-bold max-md:shrink-0 max-md:text-right">{n(a.price)} {cur} <span class="text-sm font-normal text-mut max-md:block">{P.perMonth}</span></span>
           </li>
         ))}
       </ul>
     </div>
-    <div class="card p-7">
+    <div class="card p-6 sm:p-7">
       <h2 class="text-xl font-extrabold">{P.factsTitle}</h2>
       <ul class="mt-4 space-y-3">
         {P.facts.map((f) => (

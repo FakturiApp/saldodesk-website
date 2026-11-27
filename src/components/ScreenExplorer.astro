@@ -2,24 +2,66 @@
 // A real app screen with numbered spots (owner 2026-11-26: „immerse yourself in the app").
 // Each spot and its line in the list light up together; a click on either one picks it.
 // Without JavaScript: the picture with its numbers, and the numbered list beside it.
+//
+// On a phone (below 768px) the screen is drawn at a readable size in a box the visitor drags
+// with a finger; a small map in the corner shows which part of the screen is in view. Under it
+// one spot at a time: its words, back / next and dots (a swipe works too). Picking a spot glides
+// the box to it.
 import AppShot from './AppShot.astro'
-import type { Lang } from '../i18n/ui'
+import { type Lang, useT } from '../i18n/ui'
 import type { Hotspot } from '../content/areas'
 interface Props { lang: Lang; src: string; w: number; h: number; alt: string; spots: Hotspot[]; hint: string; eager?: boolean }
 const { lang, src, w, h, alt, spots, hint, eager } = Astro.props
+const t = useT(lang)
+const PAN = 1000 // px the screen is drawn at on a phone: the app's own text at a readable size
 ---
-<div class:list={['grid gap-6', spots.length ? 'xl:grid-cols-[1fr_20rem]' : '']} data-explorer>
-  <AppShot src={src} w={w} h={h} alt={alt} eager={eager}>
-    {spots.map((s, i) => (
-      <button type="button" data-spot={i} aria-label={`${i + 1}. ${s.label[lang]}`}
-              class="spot absolute grid h-5 w-5 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full text-[0.625rem] font-extrabold leading-none sm:h-[1.375rem] sm:w-[1.375rem] sm:text-[0.6875rem]"
-              style={`left:${(s.x * 100).toFixed(2)}%;top:${(s.y * 100).toFixed(2)}%`}>
-        {i + 1}
-      </button>
-    ))}
-  </AppShot>
+<div class:list={['grid gap-4 md:gap-6', spots.length ? 'xl:grid-cols-[1fr_20rem]' : '']} data-explorer>
+  <div class="relative min-w-0">
+    <AppShot src={src} w={w} h={h} alt={alt} eager={eager} pan={PAN}>
+      {spots.map((s, i) => (
+        <button type="button" data-spot={i} aria-label={`${i + 1}. ${s.label[lang]}`}
+                class="spot absolute grid h-5 w-5 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full text-[0.625rem] font-extrabold leading-none sm:h-[1.375rem] sm:w-[1.375rem] sm:text-[0.6875rem]"
+                style={`left:${(s.x * 100).toFixed(2)}%;top:${(s.y * 100).toFixed(2)}%`}>
+          {i + 1}
+        </button>
+      ))}
+    </AppShot>
+    <button type="button" data-minimap aria-hidden="true" tabindex="-1"
+            class="minimap absolute right-2.5 bottom-2.5 w-[6.5rem] overflow-hidden rounded-lg border-2 border-white bg-white shadow-lg md:hidden"
+            style={`aspect-ratio:${w}/${h}`}>
+      <img src={src} alt="" width={w} height={h} loading="lazy" decoding="async" class="block h-full w-full" draggable="false" />
+      <span data-minimap-rect class="absolute rounded-[2px] border-2 border-[#3fe0ad] bg-[#3fe0ad]/20"></span>
+    </button>
+  </div>
+
+  {spots.length > 0 ? (
+    <div class="md:hidden" data-phone>
+      <div class="flex min-h-[4.5rem] items-start gap-3" data-swipe>
+        <span data-phone-n class="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-accent text-sm font-extrabold text-accent-ink">1</span>
+        <p data-phone-text aria-live="polite" class="pt-0.5 text-[1.0625rem] leading-snug font-medium">{spots[0].label[lang]}</p>
+      </div>
+      <div class="mt-3 flex items-center gap-3">
+        <button type="button" data-phone-prev aria-label={t('spot.prev')} class="grid h-12 w-12 shrink-0 place-items-center rounded-full border border-line text-tx active:bg-surface-2">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
+        </button>
+        <div class="flex min-w-0 flex-1 items-center justify-center">
+          {spots.map((_, i) => (
+            <button type="button" data-dot={i} aria-label={`${i + 1} ${t('spot.of')} ${spots.length}`} class="grid h-11 place-items-center px-[3px]">
+              <span class="dot block h-2 rounded-full bg-line transition-all"></span>
+            </button>
+          ))}
+        </div>
+        <button type="button" data-phone-next aria-label={t('spot.next')} class="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-accent text-accent-ink active:opacity-80">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
+        </button>
+      </div>
+    </div>
+  ) : (
+    <p class="text-sm text-mut md:hidden">{t('pan.hint')}</p>
+  )}
+
   {spots.length > 0 && (
-    <div>
+    <div class="max-md:hidden">
       <p class="text-sm text-mut">{hint}</p>
       <ol class="mt-3 space-y-2">
         {spots.map((s, i) => (
@@ -51,26 +93,128 @@ const { lang, src, w, h, alt, spots, hint, eager } = Astro.props
   .line:hover, .line.is-on { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, transparent); }
   @keyframes spot-ring { 0% { opacity: 0.7; transform: scale(0.9); } 70%, 100% { opacity: 0; transform: scale(1.6); } }
   @media (prefers-reduced-motion: reduce) { .spot::after { animation: none; } }
+
+  .dot { width: 0.5rem; }
+  .is-on > .dot { width: 1.4rem; background: var(--accent); }
+  @media (max-width: 767px) {
+    /* On a phone the spots are finger-sized, and the picked one wears a mint halo. */
+    .spot { width: 1.75rem; height: 1.75rem; font-size: 0.8125rem; }
+    .spot.is-on { transform: translate(-50%, -50%) scale(1.15); box-shadow: 0 0 0 3px #3fe0ad, 0 0 0 9px rgba(63, 224, 173, 0.3); }
+    /* A 40px target for the finger around the 28px dot, without drawing it bigger. */
+    .spot::before { content: ''; position: absolute; inset: -6px; border-radius: 9999px; }
+    /* The small map steps to the other corner when the picked spot sits under it. */
+    .minimap.is-left { right: auto; left: 0.625rem; }
+  }
 </style>
 
 <script>
+  const phone = matchMedia('(max-width: 767px)')
+  const still = matchMedia('(prefers-reduced-motion: reduce)')
   document.querySelectorAll<HTMLElement>('[data-explorer]').forEach((box) => {
     const spots = Array.from(box.querySelectorAll<HTMLElement>('[data-spot]'))
     const lines = Array.from(box.querySelectorAll<HTMLElement>('[data-line]'))
+    const view = box.querySelector<HTMLElement>('[data-shot-view]')!
+    const canvas = view.firstElementChild as HTMLElement
     const pick = (i: number | null) => {
       spots.forEach((s, j) => s.classList.toggle('is-on', j === i))
       lines.forEach((l, j) => l.classList.toggle('is-on', j === i))
     }
+
+    // --- Phone: one spot at a time, the box glides to it.
+    const num = box.querySelector<HTMLElement>('[data-phone-n]')
+    const text = box.querySelector<HTMLElement>('[data-phone-text]')
+    const dots = Array.from(box.querySelectorAll<HTMLElement>('[data-dot]'))
+    const labels = spots.map((s) => (s.getAttribute('aria-label') ?? '').replace(/^\d+\.\s*/, ''))
+    let now = 0
+    const mini = box.querySelector<HTMLElement>('[data-minimap]')
+    const glide = (i: number, smooth: boolean) => {
+      const s = spots[i]
+      if (!s) return
+      // Measured on screen, so the frame round the picture (AppShot's pan padding) counts too.
+      const vr = view.getBoundingClientRect(), sr = s.getBoundingClientRect()
+      const maxL = view.scrollWidth - view.clientWidth, maxT = view.scrollHeight - view.clientHeight
+      const left = Math.max(0, Math.min(maxL, view.scrollLeft + sr.left + sr.width / 2 - vr.left - view.clientWidth / 2))
+      const top = Math.max(0, Math.min(maxT, view.scrollTop + sr.top + sr.height / 2 - vr.top - view.clientHeight / 2))
+      // Where the spot will sit in the box: under the small map (bottom right)? Then the map
+      // moves to the bottom left.
+      if (mini) {
+        const x = sr.left + sr.width / 2 - vr.left + view.scrollLeft - left
+        const y = sr.top + sr.height / 2 - vr.top + view.scrollTop - top
+        const m = mini.getBoundingClientRect()
+        mini.classList.toggle('is-left', x > view.clientWidth - m.width - 30 && y > view.clientHeight - m.height - 30)
+      }
+      view.scrollTo({ left, top, behavior: smooth && !still.matches ? 'smooth' : 'auto' })
+    }
+    const go = (i: number, smooth = true) => {
+      if (!spots.length) return
+      now = (i + spots.length) % spots.length
+      pick(now)
+      if (num) num.textContent = String(now + 1)
+      if (text) text.textContent = labels[now]
+      dots.forEach((d, j) => { d.classList.toggle('is-on', j === now); d.setAttribute('aria-current', String(j === now)) })
+      glide(now, smooth)
+    }
+    box.querySelector('[data-phone-prev]')?.addEventListener('click', () => go(now - 1))
+    box.querySelector('[data-phone-next]')?.addEventListener('click', () => go(now + 1))
+    dots.forEach((d, i) => d.addEventListener('click', () => go(i)))
+    // A sideways swipe over the words turns to the next or previous spot.
+    const swipe = box.querySelector<HTMLElement>('[data-swipe]')
+    let x0 = 0, y0 = 0
+    swipe?.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY }, { passive: true })
+    swipe?.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0
+      if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.5) go(now + (dx < 0 ? 1 : -1))
+    })
+
+    // --- The small map: which part of the screen is in view; a tap there moves the box.
+    const rect = box.querySelector<HTMLElement>('[data-minimap-rect]')
+    const drawMini = () => {
+      if (!rect || !canvas.offsetWidth) return
+      const W = canvas.offsetWidth, H = canvas.offsetHeight
+      // The part of the picture in view (the box may show some of the frame round it).
+      const vr = view.getBoundingClientRect(), cr = canvas.getBoundingClientRect()
+      const x0 = Math.max(0, vr.left - cr.left), y0 = Math.max(0, vr.top - cr.top)
+      const x1 = Math.min(W, vr.left + view.clientWidth - cr.left), y1 = Math.min(H, vr.top + view.clientHeight - cr.top)
+      rect.style.left = `${(x0 / W) * 100}%`
+      rect.style.top = `${(y0 / H) * 100}%`
+      rect.style.width = `${(Math.max(0, x1 - x0) / W) * 100}%`
+      rect.style.height = `${(Math.max(0, y1 - y0) / H) * 100}%`
+    }
+    view.addEventListener('scroll', () => requestAnimationFrame(drawMini), { passive: true })
+    mini?.addEventListener('click', (e) => {
+      const r = mini.getBoundingClientRect(), vr = view.getBoundingClientRect(), cr = canvas.getBoundingClientRect()
+      const fx = (e.clientX - r.left) / r.width, fy = (e.clientY - r.top) / r.height
+      const left = view.scrollLeft + cr.left - vr.left + fx * canvas.offsetWidth - view.clientWidth / 2
+      const top = view.scrollTop + cr.top - vr.top + fy * canvas.offsetHeight - view.clientHeight / 2
+      view.scrollTo({ left, top, behavior: still.matches ? 'auto' : 'smooth' })
+    })
+
+    const start = () => {
+      if (!phone.matches) { pick(null); return }
+      if (spots.length) go(0, false)
+      else view.scrollTo({ left: 0, top: 0 })
+      drawMini()
+    }
+    const img = view.querySelector('img')
+    if (img && !img.complete) img.addEventListener('load', start, { once: true })
+    start()
+    phone.addEventListener('change', start)
+    window.addEventListener('resize', () => requestAnimationFrame(drawMini))
+
+    // --- Desktop: hover and click light up a spot and its line.
     spots.forEach((s, i) => {
-      s.addEventListener('mouseenter', () => pick(i))
-      s.addEventListener('focus', () => pick(i))
-      s.addEventListener('click', () => { pick(i); lines[i]?.scrollIntoView({ block: 'nearest', behavior: 'smooth' }) })
+      s.addEventListener('mouseenter', () => { if (!phone.matches) pick(i) })
+      s.addEventListener('focus', () => { if (!phone.matches) pick(i) })
+      s.addEventListener('click', () => {
+        if (phone.matches) { go(i); return }
+        pick(i); lines[i]?.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+      })
     })
     lines.forEach((l, i) => {
       l.addEventListener('mouseenter', () => pick(i))
       l.addEventListener('focus', () => pick(i))
       l.addEventListener('click', () => pick(i))
     })
-    box.addEventListener('mouseleave', () => pick(null))
+    box.addEventListener('mouseleave', () => { if (!phone.matches) pick(null) })
   })
 </script>

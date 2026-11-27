@@ -27,9 +27,9 @@ const textLang = a.translated ? lang : 'mk'
 <Base lang={lang} page="pomosh" subpath={`pomosh/${a.id}/`} canonicalLang={a.translated ? undefined : 'mk'} title={a.data.title} description={C.describe(a.data.title)}>
   <article class="wrap grid gap-10 pt-12 pb-16 md:pt-16 lg:grid-cols-[1fr_20rem]">
     <div class="min-w-0">
-      <nav aria-label={C.crumbs} class="flex flex-wrap items-center gap-2 text-sm text-mut">
-        <a href={home} class="font-semibold hover:text-tx">{C.title}</a><span>/</span>
-        <a href={`${home}#${a.data.topic}`} class="hover:text-tx">{topic?.name[lang]}</a>
+      <nav aria-label={C.crumbs} class="flex flex-wrap items-center gap-2 text-sm text-mut max-md:-my-2.5">
+        <a href={home} class="font-semibold hover:text-tx max-md:py-2.5">{C.title}</a><span>/</span>
+        <a href={`${home}#${a.data.topic}`} class="hover:text-tx max-md:py-2.5">{topic?.name[lang]}</a>
       </nav>
       <h1 class="mt-4 text-[2.1rem] md:text-[3rem]" lang={textLang}>{a.data.title}</h1>
       {badge && (

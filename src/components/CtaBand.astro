@@ -8,8 +8,8 @@ const { lang, section } = Astro.props
 const t = useT(lang)
 const C = SITE[lang].cta
 ---
-<section class="wrap pb-20">
-  <div class="cta-night relative overflow-hidden rounded-[2.5rem] px-6 py-16 text-center md:py-20">
+<section class="wrap pb-20" data-cta-band>
+  <div class="cta-night relative overflow-hidden rounded-[2rem] px-6 py-14 text-center md:rounded-[2.5rem] md:py-20">
     <h2 class="mx-auto max-w-3xl text-3xl md:text-5xl">{C.title}</h2>
     <a href={signupUrl(lang)} class="pill pill-accent mt-9" data-event="cta_trial_click" data-section={section}>
       <span>{t('cta.trial')}</span><span class="pill-arrow"><Arrow /></span>

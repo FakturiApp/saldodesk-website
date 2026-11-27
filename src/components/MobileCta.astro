@@ -1,0 +1,40 @@
+---
+// The phone's call to try it: one bar at the bottom, under the thumb. It comes once the visitor
+// has scrolled a little and steps aside while the page's own closing call or footer is on screen.
+import Arrow from './Arrow.astro'
+import { type Lang, signupUrl, useT } from '../i18n/ui'
+interface Props { lang: Lang }
+const { lang } = Astro.props
+const t = useT(lang)
+---
+<div data-mobile-cta class="mobile-cta fixed inset-x-3 bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-30 flex items-center gap-3 rounded-full border border-line bg-surface/95 py-2 pr-2 pl-5 shadow-[var(--shadow)] backdrop-blur sm:hidden">
+  <p class="flex-1 text-[0.8125rem] leading-tight text-mut">{t('cta.free')}<br />{t('cta.noCard')}</p>
+  <a href={signupUrl(lang)} class="pill pill-accent pill-sm" data-event="cta_trial_click" data-section="mobile-bar">
+    <span>{t('cta.trialShort')}</span><span class="pill-arrow"><Arrow /></span>
+  </a>
+</div>
+
+<style>
+  .mobile-cta { transform: translateY(calc(100% + 2rem)); transition: transform 0.3s ease; }
+  .mobile-cta.is-shown { transform: none; }
+  :global(html.menu-open) .mobile-cta { display: none; }
+  /* No padding under the footer: the bar steps aside as soon as the footer shows, and a padded
+     body left a strip of page colour under the footer. */
+</style>
+
+<script>
+  const bar = document.querySelector<HTMLElement>('[data-mobile-cta]')
+  if (bar) {
+    let away = false // the page's own call to try it, or the footer, is on screen
+    const sync = () => bar.classList.toggle('is-shown', window.scrollY > 240 && !away)
+    const seen = new Set<Element>()
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => (e.isIntersecting ? seen.add(e.target) : seen.delete(e.target)))
+      away = seen.size > 0
+      sync()
+    })
+    document.querySelectorAll('[data-cta-band], footer, [data-hero-cta]').forEach((el) => io.observe(el))
+    window.addEventListener('scroll', sync, { passive: true })
+    sync()
+  }
+</script>

@@ -13,6 +13,11 @@ const t = useT(Astro.props.lang)
 <style>
   .to-top { opacity: 0; transform: translateY(-0.5rem); pointer-events: none; transition: opacity 0.25s, transform 0.25s, border-color 0.15s, color 0.15s; }
   .to-top.is-shown { opacity: 1; transform: none; pointer-events: auto; }
+  /* On a phone the upper left sits on the headings of the topic cards: there the button waits
+     at the lower right, just above the bottom „Пробајте" bar. */
+  @media (max-width: 767px) {
+    .to-top { top: auto; left: auto; right: 0.75rem; bottom: calc(max(0.75rem, env(safe-area-inset-bottom)) + 4.5rem); transform: translateY(0.5rem); }
+  }
 </style>
 
 <script>

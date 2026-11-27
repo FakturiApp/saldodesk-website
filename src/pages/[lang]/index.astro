@@ -24,33 +24,33 @@ const look = AREAS.find((a) => a.id === 'dokumenti')!.screen
 const link = 'inline-flex items-center gap-2 font-bold underline decoration-hi decoration-4 underline-offset-4'
 ---
 <Base lang={lang}>
-  <section class="relative -mt-[4.75rem] overflow-hidden pt-[8.5rem] pb-16 md:pb-20">
+  <section class="relative -mt-16 overflow-hidden pt-24 pb-14 md:-mt-[4.75rem] md:pt-[8.5rem] md:pb-20">
     <div class="glow -right-40 -top-40 h-[36rem] w-[36rem]" style="background:var(--glow-a)" aria-hidden="true"></div>
     <div class="wrap relative grid items-center gap-12 lg:grid-cols-[1fr_1.25fr]">
       <div>
         <h1 class="text-[2.5rem] sm:text-[3.25rem] xl:text-[4rem]"><Rich text={H.title} /></h1>
         <p class="mt-6 max-w-xl text-lg text-mut md:text-xl">{H.text}</p>
-        <div class="mt-9 flex flex-wrap items-center gap-3">
-          <a href={signupUrl(lang)} class="pill pill-accent" data-event="cta_trial_click" data-section="hero">
+        <div class="mt-8 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:flex-wrap sm:items-center" data-hero-cta>
+          <a href={signupUrl(lang)} class="pill pill-accent justify-between sm:justify-start" data-event="cta_trial_click" data-section="hero">
             <span>{t('cta.trial')}</span><span class="pill-arrow"><Arrow /></span>
           </a>
-          <a href={pageHref(lang, 'kako-raboti')} class="pill pill-ghost">{H.cta2}</a>
+          <a href={pageHref(lang, 'kako-raboti')} class="pill pill-ghost justify-center">{H.cta2}</a>
         </div>
         <p class="mt-5 text-sm text-mut">{H.note}</p>
       </div>
-      <AppShot src={shotSrc({ img: "/shots/pochetna.webp", w: 1600, h: 900, caption: { mk: "", en: "" } }, lang)} w={1600} h={900} alt={H.alt} eager />
+      <AppShot src={shotSrc({ img: "/shots/pochetna.webp", w: 1600, h: 900, caption: { mk: "", en: "" } }, lang)} w={1600} h={900} alt={H.alt} eager crop={{ x: 0, y: 0.42, w: 1100, h: 300 }} />
     </div>
   </section>
 
   <section class="wrap py-14 md:py-20">
     <h2 class="text-3xl md:text-[2.75rem]">{H.whatTitle}</h2>
-    <ul class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <ul class="mt-8 grid gap-2.5 sm:mt-10 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
       {cards.map((f) => (
         <li>
-          <a href={`${pageHref(lang, 'kako-raboti')}#${f.id}`} class="card group flex h-full flex-col gap-4 p-6 transition hover:-translate-y-1 hover:border-tx">
-            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-accent text-accent-ink"><AppIcon name={f.icon} /></span>
+          <a href={`${pageHref(lang, 'kako-raboti')}#${f.id}`} class="card group grid h-full grid-cols-[auto_1fr] items-center gap-x-4 gap-y-1 p-4 !rounded-2xl transition hover:-translate-y-1 hover:border-tx sm:flex sm:flex-col sm:items-start sm:gap-4 sm:p-6 sm:!rounded-3xl">
+            <span class="row-span-2 grid h-12 w-12 place-items-center rounded-2xl bg-accent text-accent-ink"><AppIcon name={f.icon} /></span>
             <span class="text-lg font-bold">{f.title[lang]}</span>
-            <span class="flex-1 text-[0.9375rem] text-mut">{f.intro[lang]}</span>
+            <span class="flex-1 text-[0.875rem] leading-snug text-mut sm:text-[0.9375rem] sm:leading-normal">{f.intro[lang]}</span>
           </a>
         </li>
       ))}
@@ -66,13 +66,13 @@ const link = 'inline-flex items-center gap-2 font-bold underline decoration-hi d
           <p class="mt-4 text-lg text-mut">{H.tourText}</p>
           <p class="mt-8"><a href={pageHref(lang, 'kako-raboti')} class="pill pill-solid"><span>{H.tourCta}</span><span class="pill-arrow"><Arrow /></span></a></p>
         </div>
-        <AppShot src={shotSrc(look, lang)} w={look.w} h={look.h} alt={look.caption[lang]} />
+        <AppShot src={shotSrc(look, lang)} w={look.w} h={look.h} alt={look.caption[lang]} crop={{ x: 0.15, y: 0.46, w: 1000, h: 300 }} />
       </div>
     </section>
   )}
 
   <section class="wrap py-14 md:py-20">
-    <div class="card flex flex-wrap items-center justify-between gap-6 p-8 md:p-12">
+    <div class="card flex flex-wrap items-center justify-between gap-6 p-6 sm:p-8 md:p-12">
       <div>
         <h2 class="text-3xl md:text-[2.5rem]">{H.priceTitle}</h2>
         <p class="mt-3 text-lg text-mut">{H.priceText}</p>
