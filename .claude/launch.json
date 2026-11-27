@@ -33,6 +33,24 @@
         "Set-Location .app-copy\\frontend; $env:DEV_PORT='5160'; $env:DEV_API_PORT='8150'; npx vite"
       ],
       "port": 5160
+    },
+    {
+      "name": "mobile-audit-backend",
+      "runtimeExecutable": "powershell",
+      "runtimeArgs": [
+        "-NoProfile", "-Command",
+        "Set-Location ..\\Business_M-main; $env:DB_PATH='data/mobile-audit.db'; $env:FISCAL_ALLOW_STUB='true'; $env:UJP_ENABLED='false'; $env:DRAFT_PURGE_ENABLED='false'; $env:RECURRING_SCHEDULER_ENABLED='false'; $env:REMINDERS_SCHEDULER_ENABLED='false'; $env:RENTALS_SCHEDULER_ENABLED='false'; $env:RESERVATIONS_SCHEDULER_ENABLED='false'; $env:SNAPSHOTS_SCHEDULER_ENABLED='false'; $env:UJP_STATUS_SCHEDULER_ENABLED='false'; $env:WEBSYNC_SCHEDULER_ENABLED='false'; $env:BACKUP_EVERY_HOURS='0'; & .venv/Scripts/python.exe -m uvicorn backend.main:app --port 8160"
+      ],
+      "port": 8160
+    },
+    {
+      "name": "mobile-audit-frontend",
+      "runtimeExecutable": "powershell",
+      "runtimeArgs": [
+        "-NoProfile", "-Command",
+        "Set-Location ..\\Business_M-main; $env:DEV_PORT='5170'; $env:DEV_API_PORT='8160'; npm run dev --prefix frontend"
+      ],
+      "port": 5170
     }
   ]
 }
